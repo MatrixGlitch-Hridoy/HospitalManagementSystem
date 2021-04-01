@@ -67,11 +67,12 @@
             }
             else{
 
-                if((strlen($uName)<4)){
-                    array_push($this->errors," Username: Name is too short");
-                }
-                else if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
+               
+                if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
                     array_push($this->errors," Username: Only letter allowed");
+                }
+                else if((strlen($uName)<4)){
+                    array_push($this->errors," Username: Name is too short");
                 }
     
                 if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
