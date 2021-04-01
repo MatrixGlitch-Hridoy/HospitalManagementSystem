@@ -181,7 +181,7 @@ $db = new Database();
 
   <div>
     <label>Username</label>
-    <input type="text" name="username" class="text-input">
+    <input type="text" name="username" class="text-input" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '';?>"> <!-- Keep field values after refresh -->
     <?php 
       // if(isset($error_msg['username']))
       // {
@@ -192,7 +192,7 @@ $db = new Database();
   </div>
   <div>
     <label>Email</label>
-    <input type="text" name="email" class="text-input">
+    <input type="text" name="email" class="text-input" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
     <?php 
       // if(isset($error_msg['email']))
       // {
