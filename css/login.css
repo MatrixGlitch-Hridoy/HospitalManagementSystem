@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-family: "B612", sans-serif;
+}
+
+.title {
+  text-align: center;
+  background-color: rgb(39, 36, 36);
+  overflow: hidden;
+  color: #fff;
+}
+/* .navbar {
+      overflow: hidden;
+    }
+    
+    .menu {
+      background-color: rgb(165, 24, 24);
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      text-align: center;
+    }
+    .menu li {
+      display: inline-block;
+    }
+    .menu li a {
+      text-decoration: none;
+      display: block;
+      padding: 10px;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 15px 10px;
+    } */
+.navigation {
+  background-color: rgb(165, 24, 24);
+}
+.menu {
+  width: 33%;
+  margin: 0 auto;
+}
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.menu ul li {
+  float: left;
+  position: relative;
+}
+.menu ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 20px 20px;
+  display: block;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.menu ul li a:hover {
+  background-color: black;
+}
+/*drop down menu design*/
+.menu ul ul li {
+  float: none;
+}
+.menu ul ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgb(165, 24, 24);
+  width: 260px;
+  display: none;
+  z-index: 1;
+}
+.menu ul li:hover > ul {
+  display: block;
+}
+
+/* register */
+.btn {
+  padding: 0.5rem 1rem;
+  background: rgb(189, 31, 31);
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-size: 1.08em;
+  /* font-family: "Lora", serif; */
+}
+
+.btn-big {
+  padding: 0.7rem 1.3rem;
+  line-height: 1.3rem;
+}
+
+.btn:hover {
+  color: white;
+  background: rgb(156, 17, 17);
+}
+.text-input {
+  padding: 0.7rem 1rem;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  outline: none;
+  color: #444;
+  line-height: 1.5rem;
+  font-size: 1.2em;
+  font-family: "Lora", serif;
+}
+
+.auth-content {
+  width: 30%;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 5px 5px 30px black;
+}
+
+.auth-content .form-title {
+  text-align: center;
+}
+
+.auth-content form div {
+  margin-bottom: 10px;
+}
+
+.auth-content form p {
+  text-align: center;
+}
+
+.auth-content form p a {
+  text-decoration: underline;
+}
