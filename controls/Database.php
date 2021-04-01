@@ -53,7 +53,7 @@
                 return $this->connection;
             }
         }
-
+        
         public function insertRecord($data)
         {
             $uName = $_POST['username'];
