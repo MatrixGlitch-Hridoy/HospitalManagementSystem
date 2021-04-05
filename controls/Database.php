@@ -41,7 +41,7 @@
         private $dbname = 'hms';
         private $connection;
         public $errors = array();
-
+        public $success = array();
         public function __construct()
         {
             $this->connection = new mysqli($this->host,$this->user,$this->password,$this->dbname);
@@ -65,9 +65,8 @@
             {
                 array_push($this->errors," Fields must not be empty");
             }
-            else{
-
-               
+            else
+            {
                 if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
                     array_push($this->errors," Username: Only letter allowed");
                 }
@@ -86,7 +85,7 @@
                     array_push($this->errors," Password: the password does not meet the requirements");
                 }
             
-                else if(!($cpassword==$password) )
+                else if(!($cpassword==$password))
                 {
                     array_push($this->errors," Password: Password didn't match");
                 }
@@ -98,10 +97,106 @@
                 //$password = md5($password);//encript password
                 $sql = "INSERT INTO patients(username,email,password) VALUES('$uName','$email','$password')";
                 $create = $this->connection->query($sql);
+                
+                session_start();
+                //array_push($this->success,"Registration Seccessful!");
+                $_SESSION['email'] = $email;
+                $_SESSION['password'] = $password;
+                header("Location: login.php");
             }
         }
 
+        public function loginRecord($data)
+        {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
+            if(empty($email)||empty($password))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+
+            if(count($this->errors)==0)
+            {
+                $sql = "SELECT * FROM users WHERE email='$email' ";
+                $logged = $this->connection->query($sql);
+                $email_count = $logged->num_rows;
+                if($email_count)
+                {   
+                    $email_pass = $logged->fetch_assoc();
+                    $db_pass = $email_pass['password'];
+                    $_SESSION['username'] = $email_pass['username'];
+                    $user_type = $email_pass['user_type'];
+                    if($db_pass==$password)
+                    {
+                        
+                        // $_SESSION['email'] = $email;
+                        // if(!empty($_SESSION['email']))
+                        // {
+                            
+                        //     header("Location: patient/dashboard.php");
+                        // }
+                        if($user_type == 'admin')
+                        {
+                                
+                            $_SESSION['email'] = $email;
+                            if(!empty($_SESSION['email']))
+                            {
+                                
+                                header("Location: admin/dashboard.php");
+                            }
+                        }
+                        elseif($user_type == 'doctor')
+                        {
+                            $_SESSION['email'] = $email;
+                            if(!empty($_SESSION['email']))
+                            {
+                                
+                                header("Location: doctor/dashboard.php");
+                            }
+                        }
+                        elseif($user_type == 'pharmacist')
+                        {
+                            $_SESSION['email'] = $email;
+                            if(!empty($_SESSION['email']))
+                            {
+                                
+                                header("Location: pharmacist/dashboard.php");
+                            }
+                        }
+                        else{
+                            $_SESSION['email'] = $email;
+                            if(!empty($_SESSION['email']))
+                            {
+                                
+                                header("Location: patient/dashboard.php");
+                            }
+                        }
+
+                        
+                    }
+                    else{
+                        array_push($this->errors,"Incorrect Password");
+                       // echo "Incorrect";
+                    }
+                    
+                }
+                else{
+                    array_push($this->errors,"Email not found");
+                    //echo "email not found";
+                }
+                
+            }
+
+        }
+
+        // public function logoutRecord()
+        // {
+        //     session_start();
+        //     session_unset();
+        //     header("Location:login.php");
+        // }
+        
 
     }
 ?>
