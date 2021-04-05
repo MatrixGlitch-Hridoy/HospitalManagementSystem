@@ -24,13 +24,13 @@
   <body>
     <header class="header-area">
       <div class="title">
-        <h1>Hospital Management System</h1>
+        <h1>Hospital Management</h1>
       </div>
       <div class="navigation">
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="#">Doctor Dashboard</a>
               <ul>
                 <li><a href="#">Logout</a></li>
               </ul>
