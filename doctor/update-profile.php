@@ -80,6 +80,7 @@
   </head>
 
   <body>
+  <h1>this is mahi</h1>
     <header class="header-area">
       <div class="title">
         <h1>Hospital Management System</h1>
