@@ -29,13 +29,13 @@
     <link rel="stylesheet" href="../css/admin-nav.css" />
     <link rel="stylesheet" href="../css/admin.css" />
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Admin Section <-> Manage Admin</title>
   </head>
 
   <body>
     <header class="header-area">
       <div class="title">
-        <h1>Hospital Management System</h1>
+        <h1>Hospital Management</h1>
       </div>
       <div class="navigation">
         <nav class="menu">
@@ -56,8 +56,8 @@
       <!-- Left Sidebar -->
       <div class="left-sidebar">
         <ul>
-          <li><a href="book-appointment.php">Book Apointment</a></li>
-          <li><a href="appointment-history.php">Apointment History</a></li>
+          <li><a href="book-appointment.php">Book Appointment</a></li>
+          <li><a href="appointment-history.php">Appointment History</a></li>
           <li><a href="update-profile.php">Update Profile</a></li>
         </ul>
       </div>
