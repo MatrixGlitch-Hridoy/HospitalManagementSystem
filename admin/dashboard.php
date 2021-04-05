@@ -1,3 +1,14 @@
+<?php include"../controls/Database.php" ?>
+
+<?php 
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
+  {
+    header("Location:../login.php");
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,9 +41,9 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href=""><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -54,13 +65,9 @@
 
       <!-- Admin Content -->
       <div class="admin-content">
-        <div class="button-group">
-          <a href="users/create.php" class="btn btn-big">Add Patient</a>
-          <a href="users/index.php" class="btn btn-big">Manage Patient</a>
-        </div>
-
+        
         <div class="content">
-          <h2 class="page-title">Manage Users</h2>
+        <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
 
           <table>
             <thead>

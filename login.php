@@ -1,29 +1,30 @@
-<?php include "controls/db.php" ?>
-
+<?php include "controls/Database.php" ?>
 <?php 
+session_start();
+$db = new Database();
   if(isset($_POST['submit']))
   {
-    $email = $_POST['email'];
-    if(empty($email)){
-      $error_msg['email'] = "Email is required";
-    }
-    else if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
-      $error_msg['email'] = "Invalid email format";
-    }
+    $db->loginRecord($_POST);
+    // $email = $_POST['email'];
+    // if(empty($email)){
+    //   $error_msg['email'] = "Email is required";
+    // }
+    // else if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
+    //   $error_msg['email'] = "Invalid email format";
+    // }
 
-    $password = $_POST['password'];
-    if(empty($password)){
-      $error_msg['password'] = "Password is required";
-    }
-    else if((strlen($password)<6)){
-      $error_msg['password'] = "Password is too short";
-    }
-    else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
-      $error_msg['password'] = "the password does not meet the requirements";
-    }
+    // $password = $_POST['password'];
+    // if(empty($password)){
+    //   $error_msg['password'] = "Password is required";
+    // }
+    // else if((strlen($password)<6)){
+    //   $error_msg['password'] = "Password is too short";
+    // }
+    // else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
+    //   $error_msg['password'] = "the password does not meet the requirements";
+    // }
   }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,14 +52,14 @@
             <li><a href="#">About Us</a></li>
             <li><a href="#">Service</a></li>
             <li><a href="#">Contact Us</a></li>
-            <li>
+            <!-- <li>
               <a href="#">Login As></a>
               <ul>
                 <li><a href="#">User</a></li>
                 <li><a href="#">Doctor</a></li>
                 <li><a href="#">Admin</a></li>
               </ul>
-            </li>
+            </li> -->
           </ul>
         </nav>
       </div>
@@ -66,10 +67,13 @@
 
 
     
-  <div class="auth-content">
-
+<div class="auth-content">
 <form action="login.php" method="post">
   <h2 class="form-title">Sign In</h2>
+  <?php
+    include "controls/errors.php";
+    
+  ?>
 
   <!-- <div class="msg error">
     <li>Username required</li>
@@ -77,23 +81,24 @@
 
   <div>
     <label>Email</label>
-    <input type="text" name="email" class="text-input">
+    <input type="text" name="email" class="text-input" > 
+    <!-- value=" echo isset($_SESSION['email']) ? $_SESSION['email'] : '';" -->
     <?php 
-      if(isset($error_msg['email']))
-      {
-        echo"<span class='error'>".$error_msg['email']."</span>";
-      }
+      // if(isset($error_msg['email']))
+      // {
+      //   echo"<span class='error'>".$error_msg['email']."</span>";
+      // }
     ?>
   </div>
   
   <div>
     <label>Password</label>
-    <input type="password" name="password" class="text-input">
+    <input type="password" name="password" class="text-input" >
     <?php 
-      if(isset($error_msg['password']))
-      {
-        echo"<span class='error'>".$error_msg['password']."</span>";
-      }
+      // if(isset($error_msg['password']))
+      // {
+      //   echo"<span class='error'>".$error_msg['password']."</span>";
+      // }
     ?>
   </div>
  
@@ -104,6 +109,7 @@
 </form>
 
 </div>
+<?php //session_unset(); ?>
    
-  </body>
+</body>
 </html>
