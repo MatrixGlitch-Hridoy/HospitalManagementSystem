@@ -1,12 +1,13 @@
-<?php include "controls/config.php" ?>
 <?php include "controls/Database.php" ?>
-<?php include "controls/Users.php" ?>
 <?php
-$db = new Database();
 
+$db = new Database();
   // $users = new Users();
   if(isset($_POST['submit'])){
     $db->insertRecord($_POST);
+    // $_SESSION['email'] = $_POST['email'];
+    // $_SESSION['password'] = $_POST['password'];
+    // header("Location:login.php");
   //   // $users->userRegistration($_POST);
   //   $uName = $_POST['username'];
   //   $email = $_POST['email'];
@@ -143,14 +144,14 @@ $db = new Database();
             <li><a href="#">About Us</a></li>
             <li><a href="#">Service</a></li>
             <li><a href="#">Contact Us</a></li>
-            <li>
-              <a href="#">Login As></a>
+            <!-- <li>
+              <a href="#">Login</a>
               <ul>
                 <li><a href="#">User</a></li>
                 <li><a href="#">Doctor</a></li>
                 <li><a href="#">Admin</a></li>
               </ul>
-            </li>
+            </li> -->
           </ul>
         </nav>
       </div>
