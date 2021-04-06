@@ -54,6 +54,7 @@
             }
         }
         
+        /////Insert function//////
         public function insertRecord($data)
         {
             $uName = $_POST['username'];
@@ -106,6 +107,7 @@
             }
         }
 
+        /////////////////Login function///////
         public function loginRecord($data)
         {
             $email = $_POST['email'];
@@ -197,6 +199,20 @@
         //     header("Location:login.php");
         // }
         
+        ////////Display data//////
+        public function displayRecord($table)
+        {
+            $sql = "SELECT * FROM $table";
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;
+            }
+        }
 
     }
 ?>
