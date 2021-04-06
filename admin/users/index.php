@@ -1,3 +1,18 @@
+<?php include"../../controls/Database.php" ?>
+
+<?php 
+  //session_start();
+  $db = new Database();
+  // if(!isset($_SESSION['username']))
+  // {
+  //   header("Location:../login.php");
+  // }
+
+  $data = $db->displayRecord("patients");
+  
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -70,13 +85,19 @@
               <th colspan="2">Action</th>
             </thead>
             <tbody>
+            <?php
+              $sno=1;
+              foreach($data as $value)
+              {
+            ?>
               <tr>
-                <td>1</td>
-                <td>Hridoy</td>
-                <td>rkhridoy68@gmail.com</td>
-                <td><a href="#" class="edit">edit</a></td>
-                <td><a href="#" class="delete">delete</a></td>
+                <td><?php echo $sno++ ?></td>
+                <td><?php echo $value['username'] ?></td>
+                <td><?php echo $value['email'] ?></td>
+                <td><a href="update.php" class="edit btn btn-big">edit</a></td>
+                <td><a href="index.php" class="delete btn btn-big">delete</a></td>
               </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>
