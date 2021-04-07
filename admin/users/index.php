@@ -94,8 +94,8 @@
                 <td><?php echo $sno++ ?></td>
                 <td><?php echo $value['username'] ?></td>
                 <td><?php echo $value['email'] ?></td>
-                <td><a href="update.php" class="edit btn btn-big">edit</a></td>
-                <td><a href="index.php" class="delete btn btn-big">delete</a></td>
+                <td><a href="update.php?editid=<?php echo $value['id']; ?>" class="edit btn btn-big">edit</a></td>
+                <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn btn-big">delete</a></td>
               </tr>
               <?php } ?>
             </tbody>
