@@ -55,15 +55,15 @@
         }
         
         /////Insert function//////
-        public function insertRecord($data)
+        public function insertRecord($data,$table)
         {
             $uName = $_POST['username'];
             $email = $_POST['email'];
             $password = $_POST['password'];
             $cpassword = $_POST['passwordConf'];
-            $address = $_POST['address'];
-            $phone = $_POST['phone'];
-            $gender = $_POST['gender'];
+            // $address = $_POST['address'];
+            // $phone = $_POST['phone'];
+            // $gender = $_POST['gender'];
 
             if(empty($uName)||empty($email)||empty($password)||empty($cpassword))
             {
@@ -99,16 +99,21 @@
             if(count($this->errors)==0)
             {
                 //$password = md5($password);//encript password
-                $sql = "INSERT INTO patients(username,email,password,address,phone,gender) VALUES('$uName','$email','$password','$address','$phone','$gender')";
+                $sql = "INSERT INTO $table(username,email,password,address,phone,gender) VALUES('$uName','$email','$password','$address','$phone','$gender')";
                 $create = $this->connection->query($sql);
-                
+                if($create)
+                {
                 session_start();
-                //array_push($this->success,"Registration Seccessful!");
                 $_SESSION['email'] = $email;
                 $_SESSION['password'] = $password;
-               // header("Location: login.php");
-               echo "<script>alert('Registration succesful');</script>";
-                echo "<script>window.location.href = 'login.php';</script>";
+
+                return true;
+                }
+                else{
+                    return false;
+                }
+                // echo "<script>alert('Registration succesful');</script>";
+                // echo "<script>window.location.href = 'login.php';</script>";
             }
         }
 
