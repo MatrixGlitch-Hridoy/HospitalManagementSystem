@@ -61,6 +61,9 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
             $cpassword = $_POST['passwordConf'];
+            $address = $_POST['address'];
+            $phone = $_POST['phone'];
+            $gender = $_POST['gender'];
 
             if(empty($uName)||empty($email)||empty($password)||empty($cpassword))
             {
@@ -96,14 +99,16 @@
             if(count($this->errors)==0)
             {
                 //$password = md5($password);//encript password
-                $sql = "INSERT INTO patients(username,email,password) VALUES('$uName','$email','$password')";
+                $sql = "INSERT INTO patients(username,email,password,address,phone,gender) VALUES('$uName','$email','$password','$address','$phone','$gender')";
                 $create = $this->connection->query($sql);
                 
                 session_start();
                 //array_push($this->success,"Registration Seccessful!");
                 $_SESSION['email'] = $email;
                 $_SESSION['password'] = $password;
-                header("Location: login.php");
+               // header("Location: login.php");
+               echo "<script>alert('Registration succesful');</script>";
+                echo "<script>window.location.href = 'login.php';</script>";
             }
         }
 
@@ -145,7 +150,9 @@
                             if(!empty($_SESSION['email']))
                             {
                                 
-                                header("Location: admin/dashboard.php");
+                                //header("Location: admin/dashboard.php");
+                                echo "<script>alert('Login succesful');</script>";
+                                echo "<script>window.location.href = 'admin/dashboard.php';</script>";
                             }
                         }
                         elseif($user_type == 'doctor')
@@ -154,7 +161,9 @@
                             if(!empty($_SESSION['email']))
                             {
                                 
-                                header("Location: doctor/dashboard.php");
+                                // header("Location: doctor/dashboard.php");
+                                echo "<script>alert('Login succesful');</script>";
+                                echo "<script>window.location.href = 'doctor/dashboard.php';</script>";
                             }
                         }
                         elseif($user_type == 'pharmacist')
@@ -163,7 +172,9 @@
                             if(!empty($_SESSION['email']))
                             {
                                 
-                                header("Location: pharmacist/dashboard.php");
+                                // header("Location: pharmacist/dashboard.php");
+                                echo "<script>alert('Login succesful');</script>";
+                                echo "<script>window.location.href = 'pharmacist/dashboard.php';</script>";
                             }
                         }
                         else{
@@ -171,7 +182,9 @@
                             if(!empty($_SESSION['email']))
                             {
                                 
-                                header("Location: patient/dashboard.php");
+                                // header("Location: patient/dashboard.php");
+                                echo "<script>alert('Login succesful');</script>";
+                                echo "<script>window.location.href = 'patient/dashboard.php';</script>";
                             }
                         }
 
@@ -211,6 +224,92 @@
                    $data[] = $row;  
                 }
                 return $data;
+            }
+        }
+
+        public function displayRecordById($editid,$table)
+        {
+            $sql = "SELECT * FROM $table WHERE id ='$editid'";
+            $result = $this->connection->query($sql);
+            if($result->num_rows==1){
+                $row = $result->fetch_assoc();
+                return $row;
+            }
+            // if($result = $this->connection->query($sql))
+            // {
+            //     while($row = $result->fetch_assoc())
+            //     {
+            //         $data = $row;
+            //     }
+            // }
+            // return $data;
+        }
+
+        /////////Update Record/////
+        public function updateRecord($data,$table)
+        {
+            $uName = $_POST['username'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $address = $_POST['address'];
+            $phone = $_POST['phone'];
+            $gender = $_POST['gender'];
+            $editid = $_POST['hid'];
+
+            if(empty($uName)||empty($email)||empty($password))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+            else
+            {
+                if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
+                    array_push($this->errors," Username: Only letter allowed");
+                }
+                else if((strlen($uName)<4)){
+                    array_push($this->errors," Username: Name is too short");
+                }
+    
+                if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
+                    array_push($this->errors," Email: Invalid email format");
+                }
+    
+                if(strlen($password)<6){
+                    array_push($this->errors," Password: Password is too short");
+                }
+                else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
+                    array_push($this->errors," Password: the password does not meet the requirements");
+                }
+
+            }
+
+           // var_dump($data);
+
+            if(count($this->errors)==0)
+            {
+                //$password = md5($password);//encript password
+                $sql = "UPDATE $table SET username='$uName',email='$email',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$editid'";
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    echo "<script>alert('updated succesful');</script>";
+                    echo "<script>window.location.href = 'index.php';</script>";
+                }
+                else{
+                    echo "not working";
+                }
+            }
+        }
+
+        public function delete($deleteid,$table)
+        {
+            $sql = "DELETE FROM $table WHERE id = '$deleteid'";
+            $result = $this->connection->query($sql);
+            if($result)
+            {
+                return true;
+            }
+            else{
+                return false;
             }
         }
 
