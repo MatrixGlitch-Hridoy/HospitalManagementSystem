@@ -1,3 +1,11 @@
+<?php include"../../controls/Database.php" ?>
+<?php
+$db = new Database();
+if(isset($_POST['update']))
+{
+    $db->updateRecord($_POST,"patients");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,75 +65,59 @@
         <div class="content">
           <h2 class="page-title">Update Profile</h2>
 
-          <form action="update-profile.php" method="post">
+        <?php
+          
+          // if(isset($_GET['editid']))
+          //   {
+          //       $editid = $_GET['editid'];
+          //       $myrecord = $db->displayRecordById($editid,"patients");
+           $editid = $_REQUEST['editid'];
+           $myrecord = $db->displayRecordById($editid,"patients");
+          //  var_dump($myrecord);           
+            ?>
+            <form action="update.php" method="post">
             <div>
               <label>Username</label>
-              <input type="text" name="username" class="text-input" />
-              <?php 
-                if(isset($error_msg['username']))
-                {
-                  echo"<span class='error1'>".$error_msg['username']."</span>";
-                }
-              ?>
+              <input type="text" name="username" value="<?php echo $myrecord['username']; ?>" class="text-input" />
             </div>
             <div>
               <label>Email</label>
-              <input type="email" name="email" class="text-input" />
-              <?php 
-                if(isset($error_msg['email']))
-                {
-                  echo"<span class='error1'>".$error_msg['email']."</span>";
-                }
-              ?>
+              <input type="text" name="email" value="<?php echo $myrecord['email']; ?>" class="text-input" />
             </div>
             <div>
               <label>Address</label>
-              <input type="text" name="address" class="text-input" />
-              <?php 
-                if(isset($error_msg['address']))
-                {
-                  echo"<span class='error1'>".$error_msg['address']."</span>";
-                }
-              ?>
+              <input type="text" name="address" value="<?php echo $myrecord['address']; ?>" class="text-input" />
             </div>
             <div>
               <label>Phone Number</label>
-              <input type="text" name="phone" class="text-input" />
-              <?php 
-                if(isset($error_msg['phone']))
-                {
-                  echo"<span class='error1'>".$error_msg['phone']."</span>";
-                }
-              ?>
+              <input type="text" name="phone" value="<?php echo $myrecord['phone']; ?>" class="text-input" />
             </div>
             <div>
               <label>Gender</label>
               <select name="gender" class="text-input">
-                <option value="NULL">--Select Gender--</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="<?php echo $myrecord['gender']; ?>">--Select Gender--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
-              <?php 
-                if(isset($error_msg['gender']))
-                {
-                  echo"<span class='error1'>".$error_msg['gender']."</span>";
-                }
-              ?>
             </div>
             <div>
               <label>Password</label>
-              <input type="password" name="password" class="text-input" />
-              <?php 
-                if(isset($error_msg['password']))
-                {
-                  echo"<span class='error1'>".$error_msg['password']."</span>";
-                }
-              ?>
+              <input type="password" name="password" value="<?php echo $myrecord['password']; ?>" class="text-input" />
             </div>
             <div>
-              <button type="submit" name="submit" class="btn btn-big">Update</button>
+                <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
+              <button type="submit" name="update" class="btn btn-big">Update</button>
             </div>
           </form>
+        <?php  
+        
+              
+            //}
+            // else{
+            //     header("Location:index.php");
+            // }
+        ?>
+          
         </div>
       </div>
       <!-- // Admin Content -->
