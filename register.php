@@ -4,7 +4,7 @@
 $db = new Database();
   // $users = new Users();
   if(isset($_POST['submit'])){
-    $db->insertRecord($_POST);
+    $db->insertRecord($_POST,"patients");
     // $_SESSION['email'] = $_POST['email'];
     // $_SESSION['password'] = $_POST['password'];
     // header("Location:login.php");
