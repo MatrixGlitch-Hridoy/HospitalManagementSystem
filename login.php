@@ -4,7 +4,12 @@ session_start();
 $db = new Database();
   if(isset($_POST['submit']))
   {
-    $db->loginRecord($_POST);
+    $login = $db->loginRecord($_POST,"patients");
+    if($login)
+    {
+      echo "<script>alert('Login succesful');</script>";
+      echo "<script>window.location.href = 'patient/dashboard.php';</script>";
+    }
     // $email = $_POST['email'];
     // if(empty($email)){
     //   $error_msg['email'] = "Email is required";
