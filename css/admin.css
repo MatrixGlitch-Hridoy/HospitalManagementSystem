@@ -22,12 +22,42 @@ a {
   border: 1px solid transparent;
   border-radius: 0.25rem;
   font-size: 1.08em;
-  font-family: "Lora", serif;
+}
+
+.btn-update {
+  padding: 0.5rem 1rem;
+  background: #ffbc04;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-size: 1.08em;
+}
+.btn-delete {
+  padding: 0.5rem 1rem;
+  background: #ec0303;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-size: 1.08em;
+}
+
+.btn-update:hover {
+  background: #ff7b00;
+  transition: 0.5s;
+}
+.btn-delete:hover {
+  background: #ad0303;
+  transition: 0.5s;
 }
 
 .btn-big {
   padding: 0.7rem 1.3rem;
   line-height: 1.3rem;
+}
+
+.btn-update:hover,
+.btn-delete:hover {
+  text-decoration: none;
 }
 
 .btn:hover {
@@ -126,23 +156,23 @@ td {
   border-bottom: 1px solid #d3d3d3;
 }
 
-.edit {
+/* .edit {
   color: green;
 }
 
 .delete {
   color: red;
-}
+} */
 
-.publish {
+/* .publish {
   color: blue;
-}
+} */
 
-.edit:hover,
+/* .edit:hover,
 .delete:hover,
 .publish:hover {
   text-decoration: underline;
-}
+} */
 
 form div {
   margin-bottom: 15px;
@@ -150,4 +180,13 @@ form div {
 
 .error1 {
   color: red;
+}
+
+td.no-record {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+}
+th.th-action {
+  text-align: center;
 }

@@ -48,12 +48,12 @@
             <li><a href="#">Contact Us</a></li>
             <li>
               <a href="register.php">Login</a>
-              <!-- <ul>
+              <ul>
                 <li><a href="register.php">Patient</a></li>
                 <li><a href="doctor-login.php">Doctor</a></li>
                 <li><a href="pharmacist-login.php">Pharmacist</a></li>
                 <li><a href="admin-login.php">Admin</a></li>
-              </ul> -->
+              </ul>
             </li>
           </ul>
         </nav>

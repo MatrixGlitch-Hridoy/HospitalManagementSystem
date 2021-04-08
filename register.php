@@ -4,7 +4,16 @@
 $db = new Database();
   // $users = new Users();
   if(isset($_POST['submit'])){
-    $db->insertRecord($_POST);
+  $create = $db->insertRecord($_POST,"patients");
+    if($create)
+    {
+      echo "<script>alert('Registration succesfull');</script>";
+      echo "<script>window.location.href = 'login.php';</script>";
+    }
+    // else{
+    //   echo "<script>alert('Something went wrong.Please try again');</script>";
+    //   echo "<script>window.location.href = 'login.php';</script>";
+    // }
     // $_SESSION['email'] = $_POST['email'];
     // $_SESSION['password'] = $_POST['password'];
     // header("Location:login.php");
