@@ -16,6 +16,7 @@
     <header class="header-area">
       <div class="title">
         <h1>Hospital Management System</h1>
+        <h2>this is from Fahad</h2>
       </div>
       <!-- <div class="navigation">
         <nav class="navbar">
