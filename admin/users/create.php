@@ -2,8 +2,8 @@
 <?php
   $db = new Database();
   if(isset($_POST['submit'])){
-  $insert = $db->insertRecord($_POST,"patients");
-    if($insert)
+  $create = $db->insertRecord($_POST,"patients");
+    if($create)
     {
       echo "<script>alert('Patient Added succesfully');</script>";
       echo "<script>window.location.href = 'index.php';</script>";
@@ -86,7 +86,7 @@
             </div>
             <div>
               <label>Email</label>
-              <input type="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
+              <input type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
             </div>
             <div>
               <label>Password</label>

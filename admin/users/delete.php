@@ -8,4 +8,8 @@
         echo "<script>alert('Deleted succesfully');</script>";
         echo "<script>window.location.href = 'index.php';</script>";
     }
+    else{
+        echo "<script>alert('Database Empty!');</script>";
+        echo "<script>window.location.href = 'index.php';</script>";
+    }
 ?>

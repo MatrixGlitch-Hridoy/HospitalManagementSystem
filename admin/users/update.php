@@ -3,7 +3,12 @@
 $db = new Database();
 if(isset($_POST['update']))
 {
-    $db->updateRecord($_POST,"patients");
+  $update = $db->updateRecord($_POST,"patients");
+  if($update)
+  {
+    echo "<script>alert('Updated succesfully');</script>";
+    echo "<script>window.location.href = 'index.php';</script>";
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -95,7 +100,7 @@ if(isset($_POST['update']))
             <div>
               <label>Gender</label>
               <select name="gender" class="text-input">
-                <option value="<?php echo $myrecord['gender']; ?>">--Select Gender--</option>
+                <option value=""><?php echo $myrecord['gender'] ? $myrecord['gender']:"-- Select Gender --"; ?></option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>

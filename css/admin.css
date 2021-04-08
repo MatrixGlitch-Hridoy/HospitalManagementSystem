@@ -184,6 +184,8 @@ form div {
 
 td.no-record {
   text-align: center;
+  font-size: 25px;
+  font-weight: 700;
 }
 th.th-action {
   text-align: center;

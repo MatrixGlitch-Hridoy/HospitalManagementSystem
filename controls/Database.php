@@ -1,47 +1,12 @@
 <?php
     class Database{
-        // public $host = DB_HOST;
-        // public $user = DB_USER;
-        // public $pass = DB_PASS;
-        // public $dbname = DB_NAME;
-
-        // public $link;
-        // public $error;
-
-        // public function __construct()
-        // {
-        //     $this->connectDB();
-        // }
-
-        // private function connectDB()
-        // {
-        //     $this->link = new mysqli($this->host,$this->user,$this->pass,$this->dbname);
-        //     if(!$this->link)
-        //     {
-        //         $this->error = "Connection fail".$this->link->connect_error;
-        //         return false;
-        //     }
-        // }
-
-        // public function insert($sql)
-        // {
-        //     $insert_row = $this->link->query($sql) or die ($this->link->error.__LINE__);
-        //     if($insert_row)
-        //     {
-        //         header("Location: register.php?msg=".urlencode('Registered!'));
-        //         exit();
-        //     }
-        //     else{
-        //         die("Error:(".$this->link->errno.")".$this->link->error);
-        //     }
-        // }
         private $host = 'localhost';
         private $user = 'root';
         private $password = '';
         private $dbname = 'hms';
         private $connection;
         public $errors = array();
-        public $success = array();
+        //public $success = array();
         public function __construct()
         {
             $this->connection = new mysqli($this->host,$this->user,$this->password,$this->dbname);
@@ -118,7 +83,7 @@
         }
 
         /////////////////Login function///////
-        public function loginRecord($data)
+        public function loginRecord($data,$table)
         {
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -130,7 +95,7 @@
 
             if(count($this->errors)==0)
             {
-                $sql = "SELECT * FROM users WHERE email='$email' ";
+                $sql = "SELECT * FROM $table WHERE email='$email' ";
                 $logged = $this->connection->query($sql);
                 $email_count = $logged->num_rows;
                 if($email_count)
@@ -138,7 +103,7 @@
                     $email_pass = $logged->fetch_assoc();
                     $db_pass = $email_pass['password'];
                     $_SESSION['username'] = $email_pass['username'];
-                    $user_type = $email_pass['user_type'];
+                    //$user_type = $email_pass['user_type'];
                     if($db_pass==$password)
                     {
                         
@@ -148,51 +113,54 @@
                             
                         //     header("Location: patient/dashboard.php");
                         // }
-                        if($user_type == 'admin')
-                        {
-                                
-                            $_SESSION['email'] = $email;
-                            if(!empty($_SESSION['email']))
-                            {
-                                
-                                //header("Location: admin/dashboard.php");
-                                echo "<script>alert('Login succesful');</script>";
-                                echo "<script>window.location.href = 'admin/dashboard.php';</script>";
-                            }
-                        }
-                        elseif($user_type == 'doctor')
-                        {
-                            $_SESSION['email'] = $email;
-                            if(!empty($_SESSION['email']))
-                            {
-                                
-                                // header("Location: doctor/dashboard.php");
-                                echo "<script>alert('Login succesful');</script>";
-                                echo "<script>window.location.href = 'doctor/dashboard.php';</script>";
-                            }
-                        }
-                        elseif($user_type == 'pharmacist')
-                        {
-                            $_SESSION['email'] = $email;
-                            if(!empty($_SESSION['email']))
-                            {
-                                
-                                // header("Location: pharmacist/dashboard.php");
-                                echo "<script>alert('Login succesful');</script>";
-                                echo "<script>window.location.href = 'pharmacist/dashboard.php';</script>";
-                            }
-                        }
-                        else{
-                            $_SESSION['email'] = $email;
-                            if(!empty($_SESSION['email']))
-                            {
-                                
-                                // header("Location: patient/dashboard.php");
-                                echo "<script>alert('Login succesful');</script>";
-                                echo "<script>window.location.href = 'patient/dashboard.php';</script>";
-                            }
-                        }
 
+
+                        // if($user_type == 'admin')
+                        // {
+                                
+                        //     $_SESSION['email'] = $email;
+                        //     if(!empty($_SESSION['email']))
+                        //     {
+                                
+                        //         //header("Location: admin/dashboard.php");
+                        //         echo "<script>alert('Login succesful');</script>";
+                        //         echo "<script>window.location.href = 'admin/dashboard.php';</script>";
+                        //     }
+                        // }
+                        // elseif($user_type == 'doctor')
+                        // {
+                        //     $_SESSION['email'] = $email;
+                        //     if(!empty($_SESSION['email']))
+                        //     {
+                                
+                        //         // header("Location: doctor/dashboard.php");
+                        //         echo "<script>alert('Login succesful');</script>";
+                        //         echo "<script>window.location.href = 'doctor/dashboard.php';</script>";
+                        //     }
+                        // }
+                        // elseif($user_type == 'pharmacist')
+                        // {
+                        //     $_SESSION['email'] = $email;
+                        //     if(!empty($_SESSION['email']))
+                        //     {
+                                
+                        //         // header("Location: pharmacist/dashboard.php");
+                        //         echo "<script>alert('Login succesful');</script>";
+                        //         echo "<script>window.location.href = 'pharmacist/dashboard.php';</script>";
+                        //     }
+                        // }
+                        // else{
+                        //     $_SESSION['email'] = $email;
+                        //     if(!empty($_SESSION['email']))
+                        //     {
+                                
+                        //         // header("Location: patient/dashboard.php");
+                        //         echo "<script>alert('Login succesful');</script>";
+                        //         echo "<script>window.location.href = 'patient/dashboard.php';</script>";
+                        //     }
+                        // }
+
+                    return true;
                         
                     }
                     else{
@@ -296,15 +264,15 @@
                 $result = $this->connection->query($sql);
                 if($result)
                 {
-                    echo "<script>alert('updated succesful');</script>";
-                    echo "<script>window.location.href = 'index.php';</script>";
+                    return true;
                 }
                 else{
-                    echo "not working";
+                    return false;
                 }
             }
         }
 
+        ////////Delete Record/////
         public function delete($deleteid,$table)
         {
             $sql = "DELETE FROM $table WHERE id = '$deleteid'";

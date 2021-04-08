@@ -69,7 +69,7 @@
         <div class="content">
         <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
 
-          <table>
+          <!-- <table>
             <thead>
               <th>SN</th>
               <th>Username</th>
@@ -85,7 +85,7 @@
                 <td><a href="#" class="delete">delete</a></td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
         </div>
       </div>
       <!-- // Admin Content -->
