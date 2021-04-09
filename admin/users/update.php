@@ -84,11 +84,11 @@ if(isset($_POST['update']))
             <form action="update.php" method="post">
             <div>
               <label>Username</label>
-              <input type="text" name="username" value="<?php echo $myrecord['username']; ?>" class="text-input" />
+              <input type="text" name="username" value="<?php echo $myrecord['username']; ?>" class="text-input"/>
             </div>
             <div>
               <label>Email</label>
-              <input type="text" name="email" value="<?php echo $myrecord['email']; ?>" class="text-input" />
+              <input type="text" name="email" value="<?php echo $myrecord['email']; ?>" class="text-input" readonly/>
             </div>
             <div>
               <label>Address</label>
