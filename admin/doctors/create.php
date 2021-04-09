@@ -105,8 +105,8 @@
               <label>Gender</label>
               <select name="gender" class="text-input">
                 <option value="NULL">--Select Gender--</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
             </div>
             <div>
