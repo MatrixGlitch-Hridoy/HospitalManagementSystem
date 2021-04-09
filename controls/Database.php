@@ -230,10 +230,11 @@
             $uName = $_POST['username'];
             $email = $_POST['email'];
             $password = $_POST['password'];
-            $address = $_POST['address'];
             $phone = $_POST['phone'];
             $gender = $_POST['gender'];
             $editid = $_POST['hid'];
+            if($table=="patients"){  $address = $_POST['address']; }
+            else{ $specialization = $_POST['DoctorSpecialization'];}
 
             if(empty($uName)||empty($email)||empty($password))
             {
@@ -266,7 +267,14 @@
             if(count($this->errors)==0)
             {
                 //$password = md5($password);//encript password
-                $sql = "UPDATE $table SET username='$uName',email='$email',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$editid'";
+                if($table=="patients")
+                {
+                    $sql = "UPDATE $table SET username='$uName',email='$email',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$editid'";
+                }
+                else{
+                    $sql = "UPDATE $table SET username='$uName',email='$email',password='$password',specialization='$specialization',phone='$phone',gender='$gender' WHERE id='$editid'";
+                }
+                
                 $result = $this->connection->query($sql);
                 if($result)
                 {
