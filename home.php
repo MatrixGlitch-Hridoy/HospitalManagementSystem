@@ -192,8 +192,21 @@
 
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.nav.js"></script>
+    <script src="js/main.js"></script>
     <script>
       $('#nav').onePageNav();
+      //stickyScroll();
+
+      // $(window).on('scroll',function()
+      // {
+      //   if($(this).scrollTop())
+      //   {
+      //     $('.navigation').addClass("sticky");
+      //   }
+      //   else{
+      //     $('.navigation').removeClass("sticky");
+      //   }
+      // });
     </script>
   </body>
 </html>
