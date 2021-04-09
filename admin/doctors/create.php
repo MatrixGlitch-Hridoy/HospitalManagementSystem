@@ -1,3 +1,16 @@
+<?php include "../../controls/Database.php" ?>
+<?php
+  $db = new Database();
+  if(isset($_POST['submit'])){
+  $create = $db->insertRecord($_POST,"doctors");
+    if($create)
+    {
+      echo "<script>alert('Doctor Added succesfully');</script>";
+      echo "<script>window.location.href = 'index.php';</script>";
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,19 +74,24 @@
 
         <div class="content">
           <h2 class="page-title">Add Doctor</h2>
+          <?php
+            include "../../controls/errors.php";
+            $db = new Database();
+          ?>
 
           <form action="create.php" method="post">
             <div>
               <label>Username</label>
-              <input type="text" name="username" class="text-input" />
+              <input type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '';?>"  class="text-input" />
             </div>
             <div>
               <label>Email</label>
-              <input type="email" name="email" class="text-input" />
+              <input type="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
             </div>
             <div>
               <label>Select Specialization</label>
               <select name="DoctorSpecialization" class="text-input">
+                <option value="NULL">--Select Specialization--</option>
                 <option value="Neurology">Neurology</option>
                 <option value="Pathology">Pathology</option>
                 <option value="Pediatrics">Pediatrics</option>
@@ -86,6 +104,7 @@
             <div>
               <label>Gender</label>
               <select name="gender" class="text-input">
+                <option value="NULL">--Select Gender--</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
@@ -100,7 +119,7 @@
             </div>
 
             <div>
-              <button type="submit" class="btn btn-big">Add Doctor</button>
+              <button type="submit" name="submit" class="btn btn-big">Add Doctor</button>
             </div>
           </form>
         </div>
