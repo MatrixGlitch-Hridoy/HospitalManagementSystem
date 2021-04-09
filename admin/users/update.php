@@ -1,4 +1,4 @@
-<?php include"../../controls/Database.php" ?>
+<?php include "../../controls/Database.php" ?>
 <?php
 $db = new Database();
 if(isset($_POST['update']))
@@ -78,7 +78,7 @@ if(isset($_POST['update']))
           //       $myrecord = $db->displayRecordById($editid,"patients");
            $editid = $_REQUEST['editid'];
            $myrecord = $db->displayRecordById($editid,"patients");
-           
+           include "../../controls/errors.php";
           //  var_dump($myrecord);           
             ?>
             <form action="update.php" method="post">
