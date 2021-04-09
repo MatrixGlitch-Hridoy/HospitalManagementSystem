@@ -1,0 +1,72 @@
+.cart {
+    margin-top: 30px;
+    margin-left: 30%;
+    border: 1px solid #234a57;
+    padding-left: 8px;
+    width: 30%;
+} 
+
+.text-inputMedium {
+    padding: 0.7rem 1rem;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    color: #444;
+    line-height: 1.5rem;
+    font-size: 1.2em;
+    font-family: "Lora", serif;
+  }
+  
+  .checkcart{
+      display: flex;
+      
+  }
+
+
+  .search-btn{
+    display: flex;
+  }
+
+
+  /* plus-minus */
+	span {cursor:pointer; }
+		.number{
+			margin:100px;
+		}
+		.minus{
+			width:20px;
+			height:30px;
+			background:#f2f2f2;
+			border-radius:4px;
+			padding:8px 5px 8px 5px;
+			border:1px solid rgba(68, 131, 173, 0.178);
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+		}
+
+    .plus{
+			width:20px;
+			height:30px;
+			background:#f2f2f2;
+			border-radius:4px;
+			padding:8px 5px 8px 5px;
+			border:1px solid rgba(68, 131, 173, 0.178);
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+		}
+
+		.searchinput{
+			height:34px;
+      width: 60px;
+      text-align: center;
+      font-size: 26px;
+			border:1px solid #ddd;
+			border-radius:4px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    /* plus-minus */
