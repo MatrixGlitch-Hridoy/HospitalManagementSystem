@@ -47,7 +47,7 @@
             <li><a href="#service">Service</a></li>
             <li><a href="#contact">Contact Us</a></li>
             <li>
-              <a href="login.php">Login</a>
+              <a href="#">Login</a>
               <ul>
                 <li><a href="login.php">Patient</a></li>
                 <li><a href="doctor-login.php">Doctor</a></li>
