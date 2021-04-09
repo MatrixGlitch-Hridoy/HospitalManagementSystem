@@ -142,3 +142,10 @@ body {
 .auth-content form p a {
   text-decoration: underline;
 }
+
+.error {
+  color: #884b4b;
+  border: 1px solid #884b4b;
+  border-radius: 5px;
+  background: #f5bcbc;
+}
