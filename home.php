@@ -41,11 +41,11 @@
       </div> -->
       <div class="navigation">
         <nav class="menu">
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Service</a></li>
-            <li><a href="#">Contact Us</a></li>
+          <ul id="nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#contact">Contact Us</a></li>
             <li>
               <a href="login.php">Login</a>
               <ul>
@@ -60,7 +60,7 @@
       </div>
     </header>
 
-    <div class="banner-area">
+    <div class="banner-area" id="home">
       <div class="canvas">
         <img src="1.jpg" alt="" />
         <div class="title1">
@@ -79,7 +79,9 @@
         </div>
       </div>
     </div>
-    <div class="about">
+
+
+    <div class="about" id="about">
       <div class="left-area">
         <h1>About Us</h1>
         <p>
@@ -100,7 +102,7 @@
       </div>
     </div>
 
-    <div class="service">
+    <div class="service" id="service">
       <div class="container">
         <div class="service-title">
           <h1>Our Service</h1>
@@ -143,7 +145,7 @@
         </div>
       </div>
     </div>
-    <div class="emergency">
+    <div class="emergency" >
       <div class="container">
         <div class="inner-content">
           <h2>Emergency hotline</h2>
@@ -155,7 +157,7 @@
         </div>
       </div>
     </div>
-    <div class="footer">
+    <div class="footer" id="contact">
       <div class="container">
         <div class="footer-about col16">
           <h3>Career</h3>
@@ -186,5 +188,12 @@
         </div>
       </div>
     </div>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.nav.js"></script>
+    <script>
+      $('#nav').onePageNav();
+    </script>
   </body>
 </html>
