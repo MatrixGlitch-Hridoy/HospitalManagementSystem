@@ -10,6 +10,10 @@ $db = new Database();
       echo "<script>alert('Login succesful');</script>";
       echo "<script>window.location.href = 'admin/dashboard.php';</script>";
     }
+    else{
+      echo "<script>alert('Database Empty!');</script>";
+      echo "<script>window.location.href = 'admin-login.php';</script>";
+    }
   }
 ?>
 <!DOCTYPE html>

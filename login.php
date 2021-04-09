@@ -10,6 +10,10 @@ $db = new Database();
       echo "<script>alert('Login succesful');</script>";
       echo "<script>window.location.href = 'patient/dashboard.php';</script>";
     }
+    else{
+      echo "<script>alert('Database Empty!');</script>";
+      echo "<script>window.location.href = 'login.php';</script>";
+    }
     // $email = $_POST['email'];
     // if(empty($email)){
     //   $error_msg['email'] = "Email is required";
