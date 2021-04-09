@@ -57,7 +57,7 @@ $db = new Database();
       <div class="navigation">
         <nav class="menu">
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="home.php">Home</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Service</a></li>
             <li><a href="#">Contact Us</a></li>
