@@ -66,14 +66,14 @@
 
             if(count($this->errors)==0)
             {
-                $emailQuery = "SELECT FROM $table WHERE email = '$email'";
-                $emailsql = $this->connection->query($emailQuery);
-                $emailCount = $emailsql->num_rows;
-                if($emailCount>0)
-                {
-                    array_push($this->errors,"Email already exits");
-                }
-                else{
+                // $emailQuery = "SELECT FROM $table WHERE email = '$email'";
+                // $emailsql = $this->connection->query($emailQuery);
+                // $emailCount = $emailsql->num_rows;
+                // if($emailCount>0)
+                // {
+                //     array_push($this->errors,"Email already exits");
+                // }
+                // else{
                     //$password = md5($password);//encript password
                     if($table=="doctors")
                     {
@@ -94,7 +94,7 @@
                     else{
                         return false;
                     }
-                }
+                //}
                 
                 // echo "<script>alert('Registration succesful');</script>";
                 // echo "<script>window.location.href = 'login.php';</script>";
