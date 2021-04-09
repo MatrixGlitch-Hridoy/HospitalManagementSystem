@@ -1,3 +1,18 @@
+<?php include "controls/Database.php" ?>
+<?php 
+session_start();
+$db = new Database();
+  if(isset($_POST['submit']))
+  {
+    $login = $db->loginRecord($_POST,"pharmacists");
+    if($login)
+    {
+      echo "<script>alert('Login succesful');</script>";
+      echo "<script>window.location.href = 'pharmacist/dashboard.php';</script>";
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,14 +51,17 @@
 
 <form action="login.php" method="post">
   <h2 class="form-title">Sign In</h2>
+  <?php
+    include "controls/errors.php";  
+  ?>
 
   <!-- <div class="msg error">
     <li>Username required</li>
   </div> -->
 
   <div>
-    <label>Username</label>
-    <input type="text" name="username" class="text-input">
+    <label>Email</label>
+    <input type="text" name="email" class="text-input">
   </div>
   
   <div>
@@ -52,7 +70,7 @@
   </div>
  
   <div>
-    <button type="submit" name="register-btn" class="btn btn-big">Login</button>
+    <button type="submit" name="submit" class="btn btn-big">Login</button>
   </div>
 
 </form>
