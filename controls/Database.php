@@ -26,14 +26,11 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
             $cpassword = $_POST['passwordConf'];
+            if($table=="doctors"){
             $gender = $_POST['gender'];
             $phone = $_POST['phone'];
             $specialization = $_POST['DoctorSpecialization'];
-            
-            // $address = $_POST['address'];
-            // $phone = $_POST['phone'];
-            // $gender = $_POST['gender'];
-           
+            }
 
             
             if(empty($uName)||empty($email)||empty($password)||empty($cpassword))
@@ -70,7 +67,13 @@
             if(count($this->errors)==0)
             {
                 //$password = md5($password);//encript password
-                $sql = "INSERT INTO $table(username,email,password,phone,gender,specialization) VALUES('$uName','$email','$password','$phone','$gender','$specialization')";
+                if($table=="doctors")
+                {
+                    $sql = "INSERT INTO $table(username,email,password,phone,gender,specialization) VALUES('$uName','$email','$password','$phone','$gender','$specialization')";
+                }
+                else{
+                    $sql = "INSERT INTO $table(username,email,password) VALUES('$uName','$email','$password')";
+                }
                 $create = $this->connection->query($sql);
                 if($create)
                 {
@@ -274,7 +277,7 @@
                 else{
                     $sql = "UPDATE $table SET username='$uName',email='$email',password='$password',specialization='$specialization',phone='$phone',gender='$gender' WHERE id='$editid'";
                 }
-                
+
                 $result = $this->connection->query($sql);
                 if($result)
                 {
