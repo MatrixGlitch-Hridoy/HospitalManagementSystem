@@ -88,7 +88,7 @@ if(isset($_POST['update']))
             </div>
             <div>
               <label>Email</label>
-              <input type="email" name="email" value="<?php echo $myrecord['email']; ?>" class="text-input" />
+              <input type="email" name="email" value="<?php echo $myrecord['email']; ?>" class="text-input" readonly/>
             </div>
             <div>
               <label>Select Specialization</label>
