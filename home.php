@@ -47,9 +47,9 @@
             <li><a href="#">Service</a></li>
             <li><a href="#">Contact Us</a></li>
             <li>
-              <a href="register.php">Login</a>
+              <a href="login.php">Login</a>
               <ul>
-                <li><a href="register.php">Patient</a></li>
+                <li><a href="login.php">Patient</a></li>
                 <li><a href="doctor-login.php">Doctor</a></li>
                 <li><a href="pharmacist-login.php">Pharmacist</a></li>
                 <li><a href="admin-login.php">Admin</a></li>
@@ -99,6 +99,7 @@
         <img src="1.jpg" alt="" />
       </div>
     </div>
+
     <div class="service">
       <div class="container">
         <div class="service-title">

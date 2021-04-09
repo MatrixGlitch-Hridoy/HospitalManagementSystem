@@ -308,10 +308,6 @@ body {
 }
 .emergency .inner-content {
   padding: 50px;
-}
-.emergency .inner-content h2,
-h1,
-p {
   text-align: center;
 }
 

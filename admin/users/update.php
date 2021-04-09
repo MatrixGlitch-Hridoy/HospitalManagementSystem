@@ -4,11 +4,11 @@ $db = new Database();
 if(isset($_POST['update']))
 {
   $update = $db->updateRecord($_POST,"patients");
-  if($update)
-  {
-    echo "<script>alert('Updated succesfully');</script>";
-    echo "<script>window.location.href = 'index.php';</script>";
-  }
+  // if($update)
+  // {
+  //   echo "<script>alert('Updated succesfully');</script>";
+  //   echo "<script>window.location.href = 'index.php';</script>";
+  // }
 }
 ?>
 <!DOCTYPE html>
@@ -78,6 +78,7 @@ if(isset($_POST['update']))
           //       $myrecord = $db->displayRecordById($editid,"patients");
            $editid = $_REQUEST['editid'];
            $myrecord = $db->displayRecordById($editid,"patients");
+           
           //  var_dump($myrecord);           
             ?>
             <form action="update.php" method="post">
@@ -115,7 +116,7 @@ if(isset($_POST['update']))
             </div>
           </form>
         <?php  
-        
+              
               
             //}
             // else{
