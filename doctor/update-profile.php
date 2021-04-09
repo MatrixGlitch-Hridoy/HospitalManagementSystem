@@ -76,11 +76,12 @@
     <link rel="stylesheet" href="../css/admin-nav.css" />
     <link rel="stylesheet" href="../css/admin.css" />
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Doctor</title>
+    <link rel="icon" href="../pic/hms.png">
   </head>
 
   <body>
-  <h1>this is mahi</h1>
+
     <header class="header-area">
       <div class="title">
         <h1>Hospital Management System</h1>

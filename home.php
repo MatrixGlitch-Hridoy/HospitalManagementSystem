@@ -10,7 +10,9 @@
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Hospital Management System</title>
+    <link rel="icon" href="pic/hms.png">
+    
   </head>
   <body>
     <header class="header-area">
@@ -96,7 +98,7 @@
         </div>
       </div>
       <div class="right-area">
-        <img src="1.jpg" alt="" />
+        <img src="pic/1.jpg" alt="" />
       </div>
     </div>
     <div class="service">

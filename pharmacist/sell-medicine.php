@@ -20,7 +20,8 @@
 
     <link rel="stylesheet" href="pharmacist.css">
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Pharmacist</title>
+    <link rel="icon" href="../pic/hms.png">
 </head>
 
 <body>
@@ -115,7 +116,7 @@
 
 <script>
 
-document.getElementById("product").readOnly = true;
+// document.getElementById("product").readOnly = true;
 function increase() {
 
     quan = document.getElementById("product").value;

@@ -29,7 +29,8 @@
     <link rel="stylesheet" href="../css/admin-nav.css" />
     <link rel="stylesheet" href="../css/admin.css" />
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Doctor</title>
+    <link rel="icon" href="../pic/hms.png">
   </head>
 
   <body>

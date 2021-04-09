@@ -10,7 +10,8 @@
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Doctor Sign In</title>
+    <link rel="icon" href="pic/hms.png">
   </head>
   <body>
     <header class="header-area">
