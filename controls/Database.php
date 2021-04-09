@@ -66,26 +66,36 @@
 
             if(count($this->errors)==0)
             {
-                //$password = md5($password);//encript password
-                if($table=="doctors")
+                $emailQuery = "SELECT FROM $table WHERE email = '$email'";
+                $emailsql = $this->connection->query($emailQuery);
+                $emailCount = $emailsql->num_rows;
+                if($emailCount>0)
                 {
-                    $sql = "INSERT INTO $table(username,email,password,phone,gender,specialization) VALUES('$uName','$email','$password','$phone','$gender','$specialization')";
+                    array_push($this->errors,"Email already exits");
                 }
                 else{
-                    $sql = "INSERT INTO $table(username,email,password) VALUES('$uName','$email','$password')";
-                }
-                $create = $this->connection->query($sql);
-                if($create)
-                {
-                session_start();
-                $_SESSION['email'] = $email;
-                $_SESSION['password'] = $password;
+                    //$password = md5($password);//encript password
+                    if($table=="doctors")
+                    {
+                        $sql = "INSERT INTO $table(username,email,password,phone,gender,specialization) VALUES('$uName','$email','$password','$phone','$gender','$specialization')";
+                    }
+                    else{
+                        $sql = "INSERT INTO $table(username,email,password) VALUES('$uName','$email','$password')";
+                    }
 
-                return true;
+                    $create = $this->connection->query($sql);
+                    if($create)
+                    {
+                        session_start();
+                        $_SESSION['email'] = $email;
+                        $_SESSION['password'] = $password;
+                    return true;
+                    }
+                    else{
+                        return false;
+                    }
                 }
-                else{
-                    return false;
-                }
+                
                 // echo "<script>alert('Registration succesful');</script>";
                 // echo "<script>window.location.href = 'login.php';</script>";
             }
@@ -231,15 +241,14 @@
         public function updateRecord($data,$table)
         {
             $uName = $_POST['username'];
-            $email = $_POST['email'];
             $password = $_POST['password'];
             $phone = $_POST['phone'];
             $gender = $_POST['gender'];
             $editid = $_POST['hid'];
-            if($table=="patients"){  $address = $_POST['address']; }
-            else{ $specialization = $_POST['DoctorSpecialization'];}
+            if($table=="patients" || $table=="pharmacists"){  $address = $_POST['address']; }
+            else { $specialization = $_POST['DoctorSpecialization'];}
 
-            if(empty($uName)||empty($email)||empty($password))
+            if(empty($uName)||empty($password))
             {
                 array_push($this->errors," Fields must not be empty");
             }
@@ -250,10 +259,6 @@
                 }
                 else if((strlen($uName)<4)){
                     array_push($this->errors," Username: Name is too short");
-                }
-    
-                if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
-                    array_push($this->errors," Email: Invalid email format");
                 }
     
                 if(strlen($password)<6){
@@ -270,12 +275,12 @@
             if(count($this->errors)==0)
             {
                 //$password = md5($password);//encript password
-                if($table=="patients")
+                if($table=="patients" || $table=="pharmacists")
                 {
-                    $sql = "UPDATE $table SET username='$uName',email='$email',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$editid'";
+                    $sql = "UPDATE $table SET username='$uName',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$editid'";
                 }
-                else{
-                    $sql = "UPDATE $table SET username='$uName',email='$email',password='$password',specialization='$specialization',phone='$phone',gender='$gender' WHERE id='$editid'";
+                else {
+                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender' WHERE id='$editid'";
                 }
 
                 $result = $this->connection->query($sql);
