@@ -26,10 +26,16 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
             $cpassword = $_POST['passwordConf'];
+            $gender = $_POST['gender'];
+            $phone = $_POST['phone'];
+            $specialization = $_POST['DoctorSpecialization'];
+            
             // $address = $_POST['address'];
             // $phone = $_POST['phone'];
             // $gender = $_POST['gender'];
+           
 
+            
             if(empty($uName)||empty($email)||empty($password)||empty($cpassword))
             {
                 array_push($this->errors," Fields must not be empty");
@@ -64,7 +70,7 @@
             if(count($this->errors)==0)
             {
                 //$password = md5($password);//encript password
-                $sql = "INSERT INTO $table(username,email,password,address,phone,gender) VALUES('$uName','$email','$password','$address','$phone','$gender')";
+                $sql = "INSERT INTO $table(username,email,password,phone,gender,specialization) VALUES('$uName','$email','$password','$phone','$gender','$specialization')";
                 $create = $this->connection->query($sql);
                 if($create)
                 {
