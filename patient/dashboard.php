@@ -1,4 +1,4 @@
-<?php include"../controls/Database.php" ?>
+<?php include "../controls/Database.php" ?>
 
 <?php 
   session_start();
@@ -66,7 +66,7 @@
       <!-- Admin Content -->
       <div class="admin-content">
         <div class="content">
-          <?php include "../controls/success.php" ?>
+
           <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
         </div>
       </div>
