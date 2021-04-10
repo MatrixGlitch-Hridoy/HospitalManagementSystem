@@ -1,11 +1,11 @@
-<?php include"../controls/Database.php" ?>
+<?php include "../controls/Database.php" ?>
 
 <?php 
   session_start();
   $db = new Database();
   if(!isset($_SESSION['username']))
   {
-    header("Location:../login.php");
+    header("Location:../admin-login.php");
   }
 
 ?>

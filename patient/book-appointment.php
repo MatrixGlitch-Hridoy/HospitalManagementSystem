@@ -1,26 +1,13 @@
-<?php include "../controls/db.php" ?>
-<?php
-  if(isset($_POST['submit']))
+<?php include "../controls/Database.php" ?>
+
+<?php 
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
   {
-    $doctorSpecialization = $_POST['doctorSpecialization'];
-    if($doctorSpecialization=="NULL"){
-      $error_msg['doctorSpecialization'] = "Doctor specialization required";
-    }
-    $doctorName = $_POST['doctorName'];
-    if($doctorName=="NULL"){
-      $error_msg['doctorName'] = "Doctor Name required";
-    }
-    $date = $_POST['date'];
-    if(empty($date))
-    {
-      $error_msg['date'] = "Date required";
-    }
-    $time = $_POST['time'];
-    if(empty($time))
-    {
-      $error_msg['time'] ="Time required";
-    }
+    header("Location:../login.php");
   }
+
 ?>
 
 <!DOCTYPE html>
@@ -55,9 +42,9 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="#"><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -92,10 +79,10 @@
                 <option value="Pediatrics">Pediatrics</option>
               </select>
               <?php 
-                if(isset($error_msg['doctorSpecialization']))
-                {
-                  echo"<span class='error1'>".$error_msg['doctorSpecialization']."</span>";
-                }
+                // if(isset($error_msg['doctorSpecialization']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['doctorSpecialization']."</span>";
+                // }
               ?>
             </div>
             <div>
@@ -108,10 +95,10 @@
                 <option value="fahad">Dr.Fahad</option>
               </select>
               <?php 
-                if(isset($error_msg['doctorName']))
-                {
-                  echo"<span class='error1'>".$error_msg['doctorName']."</span>";
-                }
+                // if(isset($error_msg['doctorName']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['doctorName']."</span>";
+                // }
               ?>
             </div>
             <div>
@@ -119,20 +106,20 @@
               <input type="date" name="date" class="text-input" />
             </div>
             <?php 
-                if(isset($error_msg['date']))
-                {
-                  echo"<span class='error1'>".$error_msg['date']."</span>";
-                }
+                // if(isset($error_msg['date']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['date']."</span>";
+                // }
               ?>
             <div>
               <label>Time</label>
               <input type="time" name="time" class="text-input" />
             </div>
             <?php 
-                if(isset($error_msg['time']))
-                {
-                  echo"<span class='error1'>".$error_msg['time']."</span>";
-                }
+                // if(isset($error_msg['time']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['time']."</span>";
+                // }
               ?>
             <div>
               <button type="submit" name="submit" class="btn btn-big">Book Appointment</button>

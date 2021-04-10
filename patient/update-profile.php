@@ -1,62 +1,13 @@
-<?php include "../controls/db.php" ?>
-<?php
-  if(isset($_POST['submit']))
+<?php include "../controls/Database.php" ?>
+
+<?php 
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
   {
-    $uName = $_POST['username'];
-    if(empty($uName)){
-      $error_msg['username'] = "Name is required";
-    }
-    else if((strlen($uName)<6)){
-      $error_msg['username'] = "Name is too short";
-    }
-    else if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
-      $error_msg['username'] = "Only letter allowed";
-    }
-
-    $email = $_POST['email'];
-    if(empty($email)){
-      $error_msg['email'] = "Email is required";
-    }
-    else if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
-      $error_msg['email'] = "Invalid email format";
-    }
-
-    $address = $_POST['address'];
-    if(empty($address)){
-      $error_msg['address'] = "Address is required";
-    }
-    else if (!preg_match("/\d+ [0-9a-zA-Z ]+/",$address)) {
-      $error_msg['address'] = "Invalid address format";
-    }
-
-    $phone = $_POST['phone'];
-    if(empty($address)){
-      $error_msg['phone'] = "Phone number is required";
-    }
-    else if(!is_numeric($phone)){
-      $error_msg['phone'] = "Only number input";
-    }
-    else if((strlen($phone)!=11)){
-      $error_msg['phone'] = "Invalid phone number format";
-    }
-
-    $gender = $_POST['gender'];
-    if($gender=="NULL"){
-      $error_msg['gender'] = "Gender in required";
-    }
-
-
-    $password = $_POST['password'];
-    if(empty($password)){
-      $error_msg['password'] = "Password is required";
-    }
-    else if((strlen($password)<6)){
-      $error_msg['password'] = "Password is too short";
-    }
-    else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
-      $error_msg['password'] = "the password does not meet the requirements";
-    }
+    header("Location:../login.php");
   }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,9 +41,9 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="#"><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -122,40 +73,40 @@
               <label>Username</label>
               <input type="text" name="username" class="text-input" />
               <?php 
-                if(isset($error_msg['username']))
-                {
-                  echo"<span class='error1'>".$error_msg['username']."</span>";
-                }
+                // if(isset($error_msg['username']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['username']."</span>";
+                // }
               ?>
             </div>
             <div>
               <label>Email</label>
               <input type="email" name="email" class="text-input" />
               <?php 
-                if(isset($error_msg['email']))
-                {
-                  echo"<span class='error1'>".$error_msg['email']."</span>";
-                }
+                // if(isset($error_msg['email']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['email']."</span>";
+                // }
               ?>
             </div>
             <div>
               <label>Address</label>
               <input type="text" name="address" class="text-input" />
               <?php 
-                if(isset($error_msg['address']))
-                {
-                  echo"<span class='error1'>".$error_msg['address']."</span>";
-                }
+                // if(isset($error_msg['address']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['address']."</span>";
+                // }
               ?>
             </div>
             <div>
               <label>Phone Number</label>
               <input type="text" name="phone" class="text-input" />
               <?php 
-                if(isset($error_msg['phone']))
-                {
-                  echo"<span class='error1'>".$error_msg['phone']."</span>";
-                }
+                // if(isset($error_msg['phone']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['phone']."</span>";
+                // }
               ?>
             </div>
             <div>
@@ -166,20 +117,20 @@
                 <option value="female">Female</option>
               </select>
               <?php 
-                if(isset($error_msg['gender']))
-                {
-                  echo"<span class='error1'>".$error_msg['gender']."</span>";
-                }
+                // if(isset($error_msg['gender']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['gender']."</span>";
+                // }
               ?>
             </div>
             <div>
               <label>Password</label>
               <input type="password" name="password" class="text-input" />
               <?php 
-                if(isset($error_msg['password']))
-                {
-                  echo"<span class='error1'>".$error_msg['password']."</span>";
-                }
+                // if(isset($error_msg['password']))
+                // {
+                //   echo"<span class='error1'>".$error_msg['password']."</span>";
+                // }
               ?>
             </div>
             <div>
