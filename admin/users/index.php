@@ -2,7 +2,12 @@
 
 <?php 
   //session_start();
+  session_start();
   $db = new Database();
+  if(!isset($_SESSION['username']))
+  {
+    header("Location:../../admin-login.php");
+  }
   // if(!isset($_SESSION['username']))
   // {
   //   header("Location:../login.php");
@@ -45,9 +50,9 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="#"><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
