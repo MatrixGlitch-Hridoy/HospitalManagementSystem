@@ -14,6 +14,10 @@ body {
   overflow: hidden;
   color: #fff;
 }
+.head a {
+  text-decoration: none;
+  color: #fff;
+}
 /* .navbar {
   overflow: hidden;
 }
@@ -380,12 +384,7 @@ body {
   border-radius: 5px;
   background: #f5bcbc;
 }
-.success {
-  color: #884b4b;
-  border: 1px solid #884b4b;
-  border-radius: 5px;
-  background: #f5bcbc;
-}
+
 /* .error p {
   text-align: center !important;
 } */

@@ -8,7 +8,7 @@ $db = new Database();
     if($login)
     {
       echo "<script>alert('Login succesful');</script>";
-      echo "<script>window.location.href = 'patient/dashboard.php';</script>";
+      echo "<script>window.location.href = 'views/user-home.php';</script>";
     }
     else{
       echo "<script>alert('Database Empty!');</script>";
@@ -52,7 +52,7 @@ $db = new Database();
   <body>
     <header class="header-area">
       <div class="title">
-        <h1>Hospital Management System</h1>
+        <h1 class="head"><a href="home.php">Hospital Management System</a> </h1>
       </div>
       <div class="navigation">
         <nav class="menu">
