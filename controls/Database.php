@@ -86,9 +86,9 @@
                     $create = $this->connection->query($sql);
                     if($create)
                     {
-                        session_start();
-                        $_SESSION['email'] = $email;
-                        $_SESSION['password'] = $password;
+                        //session_start();
+                        //$_SESSION['email'] = $email;
+                        //$_SESSION['password'] = $password;
                     return true;
                     }
                     else{
