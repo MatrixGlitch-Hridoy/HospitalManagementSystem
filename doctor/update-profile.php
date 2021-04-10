@@ -1,59 +1,13 @@
-<?php include "../controls/db.php"?>
-<?php
-   if(isset($_POST['submit']))
-   {
-     $uName = $_POST['username'];
-     if(empty($uName)){
-       $error_msg['username'] = "Name is required";
-     }
-     else if((strlen($uName)<6)){
-       $error_msg['username'] = "Name is too short";
-     }
-     else if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
-       $error_msg['username'] = "Only letter allowed";
-     }
- 
-     $email = $_POST['email'];
-     if(empty($email)){
-       $error_msg['email'] = "Email is required";
-     }
-     else if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
-       $error_msg['email'] = "Invalid email format";
-     }
+<?php include "../controls/Database.php" ?>
 
-    $doctorSpecialization = $_POST['doctorSpecialization'];
-      if($doctorSpecialization=="NULL"){
-      $error_msg['doctorSpecialization'] = "Doctor specialization required";
-    }
- 
-     $phone = $_POST['phone'];
-     if(empty($address)){
-       $error_msg['phone'] = "Phone number is required";
-     }
-     else if(!is_numeric($phone)){
-       $error_msg['phone'] = "Only number input";
-     }
-     else if((strlen($phone)!=11)){
-       $error_msg['phone'] = "Invalid phone number format";
-     }
- 
-     $gender = $_POST['gender'];
-     if($gender=="NULL"){
-       $error_msg['gender'] = "Gender in required";
-     }
- 
- 
-     $password = $_POST['password'];
-     if(empty($password)){
-       $error_msg['password'] = "Password is required";
-     }
-     else if((strlen($password)<6)){
-       $error_msg['password'] = "Password is too short";
-     }
-     else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
-       $error_msg['password'] = "the password does not meet the requirements";
-     }
-   }
+<?php 
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
+  {
+    header("Location:../doctor-login.php");
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -88,9 +42,9 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="#"><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
