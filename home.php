@@ -1,3 +1,4 @@
+<?php include "controls/cookies.php" ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
