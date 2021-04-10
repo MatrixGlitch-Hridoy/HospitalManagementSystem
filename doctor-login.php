@@ -34,7 +34,7 @@ $db = new Database();
   <body>
     <header class="header-area">
       <div class="title">
-        <h1>Hospital Management System</h1>
+        <h1 class="head"><a href="home.php">Hospital Management System</a> </h1>
       </div>
       <div class="navigation">
         <nav class="menu">

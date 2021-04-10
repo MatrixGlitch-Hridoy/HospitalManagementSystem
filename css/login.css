@@ -14,6 +14,10 @@ body {
   overflow: hidden;
   color: #fff;
 }
+.head a {
+  text-decoration: none;
+  color: #fff;
+}
 /* .navbar {
       overflow: hidden;
     }
