@@ -1,7 +1,7 @@
 <?php include "controls/Database.php" ?>
 <?php 
 session_start();
-$db = new Database();
+  $db = new Database();
   if(isset($_POST['submit']))
   {
     $login = $db->loginRecord($_POST,"patients");
@@ -10,10 +10,10 @@ $db = new Database();
       echo "<script>alert('Login succesful');</script>";
       echo "<script>window.location.href = 'views/user-home.php';</script>";
     }
-    else{
-      echo "<script>alert('Database Empty!');</script>";
-      echo "<script>window.location.href = 'login.php';</script>";
-    }
+    // else{
+    //   echo "<script>alert('Database Empty!');</script>";
+    //   echo "<script>window.location.href = 'login.php';</script>";
+    // }
     // $email = $_POST['email'];
     // if(empty($email)){
     //   $error_msg['email'] = "Email is required";
