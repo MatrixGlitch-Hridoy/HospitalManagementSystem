@@ -53,7 +53,7 @@ $db = new Database();
     
   <div class="auth-content">
 
-<form action="login.php" method="post">
+<form action="doctor-login.php" method="post">
   <h2 class="form-title">Sign In</h2>
   <?php
     include "controls/errors.php";  
