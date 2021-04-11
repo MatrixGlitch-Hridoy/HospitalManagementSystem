@@ -69,9 +69,6 @@
                 $sql = "SELECT * FROM $table WHERE email='$email' ";
                 $logged = $this->connection->query($sql);
                 $email_count = $logged->num_rows;
-                // $emailQuery = "SELECT FROM $table WHERE email = '$email'";
-                // $emailsql = $this->connection->query($emailQuery);
-                // $emailCount = $emailsql->num_rows;
                 if($email_count>0)
                 {
                     array_push($this->errors,"Email already exits");
