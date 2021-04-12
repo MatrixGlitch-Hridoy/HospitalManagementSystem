@@ -4,7 +4,7 @@
         private $user = 'root';
         private $password = '';
         private $dbname = 'hms';
-        private $connection;
+        public $connection;
         public $errors = array();
         //public $success = array();
         public function __construct()
@@ -30,6 +30,7 @@
             $gender = $_POST['gender'];
             $phone = $_POST['phone'];
             $specialization = $_POST['DoctorSpecialization'];
+            $fees = $_POST['fees'];
             }
 
             
@@ -39,6 +40,7 @@
             }
             else
             {
+                
                 if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
                     array_push($this->errors," Username: Only letter allowed");
                 }
@@ -49,6 +51,19 @@
                 if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})$/",$email)) {
                     array_push($this->errors," Email: Invalid email format");
                 }
+
+                if($table=="doctors")
+                {
+                    if(empty($fees))
+                    {
+                        array_push($this->errors,"Fees must not be empty");
+                    }
+                    if($specialization=="NULL")
+                    {
+                        array_push($this->errors,"Specialization must not be empty");
+                    }
+                }
+                
     
                 if(strlen($password)<6){
                     array_push($this->errors," Password: Password is too short");
@@ -77,7 +92,7 @@
                     //$password = md5($password);//encript password
                     if($table=="doctors")
                     {
-                        $sql = "INSERT INTO $table(username,email,password,phone,gender,specialization) VALUES('$uName','$email','$password','$phone','$gender','$specialization')";
+                        $sql = "INSERT INTO $table(username,email,password,phone,gender,specialization,fees) VALUES('$uName','$email','$password','$phone','$gender','$specialization','$fees')";
                     }
                     else{
                         $sql = "INSERT INTO $table(username,email,password) VALUES('$uName','$email','$password')";
@@ -218,6 +233,20 @@
                 return $data;
             }
         }
+        // public function searchRecord($table)
+        // {
+        //     $search = isset($_POST['query']);
+        //     $sql = "SELECT * FROM $table WHERE username LIKE '%{$search}%'";
+        //     $result = $this->connection->query($sql);
+        //     if($result->num_rows>0)
+        //     {
+        //         while($row = $result->fetch_assoc())
+        //         {
+        //            $data[] = $row;  
+        //         }
+        //         return $data;
+        //     }
+        // }
 
         public function displayRecordById($editid,$table)
         {
