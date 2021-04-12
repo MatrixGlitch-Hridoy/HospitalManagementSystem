@@ -71,12 +71,22 @@
 
           <form action="book-appointment.php" method="post">
           <div>
+              <?php
+                // $sql = "SELECT DISTINCT specialization FROM doctors"; //distinct for remove duplicate
+                // $result = $db->connection->query($sql);
+              ?>
               <label>Doctor Specialization</label>
-              <select name="doctorSpecialization" class="text-input">
+              <select name="DoctorSpecialization" class="text-input" id="ds">
                 <option value="NULL">--Select Specialization--</option>
-                <option value="Neurology">Neurology</option>
-                <option value="Pathology">Pathology</option>
-                <option value="Pediatrics">Pediatrics</option>
+                
+                <?php
+                  // while($row = $result->fetch_assoc())
+                  // { ?>
+                    <!-- <option value="<?php// echo $row['specialization'];?>"><?php // echo $row['specialization']?></option> -->
+                  <?php
+                  //}
+                ?>
+
               </select>
               <?php 
                 // if(isset($error_msg['doctorSpecialization']))
@@ -87,7 +97,7 @@
             </div>
             <div>
               <label>Doctor Name</label>
-              <select name="doctorName" class="text-input">
+              <select name="doctorName" class="text-input" id="dn">
                 <option value="NULL">--Select Doctor--</option>
                 <option value="Hridoy">Dr.Hridoy</option>
                 <option value="Mahi">Dr.Mahi</option>
@@ -130,5 +140,36 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        // function loadData(type,id)
+        // {
+          $.ajax({
+            url:"load.php",
+            type:"POST",
+           // data:{types:type, ids:id},
+            success:function(data)
+            {
+              // if(types=="dn")
+              // {
+              //   $("#dn").html(data);
+              // }
+             // else{
+                $("#ds").append(data);
+              //}
+              
+            }
+          });
+        //}
+        loadData();
+
+        // $("#ds").on("change",function(){
+        //   var dn = $("#ds"),val();
+        //   loadData("dn",dn);
+        // })
+      });
+    </script>
   </body>
 </html>
