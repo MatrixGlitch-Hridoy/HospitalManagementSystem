@@ -138,6 +138,23 @@ header {
   padding: 40px 100px 100px;
   overflow-y: scroll;
 }
+.admin-wrapper .admin-content .button-group {
+  display: inline-block;
+}
+.admin-wrapper .admin-content .search-bar {
+  float: right;
+  margin-top: -17px;
+}
+.search-input {
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  outline: none;
+  color: #444;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .admin-content .page-title {
   text-align: center;
   margin-bottom: 1.5rem;
