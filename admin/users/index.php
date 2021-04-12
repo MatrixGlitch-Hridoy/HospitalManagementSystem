@@ -30,6 +30,7 @@
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    
 
     <!-- Custom Styling -->
     <!-- <link rel="stylesheet" href="../../css/style.css"> -->
@@ -78,11 +79,12 @@
           <a href="create.php" class="btn btn-big">Add Patient</a>
           <a href="index.php" class="btn btn-big">Manage Patient</a>
         </div>
+        <input type="text" name="search" class="search-bar search-input" id="search-text" placeholder="Search">
 
         <div class="content">
           <h2 class="page-title">Manage Patient</h2>
 
-          <table>
+          <table id="table-data">
             <thead>
               <th>SN</th>
               <th>Username</th>
@@ -123,5 +125,23 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <!-- <script src="../../js/jquery.min.js"></script> -->
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(fuction(){
+        $("#search-text").keyup(function(){
+          var search = $(this).val();
+          $.ajax({
+            url:'search.php',
+            method:'post',
+            data:{query:search},
+            success:function(response){
+              $("#table-data").html(response);
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>
