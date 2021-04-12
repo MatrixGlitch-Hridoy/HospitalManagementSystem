@@ -91,7 +91,7 @@
             </div>
             <div>
               <label>Email</label>
-              <input type="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
+              <input type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
             </div>
             <div>
               <label>Select Specialization</label>
@@ -101,6 +101,10 @@
                 <option value="Pathology">Pathology</option>
                 <option value="Pediatrics">Pediatrics</option>
               </select>
+            </div>
+            <div>
+              <label>Fees</label>
+              <input type="text" name="fees" class="text-input" />
             </div>
             <div>
               <label>Phone Number</label>
