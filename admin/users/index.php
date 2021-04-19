@@ -14,6 +14,7 @@
   // }
 
   $data = $db->displayRecord("patients");
+  $data = $db->searchRecord("patients");
   
 
 ?>
@@ -130,17 +131,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
       $(document).ready(fuction(){
-        $("#search-text").keyup(function(){
-          var search = $(this).val();
-          $.ajax({
-            url:'search.php',
-            method:'post',
-            data:{query:search},
-            success:function(response){
-              $("#table-data").html(response);
-            }
-          });
-        });
+        // $("#search-text").keyup(function(){
+        //   var search = $(this).val();
+        //   $.ajax({
+        //     url:'index.php',
+        //     method:'post',
+        //     data:{query:search},
+        //     success:function(response){
+        //       $("#table-data").html(response);
+        //     }
+        //   });
+        // });
+        $.ajax()
       });
     </script>
   </body>
