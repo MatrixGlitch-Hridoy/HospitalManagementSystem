@@ -7,6 +7,15 @@
   {
     header("Location:../login.php");
   }
+  if(isset($_POST['book']))
+{
+  $update = $db->bookAppointment($_POST,"bookappoint");
+  if($update)
+  {
+    echo "<script>alert('Appointment Booked succesfully');</script>";
+    echo "<script>window.location.href = 'appointment-history.php';</script>";
+  }
+}
 
 ?>
 
@@ -57,7 +66,7 @@
       <!-- Left Sidebar -->
       <div class="left-sidebar">
         <ul>
-        <li><a href="book-appointment.php">Book Apointment</a></li>
+        <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
           <li><a href="update-profile.php">Update Profile</a></li>
         </ul>
@@ -69,15 +78,22 @@
         <div class="content">
           <h2 class="page-title">Book Appointment</h2>
 
-          <form action="book-appointment.php" method="post">
+          <?php
+            $editid = $_REQUEST['bookid'];
+            $myrecord = $db->displayRecordById($editid,"doctors");
+            include "../controls/errors.php";
+          ?>
+
+          <form action="" method="POST">
           <div>
               <?php
                 // $sql = "SELECT DISTINCT specialization FROM doctors"; //distinct for remove duplicate
                 // $result = $db->connection->query($sql);
               ?>
               <label>Doctor Specialization</label>
-              <select name="DoctorSpecialization" class="text-input" id="ds">
-                <option value="NULL">--Select Specialization--</option>
+              <input type="text" name="specialization" value="<?php echo $myrecord['specialization']; ?>"  class="text-input" readonly/>
+              <!-- <select name="DoctorSpecialization" class="text-input" id="ds"> -->
+                <!-- <option value="NULL">--Select Specialization--</option> -->
                 
                 <?php
                   // while($row = $result->fetch_assoc())
@@ -87,7 +103,7 @@
                   //}
                 ?>
 
-              </select>
+              <!-- </select> -->
               <?php 
                 // if(isset($error_msg['doctorSpecialization']))
                 // {
@@ -97,19 +113,24 @@
             </div>
             <div>
               <label>Doctor Name</label>
-              <select name="doctorName" class="text-input" id="dn">
-                <option value="NULL">--Select Doctor--</option>
-                <option value="Hridoy">Dr.Hridoy</option>
+              <!-- <select name="doctorName" class="text-input" >
+                <option value="NULL">--Select Doctor--</option> -->
+                <!-- <option value="Hridoy">Dr.Hridoy</option>
                 <option value="Mahi">Dr.Mahi</option>
                 <option value="Nabil">Dr.Nabil</option>
-                <option value="fahad">Dr.Fahad</option>
-              </select>
+                <option value="fahad">Dr.Fahad</option> -->
+              <!-- </select> -->
+              <input type="text" name="username" value="<?php echo $myrecord['username']; ?>"  class="text-input" readonly/>
               <?php 
                 // if(isset($error_msg['doctorName']))
                 // {
                 //   echo"<span class='error1'>".$error_msg['doctorName']."</span>";
                 // }
               ?>
+            </div>
+            <div>
+                  <label>Fees</label>
+                  <input type="text" name="fees" value="<?php echo $myrecord['fees']; ?>"  class="text-input" readonly/>
             </div>
             <div>
               <label>Date</label>
@@ -132,7 +153,8 @@
                 // }
               ?>
             <div>
-              <button type="submit" name="submit" class="btn btn-big">Book Appointment</button>
+              <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
+              <button type="submit" name="book" class="btn btn-big">Book Appointment</button>
             </div>
           </form>
         </div>
@@ -143,33 +165,33 @@
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-      $(document).ready(function(){
-        // function loadData(type,id)
-        // {
-          $.ajax({
-            url:"load.php",
-            type:"POST",
-           // data:{types:type, ids:id},
-            success:function(data)
-            {
-              // if(types=="dn")
-              // {
-              //   $("#dn").html(data);
-              // }
-             // else{
-                $("#ds").append(data);
-              //}
+      // $(document).ready(function(){
+      //   function loadData(type,catid)
+      //   {
+      //     $.ajax({
+      //       url:"load.php",
+      //       type:"POST",
+      //       data:{type:type, id:catid},
+      //       success:function(data)
+      //       {
+      //         if(type=="dname")
+      //         {
+      //           $("#dn").html(data);
+      //         }
+      //        else{
+      //           $("#ds").append(data);
+      //         }
               
-            }
-          });
-        //}
-        loadData();
+      //       }
+      //     });
+      //   }
+      //   loadData();
 
-        // $("#ds").on("change",function(){
-        //   var dn = $("#ds"),val();
-        //   loadData("dn",dn);
-        // })
-      });
+      //   $("#ds").on("change",function(){
+      //     var ds = $("#ds"),val();
+      //     loadData("dname",ds);
+      //   })
+      // });
     </script>
   </body>
 </html>
