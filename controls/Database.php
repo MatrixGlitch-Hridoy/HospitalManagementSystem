@@ -337,5 +337,74 @@
             }
         }
 
+        //book appointment
+        public function bookAppointment($data,$table)
+        {
+            $uName = $_POST['username'];
+            $specialization = $_POST['specialization'];
+            $fees = $_POST['fees'];
+            $date = $_POST['date'];
+            $time = $_POST['time'];
+            //$editid = $_POST['hid'];
+
+            if(empty($date)||empty($time))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+
+           // var_dump($data);
+
+            if(count($this->errors)==0)
+            {
+                //$password = md5($password);//encript password
+                $sql = "INSERT INTO $table(username,specialization,fees,date,time) VALUES('$uName','$specialization','$fees','$date','$time')";
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+
+        //filter
+
+            // Fetch Standard
+
+        public function fetch_std()
+        {
+            $data = [];
+
+            $sql = "SELECT DISTINCT `specialization` FROM `doctors`";
+            $result = $this->connection->query($sql);
+            if($result){
+                while ($row = $result->fetch_assoc()) {
+                    $data[] = $row;
+                }
+            }
+
+            return $data;
+        }
+
+          // Fetch Result
+
+        public function fetch_res()
+        {
+            $data = [];
+
+            $sql = "SELECT DISTINCT `gender` FROM `doctors`";
+            $result = $this->connection->query($sql);
+            if($result){
+                while ($row = $result->fetch_assoc()) {
+                    $data[] = $row;
+                }
+            }
+
+            return $data;
+        }
+
     }
 ?>
