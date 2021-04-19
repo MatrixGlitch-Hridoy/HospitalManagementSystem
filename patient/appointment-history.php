@@ -7,7 +7,7 @@
   {
     header("Location:../login.php");
   }
-
+  $data = $db->displayRecord("bookappoint");
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +57,7 @@
       <!-- Left Sidebar -->
       <div class="left-sidebar">
       <ul>
-        <li><a href="book-appointment.php">Book Apointment</a></li>
+        <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
           <li><a href="update-profile.php">Update Profile</a></li>
         </ul>
@@ -81,16 +81,29 @@
               <th>Action</th>
             </thead>
             <tbody>
+            <?php
+              $sno=1;
+              if($data){
+              foreach($data as $value)
+              {
+            ?>
               <tr>
-                <td>1</td>
-                <td>Dr.Hridoy</td>
-                <td>Neurology</td>
-                <td>500</td>
-                <td>03/30/2021</td>
-                <td>9:25 PM</td>
-                <td>Pending</td>
-                <td><a href="#" class="delete">delete</a></td>
+                <td><?php echo $sno++ ?></td>
+                <td><?php echo $value['username'] ?></td>
+                <td><?php echo $value['specialization'] ?></td>
+                <td><?php echo $value['fees'] ?></td>
+                <td><?php echo $value['date'] ?></td>
+                <td><?php echo $value['time'] ?></td>
+                <td></td>
+                <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">delete</a></td>
               </tr>
+              <?php } }
+              else{
+              ?>
+              <tr>
+                <td colspan="8" class="no-record">No records found</td>
+              </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>
