@@ -78,6 +78,18 @@ a {
   font-family: "Lora", serif;
 }
 
+.selectbox {
+  padding: 0.7rem 1rem;
+  display: inline-block;
+  width: 57%;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  outline: none;
+  color: #444;
+  line-height: 1.5rem;
+  font-size: 1.2em;
+}
+
 .msg {
   width: 100%;
   margin: 5px auto;
@@ -140,6 +152,22 @@ header {
 }
 .admin-wrapper .admin-content .button-group {
   display: inline-block;
+}
+.admin-wrapper .admin-content .filter-group {
+  display: inline-block;
+  margin-top: 33px;
+}
+.admin-wrapper .admin-content .select-group {
+  /* display: inline-block;
+  width: 40%; */
+  display: flex;
+}
+.select1 {
+  width: 40%;
+}
+.select2 {
+  width: 40%;
+  margin-left: 218px;
 }
 .admin-wrapper .admin-content .search-bar {
   float: right;
