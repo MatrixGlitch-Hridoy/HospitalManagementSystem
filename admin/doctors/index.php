@@ -88,6 +88,7 @@
               <th>Username</th>
               <th>Email</th>
               <th>Specialization</th>
+              <th>Fees</th>
               <th>Phone</th>
               <th>Gender</th>  
               <th colspan="2" class="th-action">Action</th>
@@ -104,6 +105,7 @@
                 <td><?php echo $value['username'] ?></td>
                 <td><?php echo $value['email'] ?></td>
                 <td><?php echo $value['specialization'] ?></td>
+                <td><?php echo $value['fees'] ?></td>
                 <td><?php echo $value['phone'] ?></td>
                 <td><?php echo $value['gender'] ?></td>
                 <td><a href="update.php?editid=<?php echo $value['id']; ?>" class="edit btn-update btn-big ">edit</a></td>
