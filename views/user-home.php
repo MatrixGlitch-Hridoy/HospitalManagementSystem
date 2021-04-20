@@ -84,7 +84,7 @@
         </div> -->
         </div>
         <div class="apointment">
-          <a href="../patient/book-appointment.php">Make Appointment</a>
+          <a href="../patient/filter.php">Make Appointment</a>
         </div>
       </div>
     </div>
