@@ -137,6 +137,7 @@
                     $email_pass = $logged->fetch_assoc();
                     $db_pass = $email_pass['password'];
                     $_SESSION['username'] = $email_pass['username'];
+                    $_SESSION['id'] = $email_pass['id']; //for appointment purpose
                     //$user_type = $email_pass['user_type'];
                     if($db_pass==$password)
                     {
@@ -338,7 +339,7 @@
         }
 
         //book appointment
-        public function bookAppointment($data,$table)
+        public function bookAppointment($data,$table,$currentUser)
         {
             $uName = $_POST['username'];
             $specialization = $_POST['specialization'];
@@ -357,7 +358,7 @@
             if(count($this->errors)==0)
             {
                 //$password = md5($password);//encript password
-                $sql = "INSERT INTO $table(username,specialization,fees,date,time) VALUES('$uName','$specialization','$fees','$date','$time')";
+                $sql = "INSERT INTO $table(username,specialization,fees,date,time,uid) VALUES('$uName','$specialization','$fees','$date','$time','$currentUser')";
 
                 $result = $this->connection->query($sql);
                 if($result)
@@ -367,6 +368,20 @@
                 else{
                     return false;
                 }
+            }
+        }
+
+        public function displayAppointment($table,$currentUser)
+        {
+            $sql = "SELECT * FROM $table WHERE uid = '$currentUser'";
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;
             }
         }
 
@@ -405,6 +420,8 @@
 
             return $data;
         }
+
+              
 
     }
 ?>
