@@ -7,7 +7,8 @@
   {
     header("Location:../login.php");
   }
-  $data = $db->displayRecord("bookappoint");
+  $currentUser = $_SESSION['id'];
+  $data = $db->displayAppointment("bookappoint",$currentUser);
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +43,7 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#"><?php echo $_SESSION['username'];?></a>
+              <a href="dashboard.php"><?php echo $_SESSION['username'];?></a>
               <ul>
                 <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
@@ -51,7 +52,7 @@
         </nav>
       </div>
     </header>
-
+    <?php $uid = $_SESSION['id']; ?>
     <!-- Admin Page Wrapper -->
     <div class="admin-wrapper">
       <!-- Left Sidebar -->
@@ -59,7 +60,7 @@
       <ul>
         <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
-          <li><a href="update-profile.php">Update Profile</a></li>
+          <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
         </ul>
       </div>
       <!-- // Left Sidebar -->
