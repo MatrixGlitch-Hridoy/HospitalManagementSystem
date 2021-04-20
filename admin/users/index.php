@@ -14,7 +14,7 @@
   // }
 
   $data = $db->displayRecord("patients");
-  $data = $db->searchRecord("patients");
+ 
   
 
 ?>
