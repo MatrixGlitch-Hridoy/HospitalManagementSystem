@@ -7,7 +7,7 @@
   {
     header("Location:../doctor-login.php");
   }
-
+  $data = $db->displayApproved();
 ?>
 
 <!DOCTYPE html>
@@ -77,19 +77,33 @@
               <th>Gender</th>
               <th>Date</th>
               <th>Time</th>
-              <th colspan="2">Action</th>
+              <th colspan="3">Action</th>
             </thead>
             <tbody>
+            <?php
+              $sno=1;
+              if($data){
+              foreach($data as $value)
+              {
+            ?>
               <tr>
-                <td>1</td>
-                <td>Hridoy</td>
-                <td>rkhridoy68@gmail.com</td>
-                <td>Male</td>
-                <td>03/30/2021</td>
-                <td>9:25 PM</td>
-                <td><a href="#" class="delete">Approve</a></td>
-                <td><a href="#" class="delete">Decline</a></td>
+                <td><?php echo $sno++ ?></td>
+                <td><?php echo $value['username'] ?></td>
+                <td><?php echo $value['email'] ?></td>
+                <td><?php echo $value['gender'] ?></td>
+                <td><?php echo $value['date'] ?></td>
+                <td><?php echo $value['time'] ?></td>
+                <td></td>
+                <td><a href="update.php?editid=<?php echo $value['id']; ?>" class="edit btn-update btn-big ">Approve</a></td>
+                <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">Decline</a></td>
               </tr>
+              <?php } }
+              else{
+              ?>
+              <tr>
+                <td colspan="8" class="no-record">No records found</td>
+              </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>
