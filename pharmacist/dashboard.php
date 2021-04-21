@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" href="pharmacist.css">
 
-    <title>Pharmacist</title>
+    <title>Dashborad</title>
     <link rel="icon" href="../pic/hms.png">
 </head>
 
@@ -54,6 +54,7 @@
             </nav>
         </div>
     </header>
+    <?php $uid=$_SESSION['id']; ?>
 
     <!-- Admin Page Wrapper -->
     <div class="admin-wrapper">
@@ -63,7 +64,8 @@
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="add-medicine.php">Add Medicine</a></li>
                 <li><a href="sell-medicine.php">Sell Medicine</a></li>
-                <li><a href="update-medicine.php">Update Medicine</a></li>
+                <li><a href="show-medicine.php">Show Medicine</a></li>
+                <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
             </ul>
         </div>
         <!-- // Left Sidebar -->
