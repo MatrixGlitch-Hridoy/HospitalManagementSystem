@@ -1,5 +1,6 @@
 <?php include "../controls/Database.php" ?>
 
+
 <?php 
   session_start();
   $db = new Database();
@@ -7,8 +8,17 @@
   {
     header("Location:../pharmacist-login.php");
   }
+  if(isset($_POST['submit'])){
+    $create = $db->addMedicine($_POST,"medicine");
+      if($create)
+      {
+        echo "<script>alert('Medicine Added succesfully');</script>";
+        echo "<script>window.location.href = 'show-medicine.php';</script>";
+      }
+    }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,14 +37,14 @@
     <link rel="stylesheet" href="../css/admin-nav.css" />
     <link rel="stylesheet" href="../css/admin.css" />
 
-    <title>Pharmacist</title>
+    <title>Add Medicine</title>
     <link rel="icon" href="../pic/hms.png">
 </head>
 
 <body>
-    <header class="header-area">
+<header class="header-area">
         <div class="title">
-            <h1>Hospital Management System</h1>
+            <h1 >Hospital Management System</h1>
         </div>
         <div class="navigation">
             <nav class="menu">
@@ -49,6 +59,7 @@
             </nav>
         </div>
     </header>
+    <?php $uid=$_SESSION['id']; ?>
 
     <!-- Admin Page Wrapper -->
     <div class="admin-wrapper">
@@ -59,7 +70,8 @@
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="add-medicine.php">Add Medicine</a></li>
                 <li><a href="sell-medicine.php">Sell Medicine</a></li>
-                <li><a href="update-medicine.php">Update Medicine</a></li>
+                <li><a href="show-medicine.php">Show Medicine</a></li>
+                <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
             </ul>
         </div>
         <!-- // Left Sidebar -->
@@ -68,58 +80,33 @@
         <div class="admin-content">
             <div class="content">
                 <h2 class="page-title">Add Medicine</h2>
-
+ <?php include "../controls/errors.php"?>
                 <form action="" method="post">
                     <div>
-                        <label>Name</label>
-                        <input type="text" name="name" class="text-input" />
-                        <?php 
-                if(isset($error_msg['username']))
-                {
-                  echo"<span class='error1'>".$error_msg['username']."</span>";
-                }
-              ?>
+                        <label>Medicine Name</label>
+                        <input type="text" name="mName" class="text-input" />
+                        
                     </div>
                     <div>
                         <label>Generic</label>
-                        <input type="email" name="email" class="text-input" />
-                        <?php 
-                if(isset($error_msg['email']))
-                {
-                  echo"<span class='error1'>".$error_msg['email']."</span>";
-                }
-              ?>
+                        <input type="generic" name="generic" class="text-input" />
+                        
                     </div>
                     <div>
                         <label>Type</label>
-                        <input type="text" name="address" class="text-input" />
-                        <?php 
-                if(isset($error_msg['address']))
-                {
-                  echo"<span class='error1'>".$error_msg['address']."</span>";
-                }
-              ?>
+                        <input type="type" name="mType" class="text-input" />
+                        
                     </div>
                     <div>
                         <label>Quantity</label>
-                        <input type="text" name="phone" class="text-input" />
-                        <?php 
-                if(isset($error_msg['phone']))
-                {
-                  echo"<span class='error1'>".$error_msg['phone']."</span>";
-                }
-              ?>
+                        <input type="quantity" name="quantity" class="text-input" />
+                        
                     </div>
 
                     <div>
                         <label>Unit Price</label>
-                        <input type="password" name="password" class="text-input" />
-                        <?php 
-                if(isset($error_msg['password']))
-                {
-                  echo"<span class='error1'>".$error_msg['password']."</span>";
-                }
-              ?>
+                        <input type="unitPrice" name="unitPrice" class="text-input" />
+                        
                     </div>
                     <div>
                         <button type="submit" name="submit" class="btn btn-big">Add</button>
