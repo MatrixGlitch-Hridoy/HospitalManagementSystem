@@ -421,7 +421,111 @@
             return $data;
         }
 
-              
+        public function displayApproved()
+        {
+            $sql = "SELECT b.id,p.username,p.email,p.gender,b.date,b.time FROM bookappoint b INNER JOIN patients p ON b.uid = p.id";
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;
+            }
+        }
+        
+
+        /////add medicine//////
+        public function addMedicine($data,$table)
+        {
+            $Name = $_POST['mName'];
+            $generic = $_POST['generic'];
+            $type = $_POST['mType'];
+            $quantity = $_POST['quantity'];
+            $unitPrice = $_POST['unitPrice'];
+           
+
+            
+            if(empty($Name)||empty($generic)||empty($type)||empty($quantity)||empty($unitPrice))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+           
+
+            if(count($this->errors)==0)
+            {
+                $sql = "SELECT * FROM $table WHERE mName='$Name' ";
+                $logged = $this->connection->query($sql);
+                $Name_count = $logged->num_rows;
+                if($Name_count>0)
+                {
+                    array_push($this->errors,"Medicine already exits");
+                }
+                else{
+                    //$password = md5($password);//encript password
+                    
+                        $sql = "INSERT INTO $table(mName,generic,mType,quantity,unitPrice) VALUES('$Name','$generic','$type','$quantity','$unitPrice')";
+                    
+                   //  else{
+                   //      $sql = "INSERT INTO $table(username,email,password) VALUES('$uName','$email','$password')";
+                   //  }
+
+                    $create = $this->connection->query($sql);
+                    if($create)
+                    {
+                        //session_start();
+                        //$_SESSION['email'] = $email;
+                        //$_SESSION['password'] = $password;
+                    return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+                
+                // echo "<script>alert('Registration succesful');</script>";
+                // echo "<script>window.location.href = 'login.php';</script>";
+            }
+        }
+
+        public function updateMedicine($data,$table)
+       {
+           $Name = $_POST['mName'];
+           $generic = $_POST['generic'];
+           $type = $_POST['mType'];
+           $quantity = $_POST['quantity'];
+           $unitPrice = $_POST['unitPrice'];
+           $editid=$_POST['hid'];
+
+           //$editid = $_POST['hid'];
+
+           if(empty($quantity)||empty($unitPrice))
+           {
+               array_push($this->errors," Fields must not be empty");
+           }
+           else{
+
+               if(count($this->errors)==0)
+               {
+                   
+                   $sql = "UPDATE $table SET mName='$Name',generic='$generic',mType='$type',quantity='$quantity',unitPrice='$unitPrice' WHERE id='$editid'";
+
+                   $result = $this->connection->query($sql);
+                   if($result)
+                   {
+                       return true;
+                   }
+                   else{
+                       return false;
+                   }
+               
+               }
+           }
+          
+
+          
+       }
 
     }
 ?>
