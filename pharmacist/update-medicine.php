@@ -8,6 +8,16 @@
     header("Location:../pharmacist-login.php");
   }
 
+  if(isset($_POST['update']))
+{
+  $update = $db->updateMedicine($_POST,"medicine");
+  if($update)
+  {
+    echo "<script>alert('Updated succesfully');</script>";
+    echo "<script>window.location.href = 'show-medicine.php';</script>";
+  }
+}
+ 
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +38,7 @@
     <link rel="stylesheet" href="../css/admin-nav.css" />
     <link rel="stylesheet" href="../css/admin.css" />
 
-    <title>Pharmacist</title>
+    <title>Update Medicine</title>
     <link rel="icon" href="../pic/hms.png">
 </head>
 
@@ -50,6 +60,7 @@
             </nav>
         </div>
     </header>
+    <?php $uid=$_SESSION['id']; ?>
 
     <!-- Admin Page Wrapper -->
     <div class="admin-wrapper">
@@ -59,7 +70,8 @@
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="add-medicine.php">Add Medicine</a></li>
                 <li><a href="sell-medicine.php">Sell Medicine</a></li>
-                <li><a href="update-medicine.php">Update Medicine</a></li>
+                <li><a href="show-medicine.php">Show Medicine</a></li>
+                <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
             </ul>
         </div>
         <!-- // Left Sidebar -->
@@ -69,60 +81,46 @@
             <div class="content">
                 <h2 class="page-title">Modify Medicine</h2>
 
-                <form action="update-profile.php" method="post">
+          <?php 
+          $editid = $_REQUEST['editid'];
+           $myrecord = $db->displayRecordById($editid,"medicine");
+           include "../controls/errors.php";
+           ?>
+
+
+                <form action="update-medicine.php" method="post">
                     <div>
                         <label>Name</label>
-                        <input type="text" name="name" class="text-input" />
-                        <?php 
-                if(isset($error_msg['username']))
-                {
-                  echo"<span class='error1'>".$error_msg['username']."</span>";
-                }
-              ?>
+                        <input type="text" name="mName" class="text-input" readonly value="<?php echo $myrecord['mName']; ?>" />
+                        
                     </div>
                     <div>
                         <label>Generic</label>
-                        <input type="email" name="email" class="text-input" />
-                        <?php 
-                if(isset($error_msg['email']))
-                {
-                  echo"<span class='error1'>".$error_msg['email']."</span>";
-                }
-              ?>
+                        <input type="text" name="generic" class="text-input" readonly value="<?php echo $myrecord['generic']; ?>" />
+                        
                     </div>
                     <div>
                         <label>Type</label>
-                        <input type="text" name="address" class="text-input" />
-                        <?php 
-                if(isset($error_msg['address']))
-                {
-                  echo"<span class='error1'>".$error_msg['address']."</span>";
-                }
-              ?>
+                        <input type="text" name="mType" class="text-input" readonly value="<?php echo $myrecord['mType']; ?>" />
+                        
                     </div>
                     <div>
                         <label>Quantity</label>
-                        <input type="text" name="phone" class="text-input" />
-                        <?php 
-                if(isset($error_msg['phone']))
-                {
-                  echo"<span class='error1'>".$error_msg['phone']."</span>";
-                }
-              ?>
+                        <input type="text" name="quantity" class="text-input" value="<?php echo $myrecord['quantity']; ?>" />
+                        
                     </div>
 
                     <div>
                         <label>Unit Price</label>
-                        <input type="password" name="password" class="text-input" />
-                        <?php 
-                if(isset($error_msg['password']))
-                {
-                  echo"<span class='error1'>".$error_msg['password']."</span>";
-                }
-              ?>
+                        <input type="text" name="unitPrice" class="text-input" value="<?php echo $myrecord['unitPrice']; ?>" />
+                        
                     </div>
                     <div>
-                        <button type="submit" name="submit" class="btn btn-big">Update</button>
+                   
+    
+                    <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
+
+                        <button type="submit" name="update" class="btn btn-big">Update Medicine</button>
                     </div>
                 </form>
             </div>
