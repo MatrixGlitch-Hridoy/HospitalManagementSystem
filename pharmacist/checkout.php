@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" href="pharmacist.css">
 
-    <title>Pharmacist</title>
+    <title>Checkout</title>
     <link rel="icon" href="../pic/hms.png">
 </head>
 
@@ -45,7 +45,7 @@
             <nav class="menu">
                 <ul>
                     <li>
-                        <a href="#"><?php echo $_SESSION['username'];?>/a>
+                        <a href="#"><?php echo $_SESSION['username'];?></a>
                         <ul>
                             <li><a href="../controls/logout.php">Logout</a></li>
                         </ul>
@@ -54,6 +54,7 @@
             </nav>
         </div>
     </header>
+    <?php $uid=$_SESSION['id']; ?>
 
     <!-- Admin Page Wrapper -->
     <div class="admin-wrapper">
@@ -63,7 +64,8 @@
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="add-medicine.php">Add Medicine</a></li>
                 <li><a href="sell-medicine.php">Sell Medicine</a></li>
-                <li><a href="update-medicine.php">Update Medicine</a></li>
+                <li><a href="show-medicine.php">Show Medicine</a></li>
+                <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
             </ul>
         </div>
         <!-- // Left Sidebar -->
@@ -77,28 +79,28 @@
                     <form action="" method="post">
                         <div>
                             <label>Customer Name</label>
-                            <input type="text" required name="name" id="cName" class="text-inputMedium" />
+                            <input type="text" name="name" id="cName" class="text-inputMedium" />
 
                         </div>
                         <div>
                             <label>Email</label>
-                            <input type="text" required name="email" id="cEmail" class="text-inputMedium" />
+                            <input type="text" name="email" id="cEmail" class="text-inputMedium" />
                             
 
                         </div>
                         <div>
                             <label>Mobile Number</label>
-                            <input type="text" required name="mobile" id="cMobile" class="text-inputMedium" />
+                            <input type="text" name="mobile" id="cMobile" class="text-inputMedium" />
 
                         </div>
                         <div>
                             <label>Address</label>
-                            <input type="text" required name="address" id="cAddress" class="text-inputMedium" />
+                            <input type="text" name="address" id="cAddress" class="text-inputMedium" />
 
                         </div>
                         <div>
                             <label>City</label>
-                            <input type="text" required name="phone" id="cCity" class="text-inputMedium" />
+                            <input type="text" name="phone" id="cCity" class="text-inputMedium" />
 
                         </div>
 
@@ -107,8 +109,7 @@
                         </div>
 
                         <div>
-                            <button type="submit" value="submit" onclick="myFunction()"
-                                class="btn btn-big">Confirm</button>
+                            <button type="submit" value="submit" onclick="myFunction()" class="btn btn-big">Confirm</button>
                         </div>
 
 
@@ -120,7 +121,6 @@
                         <p>Items ordered :</p>
                         <p>Product Price :</p>
                         <p>Shipping:</p>
-                        <p>Tax + VAT :</p>
                         <hr>
                         <p><b>Total Price :</b></p>
 
