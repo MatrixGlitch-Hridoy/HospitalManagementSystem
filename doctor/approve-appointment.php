@@ -7,7 +7,18 @@
   {
     header("Location:../doctor-login.php");
   }
-  $data = $db->displayApproved();
+  $currentUser = $_SESSION['id'];
+  
+
+  if(isset($_POST['approve']))
+  {
+    $update=$db->updateApprovedStatus($_POST,"bookappoint");
+  }
+  if(isset($_POST['decline']))
+  {
+    $update=$db->updateDeclineStatus($_POST,"bookappoint");
+  }
+  $data = $db->displayApproved($currentUser);
 ?>
 
 <!DOCTYPE html>
@@ -73,11 +84,12 @@
             <thead>
               <th>SN</th>
               <th>Patient Name</th>
-              <th>Email</th>
               <th>Gender</th>
               <th>Date</th>
-              <th>Time</th>
-              <th colspan="3">Action</th>
+              <th>Reason</th>
+              <th>Status</th>
+              <th>Comment</th>
+              <th colspan="2" class="th-action">Action</th>
             </thead>
             <tbody>
             <?php
@@ -89,13 +101,23 @@
               <tr>
                 <td><?php echo $sno++ ?></td>
                 <td><?php echo $value['username'] ?></td>
-                <td><?php echo $value['email'] ?></td>
                 <td><?php echo $value['gender'] ?></td>
                 <td><?php echo $value['date'] ?></td>
-                <td><?php echo $value['time'] ?></td>
-                <td></td>
-                <td><a href="update.php?editid=<?php echo $value['id']; ?>" class="edit btn-update btn-big ">Approve</a></td>
-                <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">Decline</a></td>
+                <td><?php echo $value['reason'] ?></td>
+                <td class="status"><?php echo $value['status'] ?></td>
+
+                <!-- <td><a href="update.php?editid=<?php //echo $value['id']; ?>" class="edit btn-update btn-big ">Approve</a></td> -->
+                <!-- <td><a href="delete.php?deleteid=<?php //echo $value['id']; ?>" class="delete btn-delete btn-big">Decline</a></td> -->
+                <td> <form action="" method="post"> <textarea name="comment" class="textarea" ></textarea> </td>
+                <input type="hidden" name="id" value="<?php echo $value['id'];?>">
+                <td>
+                    <button type="submit" name="approve" class="approve btn-update btn-big">Approve</button>
+                </td>
+                <td>
+                    <button type="submit" name="decline" class="decline btn-delete btn-big">Decline</button>
+                </td>
+                </form>
+                
               </tr>
               <?php } }
               else{
@@ -111,5 +133,6 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <script src="../js/main.js"></script>
   </body>
 </html>
