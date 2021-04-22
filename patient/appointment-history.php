@@ -77,9 +77,10 @@
               <th>Specialization</th>
               <th>Fees</th>
               <th>Date</th>
-              <th>Time</th>
+              <th>Day</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Comment</th>
+              <th colspan="2"class="th-action">Action</th>
             </thead>
             <tbody>
             <?php
@@ -94,9 +95,11 @@
                 <td><?php echo $value['specialization'] ?></td>
                 <td><?php echo $value['fees'] ?></td>
                 <td><?php echo $value['date'] ?></td>
-                <td><?php echo $value['time'] ?></td>
-                <td></td>
+                <td><?php echo $value['day'] ?></td>
+                <td class="status"><?php echo $value['status'] ?></td>
+                <td class="status"><?php echo $value['comment']?></td>
                 <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">delete</a></td>
+                <td><a href="invoice.php?printid=<?php echo $value['id']; ?>" class="btn-update btn-big">Print</a></td>
               </tr>
               <?php } }
               else{
