@@ -157,6 +157,46 @@ if(isset($_POST['update']))
               <input type="password" name="password" value="<?php echo $myrecord['password']; ?>" class="text-input" />
             </div>
             <div>
+              <label>Date</label>
+              <input type="date" name="date" class="text-input" value="<?php echo $myrecord['date']; ?>"/>
+            </div>
+            
+            <div>
+              <label>Day</label>
+              <input type="text" name="day" value="<?php echo $myrecord['day']; ?>" class="text-input" />
+            </div>
+
+            <div>
+              <label>Start Time</label>
+              <input type="time" name="stime" class="text-input" value="<?php echo $myrecord['stime']; ?>"/>
+            </div>
+            <div>
+              <label>End Time</label>
+              <input type="time" name="etime" class="text-input" value="<?php echo $myrecord['etime']; ?>"/>
+            </div>
+            <div>
+              <label>Availability</label>
+              <select name="status" class="text-input">
+                <option value="NULL">-- Select Status --</option>
+                <option value="available"
+                <?php
+                  if($myrecord['status']=="available")
+                  {
+                    echo "selected";
+                  }
+                ?>
+                >Available</option>
+                <option value="unavailable"
+                <?php
+                  if($myrecord['status']=="unavailable")
+                  {
+                    echo "selected";
+                  }
+                ?>
+                >Unavailable</option>
+              </select>
+            </div>
+            <div>
             <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
               <button type="submit" name="update" class="btn btn-big">Update</button>
             </div>
