@@ -254,3 +254,17 @@ th.th-action {
   width: 100%;
   resize: none;
 }
+.disabled-link {
+  pointer-events: none;
+  background: grey;
+}
+.approve-link {
+  pointer-events: none;
+  background: grey;
+  cursor: no-drop;
+}
+.decline-link {
+  pointer-events: none;
+  background: grey;
+  cursor: no-drop;
+}
