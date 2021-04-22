@@ -90,7 +90,7 @@
               <th>Specialization</th>
               <th>Fees</th>
               <th>Phone</th>
-              <th>Gender</th>  
+              <th>Gender</th>
               <th colspan="2" class="th-action">Action</th>
             </thead>
             <tbody>
