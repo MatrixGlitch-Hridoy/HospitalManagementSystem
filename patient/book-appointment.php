@@ -136,7 +136,7 @@
             </div>
             <div>
               <label>Date</label>
-              <input type="date" name="date" class="text-input" />
+              <input type="text" name="date" class="text-input" value="<?php echo $myrecord['date']; ?>" readonly/>
             </div>
             <?php 
                 // if(isset($error_msg['date']))
@@ -145,8 +145,8 @@
                 // }
               ?>
             <div>
-              <label>Time</label>
-              <input type="time" name="time" class="text-input" />
+              <label>Day</label>
+              <input type="text" name="day" class="text-input" value="<?php echo $myrecord['day']; ?>" readonly/>
             </div>
             <?php 
                 // if(isset($error_msg['time']))
@@ -154,6 +154,10 @@
                 //   echo"<span class='error1'>".$error_msg['time']."</span>";
                 // }
               ?>
+              <div>
+                <label for="">Reason for Appointment</label>
+                <textarea name="reason" id="" cols="30" rows="10" class="reasontext"></textarea>
+              </div>
             <div>
               <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
               <button type="submit" name="book" class="btn btn-big">Book Appointment</button>
