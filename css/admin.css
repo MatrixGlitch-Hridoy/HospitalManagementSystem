@@ -22,6 +22,7 @@ a {
   border: 1px solid transparent;
   border-radius: 0.25rem;
   font-size: 1.08em;
+  cursor: pointer;
 }
 
 .btn-update {
@@ -31,6 +32,7 @@ a {
   border: 1px solid transparent;
   border-radius: 0.25rem;
   font-size: 1.08em;
+  cursor: pointer;
 }
 .btn-delete {
   padding: 0.5rem 1rem;
@@ -39,6 +41,7 @@ a {
   border: 1px solid transparent;
   border-radius: 0.25rem;
   font-size: 1.08em;
+  cursor: pointer;
 }
 
 .btn-update:hover {
@@ -145,7 +148,7 @@ header {
 }
 
 .admin-wrapper .admin-content {
-  flex: 8;
+  flex: 10;
   height: 100%;
   padding: 40px 100px 100px;
   overflow-y: scroll;
@@ -234,4 +237,20 @@ td.no-record {
 }
 th.th-action {
   text-align: center;
+}
+.status {
+  color: green;
+  font-weight: 700;
+}
+.textarea {
+  resize: none;
+  border-radius: 5px;
+  border: 1px solid #8b7f7f;
+  outline: none;
+  color: #444;
+}
+.reasontext {
+  display: block;
+  width: 100%;
+  resize: none;
 }
