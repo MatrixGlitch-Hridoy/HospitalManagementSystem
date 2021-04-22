@@ -100,12 +100,17 @@
 
           <table >
             <thead>
-              <th>SN</th>
+              <!-- <th>SN</th> -->
               <th>Username</th>
               <th>Email</th>
               <th>Specialization</th>
               <th>Fees</th>
               <th>Gender</th>  
+              <th>Date</th>  
+              <th>Day</th>  
+              <th>Start Time</th>  
+              <th>End Time</th>  
+              <th>Status</th>  
               <th colspan="2" class="th-action">Action</th>
             </thead>
             <tbody id="record_table">
@@ -118,7 +123,8 @@
     </div>
     <!-- // Page Wrapper -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="../js/jquery.min.js"></script>
     <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/r-2.2.3/datatables.min.js"></script> -->
   
     <script>
@@ -174,12 +180,17 @@
                 $.sn = 1;
                 $('#record_table').append(
                   '<tr>'+
-                  '<td>'+value['id']+'</td>\
-                  <td>'+value['username']+'</td>\
+                 
+                  '<td>'+value['username']+'</td>\
                   <td>'+value['email']+'</td>\
                   <td>'+value['specialization']+'</td>\
                   <td>'+value['fees']+'</td>\
                   <td>'+value['gender']+'</td>\
+                  <td>'+value['date']+'</td>\
+                  <td>'+value['day']+'</td>\
+                  <td>'+value['stime']+'</td>\
+                  <td>'+value['etime']+'</td>\
+                  <td class="status">'+value['status']+'</td>\
                   <td>\
                   <a href="book-appointment.php?bookid='+value['id']+'" class="delete btn-delete btn-big">Book</a>\
                   </td>\
