@@ -111,10 +111,21 @@
                 <td> <form action="" method="post"> <textarea name="comment" class="textarea" ></textarea> </td>
                 <input type="hidden" name="id" value="<?php echo $value['id'];?>">
                 <td>
-                    <button type="submit" name="approve" class="approve btn-update btn-big">Approve</button>
+                  <?php
+                  if($value['status']=='Pending'){
+                    print '<button type="submit" name="approve" class="approve btn-update btn-big">Approve</button>';}
+                    else{
+                      print '<button type="submit" name="approve" class="approve-link btn-update btn-big">Approve</button>';
+                    }?>
                 </td>
                 <td>
-                    <button type="submit" name="decline" class="decline btn-delete btn-big">Decline</button>
+                  <?php
+                  if($value['status']=='pending'){
+                    print '<button type="submit" name="decline" class="decline btn-delete btn-big">Decline</button>';}
+                    else{
+                      print '<button type="submit" name="decline" class="decline-link btn-delete btn-big">Decline</button>';
+                    }
+                  ?>
                 </td>
                 </form>
                 
