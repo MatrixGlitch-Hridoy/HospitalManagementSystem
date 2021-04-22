@@ -223,6 +223,7 @@
         ////////Display data//////
         public function displayRecord($table)
         {
+
             $sql = "SELECT * FROM $table";
             $result = $this->connection->query($sql);
             if($result->num_rows>0)
@@ -276,7 +277,15 @@
             $gender = $_POST['gender'];
             $editid = $_POST['hid'];
             if($table=="patients" || $table=="pharmacists"){  $address = $_POST['address']; }
-            else { $specialization = $_POST['DoctorSpecialization'];}
+            else 
+            { 
+                $specialization = $_POST['DoctorSpecialization'];
+                $date = $_POST['date'];
+                $day = $_POST['day'];
+                $stime = $_POST['stime'];
+                $etime = $_POST['etime'];
+                $status = $_POST['status'];
+            }
 
             if(empty($uName)||empty($password))
             {
@@ -310,7 +319,7 @@
                     $sql = "UPDATE $table SET username='$uName',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$editid'";
                 }
                 else {
-                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender' WHERE id='$editid'";
+                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender',date='$date',day='$day',stime='$stime',etime='$etime',status='$status' WHERE id='$editid'";
                 }
 
                 $result = $this->connection->query($sql);
@@ -345,20 +354,14 @@
             $specialization = $_POST['specialization'];
             $fees = $_POST['fees'];
             $date = $_POST['date'];
-            $time = $_POST['time'];
-            //$editid = $_POST['hid'];
-
-            if(empty($date)||empty($time))
-            {
-                array_push($this->errors," Fields must not be empty");
-            }
-
+            $day = $_POST['day'];
+            $reason=$_POST['reason'];
+            $editid = $_POST['hid'];
+            $status = "Pending";
            // var_dump($data);
 
-            if(count($this->errors)==0)
-            {
                 //$password = md5($password);//encript password
-                $sql = "INSERT INTO $table(username,specialization,fees,date,time,uid) VALUES('$uName','$specialization','$fees','$date','$time','$currentUser')";
+                $sql = "INSERT INTO $table(username,specialization,fees,date,day,reason,status,uid,d_id) VALUES('$uName','$specialization','$fees','$date','$day','$reason','$status','$currentUser','$editid')";
 
                 $result = $this->connection->query($sql);
                 if($result)
@@ -368,7 +371,7 @@
                 else{
                     return false;
                 }
-            }
+
         }
 
         public function displayAppointment($table,$currentUser)
@@ -421,9 +424,9 @@
             return $data;
         }
 
-        public function displayApproved()
+        public function displayApproved($currentUser)
         {
-            $sql = "SELECT b.id,p.username,p.email,p.gender,b.date,b.time FROM bookappoint b INNER JOIN patients p ON b.uid = p.id";
+            $sql = "SELECT b.id,p.username,p.gender,b.date,b.day,b.reason,b.status FROM bookappoint b INNER JOIN patients p ON b.uid = p.id WHERE b.d_id='$currentUser'";
             $result = $this->connection->query($sql);
             if($result->num_rows>0)
             {
@@ -433,6 +436,42 @@
                 }
                 return $data;
             }
+        }
+
+        public function updateApprovedStatus($data,$table)
+        {
+            $status = "Approved";
+            $comment = $_POST['comment'];
+            $id=$_POST['id'];
+
+            $sql = "UPDATE $table SET status='$status', comment='$comment' WHERE id='$id'";
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+        }
+
+        public function updateDeclineStatus($data,$table)
+        {
+            $status = "Declined";
+            $comment = $_POST['comment'];
+            $id=$_POST['id'];
+
+            $sql = "UPDATE $table SET status='$status', comment='$comment' WHERE id='$id'";
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
         }
         
 
@@ -525,6 +564,20 @@
           
 
           
+       }
+
+       public function invoice($printid)
+       {
+        $sql = "SELECT b.id,p.username,p.gender,p.email,p.address,d.stime,d.etime,b.date,b.day,b.fees,b.reason,b.status,b.uid FROM bookappoint b INNER JOIN patients p ON b.uid = p.id INNER JOIN doctors d ON b.d_id=d.id WHERE b.id='$printid'";
+        $result = $this->connection->query($sql);
+        if($result->num_rows>0)
+        {
+            while($row = $result->fetch_assoc())
+            {
+               $data[] = $row;  
+            }
+            return $data;
+        }
        }
 
     }
