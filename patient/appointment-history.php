@@ -98,7 +98,14 @@
                 <td><?php echo $value['day'] ?></td>
                 <td class="status"><?php echo $value['status'] ?></td>
                 <td class="status"><?php echo $value['comment']?></td>
-                <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">delete</a></td>
+                <td>
+                  <?php
+                    if($value['status']=='Pending'){
+                  
+                print '<a href="delete.php?deleteid='. $value['id'].' " class="delete btn-delete btn-big">Delete</a>'; }
+                else{
+                  print '<a class="btn-delete btn-big disabled-link">Delete</a>';
+              } ?></td>
                 <td><a href="invoice.php?printid=<?php echo $value['id']; ?>" class="btn-update btn-big">Print</a></td>
               </tr>
               <?php } }
