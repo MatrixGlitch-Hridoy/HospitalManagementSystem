@@ -81,7 +81,7 @@
             <div class="content">
                 <h2 class="page-title">Add Medicine</h2>
  <?php include "../controls/errors.php"?>
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div>
                         <label>Medicine Name</label>
                         <input type="text" name="mName" class="text-input" />
@@ -106,10 +106,13 @@
                     <div>
                         <label>Unit Price</label>
                         <input type="unitPrice" name="unitPrice" class="text-input" />
-                        
                     </div>
                     <div>
-                        <button type="submit" name="submit" class="btn btn-big">Add</button>
+                        <label>Medicine Pic</label>
+                        <input type="file" name="file" id="image" class="text-input" />
+                    </div>
+                    <div>
+                        <button type="submit" name="submit" id="sub" class="btn btn-big">Add</button>
                     </div>
                 </form>
             </div>
@@ -117,6 +120,30 @@
         <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#sub').click(function(){
+                var image_name = $('#image').val();
+                if(image_name=='')
+                {
+                    alert("Please select image");
+                    return false;
+                }
+                else{
+                    var extension = $('#image').val().split('.').pop().toLowerCase();
+                    if(jQuery.inArray(extension,['gif','png','jpg','jpeg'])==-1)
+                    {
+                        alert("Invalid image format");
+                        $('#image').val('');
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
