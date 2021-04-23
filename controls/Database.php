@@ -483,6 +483,15 @@
             $type = $_POST['mType'];
             $quantity = $_POST['quantity'];
             $unitPrice = $_POST['unitPrice'];
+            $file=$_FILES['file'];
+            $file_name=$_FILES['file']['name'];
+            $file_size=$_FILES['file']['size'];
+            $file_tmp=$_FILES['file']['tmp_name'];
+            $file_type=$_FILES['file']['type'];
+
+            $file_destination = "../pharmacist/upload-images/".$file_name;
+            move_uploaded_file($file_tmp,$file_destination);
+
            
 
             
@@ -490,7 +499,7 @@
             {
                 array_push($this->errors," Fields must not be empty");
             }
-           
+
 
             if(count($this->errors)==0)
             {
@@ -504,7 +513,7 @@
                 else{
                     //$password = md5($password);//encript password
                     
-                        $sql = "INSERT INTO $table(mName,generic,mType,quantity,unitPrice) VALUES('$Name','$generic','$type','$quantity','$unitPrice')";
+                        $sql = "INSERT INTO $table(mName,generic,mType,quantity,unitPrice,image) VALUES('$Name','$generic','$type','$quantity','$unitPrice','$file_destination')";
                     
                    //  else{
                    //      $sql = "INSERT INTO $table(username,email,password) VALUES('$uName','$email','$password')";
