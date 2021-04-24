@@ -55,7 +55,7 @@
             <li>
               <a href="#"><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="../../controls/logout.php">Logout</a></li>
+                <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -96,6 +96,7 @@
               <th>Type</th>
               <th>Quantity</th>
               <th>Unit Price</th>
+              <th>Images</th>
               <th colspan="2" class="th-action">Action</th>
             </thead>
             <tbody>
@@ -112,6 +113,7 @@
                 <td><?php echo $value['mType'] ?></td>
                 <td><?php echo $value['quantity'] ?></td>
                 <td><?php echo $value['unitPrice'] ?></td>
+                <td><img src="<?php echo $value['image'] ?>" alt="image" height="100px" width="100px" ></td>
                 <td><a href="update-medicine.php?editid=<?php echo $value['id']; ?>" class="edit btn-update btn-big ">edit</a></td>
                 <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">delete</a></td>
               </tr>
