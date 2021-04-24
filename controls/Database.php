@@ -226,7 +226,6 @@
         ////////Display data//////
         public function displayRecord($table)
         {
-
             $sql = "SELECT * FROM $table";
             $result = $this->connection->query($sql);
             if($result->num_rows>0)
@@ -252,6 +251,26 @@
         //         return $data;
         //     }
         // }
+        public function displaySingleRecord($table,$currentUser)
+        {
+            if($table=="patients" || $table=="pharmacists")
+            {
+                $sql = "SELECT * FROM $table WHERE id='$currentUser'";
+            }
+            else{
+                 $sql = "SELECT username,email,password,specialization,phone,gender FROM $table WHERE id='$currentUser'";
+            }
+            
+            $result = $this->connection->query($sql);
+            if($result->num_rows>0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+                   $data[] = $row;  
+                }
+                return $data;
+            }
+        }
 
         public function displayRecordById($editid,$table)
         {
@@ -274,11 +293,11 @@
         /////////Update Record/////
         public function updateRecord($data,$table)
         {
+            $currentUser = $_POST['edit_id'];
             $uName = $_POST['username'];
             $password = $_POST['password'];
             $phone = $_POST['phone'];
             $gender = $_POST['gender'];
-            $editid = $_POST['hid'];
             if($table=="patients" || $table=="pharmacists"){  $address = $_POST['address']; }
             else 
             { 
@@ -319,10 +338,67 @@
                 //$password = md5($password);//encript password
                 if($table=="patients" || $table=="pharmacists")
                 {
-                    $sql = "UPDATE $table SET username='$uName',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$editid'";
+                    $sql = "UPDATE $table SET username='$uName',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$currentUser'";
                 }
                 else {
-                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender',date='$date',day='$day',stime='$stime',etime='$etime',status='$status' WHERE id='$editid'";
+                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender',date='$date',day='$day',stime='$stime',etime='$etime',status='$status' WHERE id='$currentUser'";
+                }
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        public function updateSingleRecord($data,$table,$currentUser)
+        {
+            $uName = $_POST['username'];
+            $password = $_POST['password'];
+            $phone = $_POST['phone'];
+            $gender = $_POST['gender'];
+            if($table=="patients" || $table=="pharmacists"){  $address = $_POST['address']; }
+            else 
+            { 
+                $specialization = $_POST['DoctorSpecialization'];
+            }
+
+            if(empty($uName)||empty($password))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+            else
+            {
+                if(!preg_match("/^[a-zA-Z ]*$/",$uName)){
+                    array_push($this->errors," Username: Only letter allowed");
+                }
+                else if((strlen($uName)<4)){
+                    array_push($this->errors," Username: Name is too short");
+                }
+    
+                if(strlen($password)<6){
+                    array_push($this->errors," Password: Password is too short");
+                }
+                else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
+                    array_push($this->errors," Password: the password does not meet the requirements");
+                }
+
+            }
+
+           // var_dump($data);
+
+            if(count($this->errors)==0)
+            {
+                //$password = md5($password);//encript password
+                if($table=="patients" || $table=="pharmacists")
+                {
+                    $sql = "UPDATE $table SET username='$uName',password='$password',address='$address',phone='$phone',gender='$gender' WHERE id='$currentUser'";
+                }
+                else {
+                    $sql = "UPDATE $table SET username='$uName',password='$password',specialization='$specialization',phone='$phone',gender='$gender' WHERE id='$currentUser'";
                 }
 
                 $result = $this->connection->query($sql);
