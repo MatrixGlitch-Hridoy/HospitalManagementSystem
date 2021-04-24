@@ -58,6 +58,7 @@
         <ul>
           <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
+          <li><a href="shop.php">Medicine Shop</a></li>
           <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
         </ul>
       </div>
