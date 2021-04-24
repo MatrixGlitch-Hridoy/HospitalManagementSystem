@@ -120,7 +120,7 @@
                 </td>
                 <td>
                   <?php
-                  if($value['status']=='pending'){
+                  if($value['status']=='Pending'){
                     print '<button type="submit" name="decline" class="decline btn-delete btn-big">Decline</button>';}
                     else{
                       print '<button type="submit" name="decline" class="decline-link btn-delete btn-big">Decline</button>';
