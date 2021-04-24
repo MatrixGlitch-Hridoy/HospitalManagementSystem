@@ -7,15 +7,17 @@
   {
     header("Location:../login.php");
   }
+  $currentUser=$_SESSION['id'];
   if(isset($_POST['update']))
-{
-  $update = $db->updateRecord($_POST,"patients");
-  if($update)
   {
-    echo "<script>alert('Updated succesfully');</script>";
-    echo "<script>window.location.href = 'dashboard.php';</script>";
+      $update=$db->updateSingleRecord($_POST,"patients",$currentUser);
+      if($update)
+      {
+          echo "<script>alert('Updated succesfully');</script>";
+  
+          echo "<script>window.location.href = 'update-profile.php';</script>";
+      }
   }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +60,6 @@
         </nav>
       </div>
     </header>
-    <?php $uid = $_SESSION['id']; ?>
     <!-- Admin Page Wrapper -->
     <div class="admin-wrapper">
       <!-- Left Sidebar -->
@@ -66,7 +67,7 @@
         <ul>
           <li><a href="filter.php">Book Apointment</a></li>
           <li><a href="appointment-history.php">Apointment History</a></li>
-          <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
+          <li><a href="update-profile.php?editid=<?php echo $currentUser; ?>">Update Profile</a></li>
         </ul>
       </div>
       <!-- // Left Sidebar -->
@@ -75,16 +76,18 @@
       <div class="admin-content">
         <div class="content">
           <h2 class="page-title">Update Profile</h2>
-            <?php 
-              $editid = $_REQUEST['editid'];
-              $myrecord = $db->displayRecordById($editid,"patients");
-              //print_r($myrecord);
-              include "../controls/errors.php";
+            <?php include "../controls/errors.php";?>
+            <?php  
+              $data = $db->displaySingleRecord("patients",$currentUser);
+              if($data)
+              {
+                foreach($data as $value)
+                {
             ?>
           <form action="update-profile.php" method="post">
             <div>
               <label>Username</label>
-              <input type="text" name="username" class="text-input" value="<?php echo $myrecord['username']; ?>"/>
+              <input type="text" name="username" class="text-input" value="<?php echo $value['username']; ?>"/>
               <?php 
                 // if(isset($error_msg['username']))
                 // {
@@ -94,7 +97,7 @@
             </div>
             <div>
               <label>Email</label>
-              <input type="text" name="email" class="text-input" value="<?php echo $myrecord['email']; ?>" readonly/>
+              <input type="text" name="email" class="text-input" value="<?php echo $value['email']; ?>" readonly/>
               <?php 
                 // if(isset($error_msg['email']))
                 // {
@@ -104,7 +107,7 @@
             </div>
             <div>
               <label>Address</label>
-              <input type="text" name="address" class="text-input" value="<?php echo $myrecord['address']; ?>"/>
+              <input type="text" name="address" class="text-input" value="<?php echo $value['address']; ?>"/>
               <?php 
                 // if(isset($error_msg['address']))
                 // {
@@ -114,7 +117,7 @@
             </div>
             <div>
               <label>Phone Number</label>
-              <input type="text" name="phone" class="text-input" value="<?php echo $myrecord['phone']; ?>"/>
+              <input type="text" name="phone" class="text-input" value="<?php echo $value['phone']; ?>"/>
               <?php 
                 // if(isset($error_msg['phone']))
                 // {
@@ -128,7 +131,7 @@
                 <option value="NULL">-- Select Gender --</option>
                 <option value="Male"
                 <?php
-                  if($myrecord['gender']=="Male")
+                  if($value['gender']=="Male")
                   {
                     echo "selected";
                   }
@@ -136,7 +139,7 @@
                 >Male</option>
                 <option value="Female"
                 <?php
-                  if($myrecord['gender']=="Female")
+                  if($value['gender']=="Female")
                   {
                     echo "selected";
                   }
@@ -152,7 +155,7 @@
             </div>
             <div>
               <label>Password</label>
-              <input type="password" name="password" class="text-input" value="<?php echo $myrecord['password']; ?>"/>
+              <input type="text" name="password" class="text-input" value="<?php echo $value['password']; ?>"/>
               <?php 
                 // if(isset($error_msg['password']))
                 // {
@@ -161,10 +164,11 @@
               ?>
             </div>
             <div>
-              <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
+
               <button type="submit" name="update" class="btn btn-big">Update</button>
             </div>
           </form>
+          <?php } } ?>
         </div>
       </div>
       <!-- // Admin Content -->

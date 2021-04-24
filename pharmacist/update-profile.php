@@ -7,14 +7,15 @@
   {
     header("Location:../pharmacist-login.php");
   }
+  $currentUser=$_SESSION['id'];
 if(isset($_POST['update']))
 {
-    $update=$db->updateRecord($_POST,"pharmacists");
+    $update=$db->updateSingleRecord($_POST,"pharmacists",$currentUser);
     if($update)
     {
         echo "<script>alert('Updated succesfully');</script>";
 
-        echo "<script>window.location.href = 'dashboard.php';</script>";
+        echo "<script>window.location.href = 'update-profile.php';</script>";
     }
 }
 ?>
@@ -59,7 +60,7 @@ if(isset($_POST['update']))
         </div>
     </header>
 
-                <?php $uid=$_SESSION['id']; ?>
+    <?php  ?>
 
     <!-- Admin Page Wrapper -->
     <div class="admin-wrapper">
@@ -70,7 +71,7 @@ if(isset($_POST['update']))
                 <li><a href="add-medicine.php">Add Medicine</a></li>
                 <li><a href="sell-medicine.php">Sell Medicine</a></li>
                 <li><a href="show-medicine.php">Show Medicine</a></li>
-                <li><a href="update-profile.php?editid=<?php echo $uid; ?>">Update Profile</a></li>
+                <li><a href="update-profile.php?editid=<?php echo $currentUser; ?>">Update Profile</a></li>
             </ul>
         </div>
         <!-- // Left Sidebar -->
@@ -80,16 +81,20 @@ if(isset($_POST['update']))
             <div class="content">
                 <h2 class="page-title">Update Profile</h2>
 
-                <?php $editid = $_REQUEST['editid'];
-           $myrecord = $db->displayRecordById($editid,"pharmacists");
-        //    print_r($myrecord);
-           include "../controls/errors.php"; ?>
+                <?php include "../controls/errors.php"; ?>
                 
-
+                <?php
+                    
+                    $data = $db->displaySingleRecord("pharmacists",$currentUser);
+                    if($data)
+                    {
+                        foreach($data as $value)
+                        {
+                ?>
                 <form action="update-profile.php" method="post">
                     <div>
                         <label>Username</label>
-                        <input type="text" name="username" class="text-input" value="<?php echo $myrecord['username']; ?>" />
+                        <input type="text" name="username" class="text-input" value="<?php echo $value['username']; ?>" />
                         <?php 
                 // if(isset($error_msg['username']))
                 // {
@@ -99,7 +104,7 @@ if(isset($_POST['update']))
                     </div>
                     <div>
                         <label>Email</label>
-                        <input type="email" name="email" class="text-input" readonly value="<?php echo $myrecord['email']; ?>" />
+                        <input type="text" name="email" class="text-input" readonly value="<?php echo $value['email']; ?>" />
                         <?php 
                 // if(isset($error_msg['email']))
                 // {
@@ -109,7 +114,7 @@ if(isset($_POST['update']))
                     </div>
                     <div>
                         <label>Address</label>
-                        <input type="text" name="address" class="text-input" value="<?php echo $myrecord['address']; ?>" />
+                        <input type="text" name="address" class="text-input" value="<?php echo $value['address']; ?>" />
                         <?php 
                 // if(isset($error_msg['address']))
                 // {
@@ -119,7 +124,7 @@ if(isset($_POST['update']))
                     </div>
                     <div>
                         <label>Phone Number</label>
-                        <input type="text" name="phone" class="text-input" value="<?php echo $myrecord['phone']; ?>" />
+                        <input type="text" name="phone" class="text-input" value="<?php echo $value['phone']; ?>" />
                         <?php 
                 // if(isset($error_msg['phone']))
                 // {
@@ -136,7 +141,7 @@ if(isset($_POST['update']))
 
                             <option value="Male" 
         <?php
-        if($myrecord['gender']=="Male")
+        if($value['gender']=="Male")
         {
         echo "selected";
         }
@@ -144,7 +149,7 @@ if(isset($_POST['update']))
                             <option value="Female" 
         
         <?php
-        if($myrecord['gender']=="Female")
+        if($value['gender']=="Female")
         {
             echo "selected";
         }
@@ -160,7 +165,7 @@ if(isset($_POST['update']))
                     </div>
                     <div>
                         <label>Password</label>
-                        <input type="password" name="password" class="text-input" value="<?php echo $myrecord['password']; ?>" />
+                        <input type="password" name="password" class="text-input" value="<?php echo $value['password']; ?>" />
                         <?php 
                 // if(isset($error_msg['password']))
                 // {
@@ -172,6 +177,7 @@ if(isset($_POST['update']))
                         <button type="submit" name="update" class="btn btn-big">Update</button>
                     </div>
                 </form>
+                <?php } } ?>
             </div>
         </div>
         <!-- // Admin Content -->
