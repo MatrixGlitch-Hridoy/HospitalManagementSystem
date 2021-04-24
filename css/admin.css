@@ -34,6 +34,15 @@ a {
   font-size: 1.08em;
   cursor: pointer;
 }
+.btn-cart {
+  padding: 0.5rem 1rem;
+  background: #ff7300;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-size: 1.08em;
+  cursor: pointer;
+}
 .btn-delete {
   padding: 0.5rem 1rem;
   background: #ec0303;
@@ -42,6 +51,10 @@ a {
   border-radius: 0.25rem;
   font-size: 1.08em;
   cursor: pointer;
+}
+.btn-cart:hover {
+  background: #ff4800;
+  transition: 0.5s;
 }
 
 .btn-update:hover {
@@ -129,6 +142,18 @@ header {
   height: 100%;
   background: #234a57;
 }
+.admin-wrapper1 {
+  display: flex;
+}
+.admin-wrapper1 .right-sidebar {
+  flex: 3;
+  padding-top: 100px;
+}
+.admin-wrapper1 .right-sidebar .total-side {
+  border: 1px solid black;
+  display: inline-block;
+  padding: 20px;
+}
 
 .admin-wrapper .left-sidebar ul {
   list-style: none;
@@ -152,6 +177,11 @@ header {
   height: 100%;
   padding: 40px 100px 100px;
   overflow-y: scroll;
+}
+.admin-wrapper1 .admin-content {
+  flex: 9;
+  height: 100%;
+  padding: 40px 100px 100px;
 }
 .admin-wrapper .admin-content .button-group {
   display: inline-block;
@@ -267,4 +297,62 @@ th.th-action {
   pointer-events: none;
   background: grey;
   cursor: no-drop;
+}
+.row {
+  width: 60%;
+  margin: auto;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  display: flex;
+  flex: 10;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 40px;
+}
+
+.profile-card {
+  background-color: #ffffff;
+  width: 190px;
+  height: 268px;
+  margin: 20px 10px 10px 10px;
+}
+@media (max-width: 468px) {
+  .profile-card {
+    width: 290px;
+    height: 250px;
+  }
+}
+.profile-content {
+  padding: 15px;
+}
+/* img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+} */
+.profile-image {
+  text-align: center;
+}
+.desc {
+  text-align: center;
+}
+.desc h2 {
+  color: rgb(12, 172, 150);
+  font-size: 20px;
+}
+.desc p {
+  font-size: 13px;
+  line-height: 1.3em;
+  margin-top: -10px;
+  color: red;
+  font-weight: 700;
+}
+.btn-div {
+  text-align: center;
+}
+.badge {
+  padding: 0 5px;
+  margin-left: 2px;
+  background: black;
+  border-radius: 5px;
 }
