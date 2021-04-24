@@ -106,7 +106,12 @@
                 else{
                   print '<a class="btn-delete btn-big disabled-link">Delete</a>';
               } ?></td>
-                <td><a href="invoice.php?printid=<?php echo $value['id']; ?>" class="btn-update btn-big">Print</a></td>
+                <td>
+                  <?php if($value['status']=='Pending'||$value['status']=='Declined'){ 
+                  print '<a class="btn-update btn-big disabled-link">Print</a>'; }
+                  else{
+                     print '<a href="invoice.php?printid='.$value['id'].'" class="btn-update btn-big">Print</a>';
+                  }?></td>
               </tr>
               <?php } }
               else{
