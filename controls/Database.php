@@ -271,6 +271,22 @@
                 return $data;
             }
         }
+        public function ajaxSearchSingleRecord($table,$user)
+        {
+            if($user!=""){
+            $sql = "SELECT * FROM $table WHERE username LIKE '%$user%'";
+
+            $result = $this->connection->query($sql);
+                if($result->num_rows>0)
+                {
+                    while($row = $result->fetch_assoc())
+                    {
+                    $data[] = $row;  
+                    }
+                    return $data;
+                }
+            }
+        }
 
         public function displayRecordById($editid,$table)
         {
@@ -293,7 +309,7 @@
         /////////Update Record/////
         public function updateRecord($data,$table)
         {
-            $currentUser = $_POST['edit_id'];
+            $currentUser = $_POST['hid'];
             $uName = $_POST['username'];
             $password = $_POST['password'];
             $phone = $_POST['phone'];
