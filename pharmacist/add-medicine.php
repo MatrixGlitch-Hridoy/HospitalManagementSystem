@@ -80,32 +80,32 @@
         <div class="admin-content">
             <div class="content">
                 <h2 class="page-title">Add Medicine</h2>
- <?php include "../controls/errors.php"?>
+                <?php include "../controls/errors.php"?>
                 <form action="" method="post" enctype="multipart/form-data">
                     <div>
                         <label>Medicine Name</label>
-                        <input type="text" name="mName" class="text-input" />
+                        <input type="text" name="mName" class="text-input" value="<?php echo isset($_POST['mName']) ? $_POST['mName'] : '';?>"/>
                         
                     </div>
                     <div>
                         <label>Generic</label>
-                        <input type="generic" name="generic" class="text-input" />
+                        <input type="generic" name="generic" class="text-input" value="<?php echo isset($_POST['generic']) ? $_POST['generic'] : '';?>"/>
                         
                     </div>
                     <div>
                         <label>Type</label>
-                        <input type="type" name="mType" class="text-input" />
+                        <input type="type" name="mType" class="text-input" value="<?php echo isset($_POST['mType']) ? $_POST['mType'] : '';?>"/>
                         
                     </div>
                     <div>
                         <label>Quantity</label>
-                        <input type="quantity" name="quantity" class="text-input" />
+                        <input type="quantity" name="quantity" class="text-input" value="<?php echo isset($_POST['quantity']) ? $_POST['quantity'] : '';?>"/>
                         
                     </div>
 
                     <div>
                         <label>Unit Price</label>
-                        <input type="unitPrice" name="unitPrice" class="text-input" />
+                        <input type="unitPrice" name="unitPrice" class="text-input" value="<?php echo isset($_POST['unitPrice']) ? $_POST['unitPrice'] : '';?>"/>
                     </div>
                     <div>
                         <label>Medicine Pic</label>
