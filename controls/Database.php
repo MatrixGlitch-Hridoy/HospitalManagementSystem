@@ -58,7 +58,7 @@
                     {
                         array_push($this->errors,"Fees must not be empty");
                     }
-                    if($specialization=="NULL")
+                    if(empty($specialization))
                     {
                         array_push($this->errors,"Specialization must not be empty");
                     }
@@ -550,6 +550,23 @@
                     return false;
                 }
         }
+        public function updateDoneStatus($data,$table)
+        {
+            $status = "Done";
+            $comment = $_POST['comment'];
+            $id=$_POST['id'];
+
+            $sql = "UPDATE $table SET status='$status', comment='$comment' WHERE id='$id'";
+
+                $result = $this->connection->query($sql);
+                if($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+        }
 
         public function updateDeclineStatus($data,$table)
         {
@@ -570,7 +587,7 @@
         }
         
 
-        /////add medicine//////
+        /////add mcine//////
         public function addMedicine($data,$table)
         {
             $Name = $_POST['mName'];
