@@ -81,7 +81,7 @@ if(isset($_POST['update']))
             <div class="content">
                 <h2 class="page-title">Update Profile</h2>
 
-                <?php include "../controls/errors.php"; ?>
+                
                 
                 <?php
                     
@@ -91,7 +91,7 @@ if(isset($_POST['update']))
                         foreach($data as $value)
                         {
                 ?>
-                <form action="update-profile.php" method="post">
+                <form action="update-profile.php" method="post" name="pharmacistform" onsubmit="return Pharmacistvalidate()">
                     <div>
                         <label>Username</label>
                         <input type="text" name="username" class="text-input" value="<?php echo $value['username']; ?>" />
@@ -104,7 +104,7 @@ if(isset($_POST['update']))
                     </div>
                     <div>
                         <label>Email</label>
-                        <input type="text" name="email" class="text-input" readonly value="<?php echo $value['email']; ?>" />
+                        <input type="text" name="email" class="text-input" value="<?php echo $value['email']; ?>" />
                         <?php 
                 // if(isset($error_msg['email']))
                 // {
@@ -183,6 +183,7 @@ if(isset($_POST['update']))
         <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <script src="../js/main.js"></script>
 </body>
 
 </html>

@@ -8,15 +8,7 @@
   {
     header("Location:../pharmacist-login.php");
   }
-  // if(!isset($_SESSION['username']))
-  // {
-  //   header("Location:../login.php");
-  // }
-
   $data = $db->displayRecord("medicine");
-
-  
-  
 
 ?>
 
@@ -87,6 +79,7 @@
 
         <div class="content">
           <h2 class="page-title">Manage Pharmacist</h2>
+          <input type="text" name="search" onkeyup="showMedicine()" class="search-bar search-input" id="mname" placeholder="Search">
 
           <table>
             <thead>
@@ -99,31 +92,8 @@
               <th>Images</th>
               <th colspan="2" class="th-action">Action</th>
             </thead>
-            <tbody>
-            <?php
-              $sno=1;
-              if($data){
-              foreach($data as $value)
-              {
-            ?>
-              <tr>
-                <td><?php echo $sno++ ?></td>
-                <td><?php echo $value['mName'] ?></td>
-                <td><?php echo $value['generic'] ?></td>
-                <td><?php echo $value['mType'] ?></td>
-                <td><?php echo $value['quantity'] ?></td>
-                <td><?php echo $value['unitPrice'] ?></td>
-                <td><img src="<?php echo $value['image'] ?>" alt="image" height="100px" width="100px" ></td>
-                <td><a href="update-medicine.php?editid=<?php echo $value['id']; ?>" class="edit btn-update btn-big ">edit</a></td>
-                <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">delete</a></td>
-              </tr>
-              <?php } }
-              else{
-              ?>
-              <tr>
-                <td colspan="8" class="no-record">No records found</td>
-              </tr>
-              <?php } ?>
+            <tbody id="table-data">
+             
             </tbody>
           </table>
         </div>
@@ -131,5 +101,43 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        function fetchData(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("GET", "/HospitalManagementSystem/pharmacist/load.php", true);
+          xhttp.send();
+          
+        }
+        fetchData()
+
+        function showMedicine() {
+          var mname=  document.getElementById("mname").value;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("POST", "/HospitalManagementSystem/pharmacist/search.php", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("mname="+mname);
+}
+
+</script>
   </body>
 </html>

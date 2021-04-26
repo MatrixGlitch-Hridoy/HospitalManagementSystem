@@ -123,25 +123,25 @@
 
     <script src="../js/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $('#sub').click(function(){
-                var image_name = $('#image').val();
-                if(image_name=='')
-                {
-                    alert("Please select image");
-                    return false;
-                }
-                else{
-                    var extension = $('#image').val().split('.').pop().toLowerCase();
-                    if(jQuery.inArray(extension,['gif','png','jpg','jpeg'])==-1)
-                    {
-                        alert("Invalid image format");
-                        $('#image').val('');
-                        return false;
-                    }
-                }
-            });
-        });
+        // $(document).ready(function(){
+        //     $('#sub').click(function(){
+        //         var image_name = $('#image').val();
+        //         if(image_name=='')
+        //         {
+        //             alert("Please select image");
+        //             return false;
+        //         }
+        //         else{
+        //             var extension = $('#image').val().split('.').pop().toLowerCase();
+        //             if(jQuery.inArray(extension,['gif','png','jpg','jpeg'])==-1)
+        //             {
+        //                 alert("Invalid image format");
+        //                 $('#image').val('');
+        //                 return false;
+        //             }
+        //         }
+        //     });
+        // });
     </script>
 
 </body>
