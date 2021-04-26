@@ -1,4 +1,4 @@
-<?php include "../../controls/Database.php" ?>
+<?php include "../controls/Database.php" ?>
 <?php
 session_start();
 $db = new Database();

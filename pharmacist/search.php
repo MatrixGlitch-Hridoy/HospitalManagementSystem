@@ -3,9 +3,10 @@
 session_start();
 $db = new Database();
 $medicine = $_POST['mname'];
-$data = $db->ajaxSearchSingleRecord("medicine",$medicine);
+$sql = "SELECT * FROM medicine WHERE mname LIKE '%$medicine%'";
+$data = $db->connection->query($sql);
 $sno=1;
-if($data)
+if($data->num_rows>0)
 {
 
 foreach($data as $value)
