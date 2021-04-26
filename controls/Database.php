@@ -271,22 +271,28 @@
                 return $data;
             }
         }
-        public function ajaxSearchSingleRecord($table,$user)
-        {
-            if($user!=""){
-            $sql = "SELECT * FROM $table WHERE username LIKE '%$user%'";
+        // public function ajaxSearchSingleRecord($table,$user)
+        // {
+        //     if($user!=""){
+        //     if($table=="medicine")
+        //     {
+        //         $sql = "SELECT * FROM $table WHERE mname LIKE '%$user%'";
+        //     }else{
+        //         $sql = "SELECT * FROM $table WHERE username LIKE '%$user%'";
+        //     }
+            
 
-            $result = $this->connection->query($sql);
-                if($result->num_rows>0)
-                {
-                    while($row = $result->fetch_assoc())
-                    {
-                    $data[] = $row;  
-                    }
-                    return $data;
-                }
-            }
-        }
+        //     $result = $this->connection->query($sql);
+        //         if($result->num_rows>0)
+        //         {
+        //             while($row = $result->fetch_assoc())
+        //             {
+        //             $data[] = $row;  
+        //             }
+        //             return $data;
+        //         }
+        //     }
+        // }
 
         public function displayRecordById($editid,$table)
         {
@@ -597,24 +603,27 @@
             $unitPrice = $_POST['unitPrice'];
             $file=$_FILES['file'];
             $file_name=$_FILES['file']['name'];
-            $file_size=$_FILES['file']['size'];
             $file_tmp=$_FILES['file']['tmp_name'];
-            $file_type=$_FILES['file']['type'];
+            $file_type=$_FILES['file'] ['type'];
 
             $file_destination = "../pharmacist/upload-images/".$file_name;
             move_uploaded_file($file_tmp,$file_destination);
 
+            $file_ext = explode('.',$file_name);
+            $file_ext_check=strtolower(end($file_ext));
+            $valid_file_ext = array('png','jpg','jpeg');
+            
            
 
             
-            if(empty($Name)||empty($generic)||empty($type)||empty($quantity)||empty($unitPrice))
+            if(empty($Name)||empty($generic)||empty($type)||empty($quantity)||empty($unitPrice)||empty($file_name))
             {
                 array_push($this->errors," Fields must not be empty");
             }
 
-
             if(count($this->errors)==0)
             {
+                if(in_array($file_ext_check,$valid_file_ext)){
                 $sql = "SELECT * FROM $table WHERE mName='$Name' ";
                 $logged = $this->connection->query($sql);
                 $Name_count = $logged->num_rows;
@@ -643,6 +652,9 @@
                         return false;
                     }
                 }
+            }else{
+                array_push($this->errors,"Invalid image Format");
+            }
                 
                 // echo "<script>alert('Registration succesful');</script>";
                 // echo "<script>window.location.href = 'login.php';</script>";
