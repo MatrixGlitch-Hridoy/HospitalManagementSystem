@@ -70,9 +70,9 @@
 
       <!-- Admin Content -->
       <div class="admin-content">
-      <input type="text" name="search" onkeyup="showmyuser()" class="search-bar search-input" id="uname" placeholder="Search">
          <div class="content">
           <h2 class="page-title">Apointment History</h2>
+          <input type="text" name="search" onkeyup="showmyuser()" class="search-bar search-input" id="uname" placeholder="Search">
 
           <table>
             <thead>
