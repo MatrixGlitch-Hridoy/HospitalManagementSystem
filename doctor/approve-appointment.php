@@ -104,10 +104,13 @@
                 <td><?php echo $value['gender'] ?></td>
                 <td><?php echo $value['date'] ?></td>
                 <td><?php echo $value['reason'] ?></td>
-                <td class="status"><?php echo $value['status'] ?></td>
-
-                <!-- <td><a href="update.php?editid=<?php //echo $value['id']; ?>" class="edit btn-update btn-big ">Approve</a></td> -->
-                <!-- <td><a href="delete.php?deleteid=<?php //echo $value['id']; ?>" class="delete btn-delete btn-big">Decline</a></td> -->
+                <?php
+                if($value['status']=='Approved')
+                { ?>
+                <td class="status-1"><?php echo $value['status'] ?></td>
+               <?php } else{?>
+                <td class="status-2"><?php echo $value['status'] ?></td>
+                <?php } ?>
                 <td> <form action="" method="post"> <textarea name="comment" class="textarea" ></textarea> </td>
                 <input type="hidden" name="id" value="<?php echo $value['id'];?>">
                 <td>

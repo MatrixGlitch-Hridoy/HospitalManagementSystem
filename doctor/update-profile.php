@@ -79,7 +79,7 @@
       <div class="admin-content">
         <div class="content">
           <h2 class="page-title">Update Profile</h2>
-          <?php include "../controls/errors.php"; ?>
+          <!-- <?php include "../controls/errors.php"; ?> -->
             <?php  
               $data = $db->displaySingleRecord("doctors",$currentUser);
               if($data)
@@ -87,18 +87,18 @@
                 foreach($data as $value)
                 {
             ?>
-          <form action="update-profile.php" method="post">
+          <form action="update-profile.php" method="post" name="doctorform" onsubmit="return doctorvalidate()">
             <div>
               <label>Username</label>
               <input type="text" name="username" value="<?php echo $value['username']; ?>"  class="text-input" />
             </div>
             <div>
               <label>Email</label>
-              <input type="email" name="email" value="<?php echo $value['email']; ?>" class="text-input" readonly/>
+              <input type="email" name="email" value="<?php echo $value['email']; ?>" class="text-input" />
             </div>
             <div>
-              <label>Select Specialization</label>
-              <select name="DoctorSpecialization" class="text-input">
+              <label>Update Specialization</label>
+              <!-- <select name="DoctorSpecialization" class="text-input">
                 <option value="NULL">--Select Specialization--</option>
                 <option value="Neurology"
                 <?php
@@ -125,7 +125,8 @@
                   }
                 ?>
                 >Pediatrics</option>
-              </select>
+              </select> -->
+              <input type="text" name="DoctorSpecialization" class="text-input" value="<?php echo $value['specialization']; ?>">
             </div>
             <div>
               <label>Phone Number</label>
@@ -167,5 +168,6 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <script src="../js/main.js"></script>
   </body>
 </html>

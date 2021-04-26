@@ -7,6 +7,11 @@
   {
     header("Location:../doctor-login.php");
   }
+  $currentUser = $_SESSION['id'];
+  if(isset($_POST['done']))
+  {
+    $update=$db->updateDoneStatus($_POST,"bookappoint");
+  }
 
 ?>
 <!DOCTYPE html>
@@ -65,6 +70,7 @@
 
       <!-- Admin Content -->
       <div class="admin-content">
+      <input type="text" name="search" onkeyup="showmyuser()" class="search-bar search-input" id="uname" placeholder="Search">
          <div class="content">
           <h2 class="page-title">Apointment History</h2>
 
@@ -78,16 +84,8 @@
               <th>Time</th>
               <th colspan="2">Action</th>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Hridoy</td>
-                <td>rkhridoy68@gmail.com</td>
-                <td>Male</td>
-                <td>03/30/2021</td>
-                <td>9:25 PM</td>
-                <td><a href="#" class="delete">Delete</a></td>
-              </tr>
+            <tbody id="table-data">
+              
             </tbody>
           </table>
         </div>
@@ -95,5 +93,44 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <script src="../../js/jquery.min.js"></script>
+    <script>
+        function MyAjaxFunc(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("GET", "/HospitalManagementSystem/doctor/load.php", true);
+        
+          xhttp.send();
+          
+        }
+        MyAjaxFunc()
+
+        function showmyuser() {
+          var uname=  document.getElementById("uname").value;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("POST", "/HospitalManagementSystem/doctor/search.php", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("uname="+uname);
+}
+
+</script>
   </body>
 </html>
