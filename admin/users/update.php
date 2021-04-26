@@ -15,6 +15,7 @@ if(isset($_POST['update']))
     echo "<script>window.location.href = 'index.php';</script>";
   }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,15 +78,11 @@ if(isset($_POST['update']))
 
         <?php
           
-          // if(isset($_GET['editid']))
-          //   {
-          //       $editid = $_GET['editid'];
-          //       $myrecord = $db->displayRecordById($editid,"patients");
-           $editid = $_REQUEST['editid'];
+          $editid = $_REQUEST['editid'];
            $myrecord = $db->displayRecordById($editid,"patients");
            include "../../controls/errors.php";
-          //  var_dump($myrecord);           
-            ?>
+         ?>
+            
             <form action="update.php" method="post">
             <div>
               <label>Username</label>
@@ -134,14 +131,6 @@ if(isset($_POST['update']))
               <button type="submit" name="update" class="btn btn-big">Update</button>
             </div>
           </form>
-        <?php  
-              
-              
-            //}
-            // else{
-            //     header("Location:index.php");
-            // }
-        ?>
           
         </div>
       </div>

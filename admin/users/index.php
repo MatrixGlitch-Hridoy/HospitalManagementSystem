@@ -80,12 +80,12 @@
           <a href="create.php" class="btn btn-big">Add Patient</a>
           <a href="index.php" class="btn btn-big">Manage Patient</a>
         </div>
-        <input type="text" name="search" class="search-bar search-input" id="search-text" placeholder="Search">
+        <input type="text" name="search" onkeyup="showmyuser()" class="search-bar search-input" id="uname" placeholder="Search">
 
         <div class="content">
           <h2 class="page-title">Manage Patient</h2>
 
-          <table id="table-data">
+          <table>
             <thead>
               <th>SN</th>
               <th>Username</th>
@@ -95,30 +95,8 @@
               <th>Address</th>
               <th colspan="2" class="th-action">Action</th>
             </thead>
-            <tbody>
-            <?php
-              $sno=1;
-              if($data){
-              foreach($data as $value)
-              {
-            ?>
-              <tr>
-                <td><?php echo $sno++ ?></td>
-                <td><?php echo $value['username'] ?></td>
-                <td><?php echo $value['email'] ?></td>
-                <td><?php echo $value['gender'] ?></td>
-                <td><?php echo $value['phone'] ?></td>
-                <td><?php echo $value['address'] ?></td>
-                <td><a href="update.php?editid=<?php echo $value['id']; ?>" class="edit btn-update btn-big ">edit</a></td>
-                <td><a href="delete.php?deleteid=<?php echo $value['id']; ?>" class="delete btn-delete btn-big">delete</a></td>
-              </tr>
-              <?php } }
-              else{
-              ?>
-              <tr>
-                <td colspan="8" class="no-record">No records found</td>
-              </tr>
-              <?php } ?>
+            <tbody id="table-data">
+           
             </tbody>
           </table>
         </div>
@@ -128,22 +106,44 @@
     <!-- // Page Wrapper -->
     <!-- <script src="../../js/jquery.min.js"></script> -->
     <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(fuction(){
-        // $("#search-text").keyup(function(){
-        //   var search = $(this).val();
-        //   $.ajax({
-        //     url:'index.php',
-        //     method:'post',
-        //     data:{query:search},
-        //     success:function(response){
-        //       $("#table-data").html(response);
-        //     }
-        //   });
-        // });
-        $.ajax()
-      });
-    </script>
-  </body>
+    <script src="../../js/jquery.min.js"></script>
+    <script>
+        function MyAjaxFunc(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("GET", "/HospitalManagementSystem/admin/users/load.php", true);
+        
+          xhttp.send();
+          
+        }
+        MyAjaxFunc()
+
+        function showmyuser() {
+          var uname=  document.getElementById("uname").value;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("POST", "/HospitalManagementSystem/admin/users/search.php", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("uname="+uname);
+}
+
+</script>
+</body>
 </html>

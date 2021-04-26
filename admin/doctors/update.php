@@ -73,11 +73,6 @@ if(isset($_POST['update']))
 
       <!-- Admin Content -->
       <div class="admin-content">
-        <div class="button-group">
-          <a href="create.php" class="btn btn-big">Add Doctor</a>
-          <a href="index.php" class="btn btn-big">Manage Doctor</a>
-        </div>
-
         <div class="content">
           <h2 class="page-title">Add Doctor</h2>
           <?php

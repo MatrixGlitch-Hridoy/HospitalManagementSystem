@@ -81,10 +81,10 @@
         <div class="content">
           <h2 class="page-title">Add Patient</h2>
           <?php
-            include "../../controls/errors.php";
-            $db = new Database();
+            // include "../../controls/errors.php";
+            // $db = new Database();
           ?>
-          <form action="create.php" method="post">
+          <form action="create.php" method="post" name="patientform" onsubmit="return Patientvalidate()">
             <div>
               <label>Username</label>
               <input type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '';?>" class="text-input" />
@@ -110,5 +110,7 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <!-- Javascript Form Validation -->
+    <script src="../../js/main.js"></script>
   </body>
 </html>
