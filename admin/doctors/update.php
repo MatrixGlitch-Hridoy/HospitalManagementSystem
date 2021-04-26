@@ -91,8 +91,8 @@ if(isset($_POST['update']))
               <input type="email" name="email" value="<?php echo $myrecord['email']; ?>" class="text-input" readonly/>
             </div>
             <div>
-              <label>Select Specialization</label>
-              <select name="DoctorSpecialization" class="text-input">
+              <label>Update Specialization</label>
+              <!-- <select name="DoctorSpecialization" class="text-input">
                 <option value="NULL">--Select Specialization--</option>
                 <option value="Neurology"
                 <?php
@@ -119,7 +119,8 @@ if(isset($_POST['update']))
                   }
                 ?>
                 >Pediatrics</option>
-              </select>
+              </select> -->
+              <input type="text" name="DoctorSpecialization" class="text-input" value="<?php echo $myrecord['specialization']; ?>">
             </div>
             <div>
               <label>Phone Number</label>

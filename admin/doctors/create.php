@@ -94,13 +94,14 @@
               <input type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
             </div>
             <div>
-              <label>Select Specialization</label>
-              <select name="DoctorSpecialization" class="text-input">
+              <label>Add Specialization</label>
+              <!-- <select name="DoctorSpecialization" class="text-input">
                 <option value="NULL">--Select Specialization--</option>
                 <option value="Neurology">Neurology</option>
                 <option value="Pathology">Pathology</option>
                 <option value="Pediatrics">Pediatrics</option>
-              </select>
+              </select> -->
+              <input type="text"name="DoctorSpecialization"class="text-input">
             </div>
             <div>
               <label>Fees</label>
