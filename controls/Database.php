@@ -138,8 +138,11 @@
                     $db_pass = $email_pass['password'];
                     $_SESSION['username'] = $email_pass['username'];
                     $_SESSION['email'] = $email_pass['email']; //for appointment purpose
-                    $_SESSION['address'] = $email_pass['address']; //for appointment purpose
-                    $_SESSION['phone'] = $email_pass['phone']; //for appointment purpose
+                    if($table=="patients")
+                    {
+                        $_SESSION['address'] = $email_pass['address']; //for appointment purpose
+                        $_SESSION['phone'] = $email_pass['phone']; //for appointment purpose
+                    }
                     $_SESSION['id'] = $email_pass['id']; //for appointment purpose
                     //$user_type = $email_pass['user_type'];
                     if($db_pass==$password)
@@ -559,10 +562,10 @@
         public function updateDoneStatus($data,$table)
         {
             $status = "Done";
-            $comment = $_POST['comment'];
+            // $comment = $_POST['comment'];
             $id=$_POST['id'];
 
-            $sql = "UPDATE $table SET status='$status', comment='$comment' WHERE id='$id'";
+            $sql = "UPDATE $table SET status='$status' WHERE id='$id'";
 
                 $result = $this->connection->query($sql);
                 if($result)
