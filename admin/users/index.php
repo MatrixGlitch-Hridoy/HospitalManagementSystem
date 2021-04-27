@@ -78,7 +78,7 @@
       <div class="admin-content">
         <div class="button-group">
           <a href="create.php" class="btn btn-big">Add Patient</a>
-          <a href="index.php" class="btn btn-big">Manage Patient</a>
+          <a style="background:grey;pointer-events: none;" href="index.php" class="btn btn-big">Manage Patient</a>
         </div>
         <input type="text" name="search" onkeyup="showmyuser()" class="search-bar search-input" id="uname" placeholder="Search">
 
