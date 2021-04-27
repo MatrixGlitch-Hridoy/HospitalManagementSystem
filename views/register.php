@@ -1,4 +1,4 @@
-<?php include "controls/Database.php" ?>
+<?php include "../controls/Database.php" ?>
 <?php
 
 $db = new Database();
@@ -125,7 +125,7 @@ $db = new Database();
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
@@ -136,7 +136,7 @@ $db = new Database();
   <body>
     <header class="header-area">
       <div class="title">
-        <h1 class="head"><a href="home.php">Hospital Management System</a> </h1>
+        <h1 class="head"><a href="../home.php">Hospital Management System</a> </h1>
       </div>
       <!-- <nav class="navbar">
         <ul class="menu">
@@ -176,7 +176,7 @@ $db = new Database();
     //      echo"<span class='error'>".$error_msg."</span>";
     //     //  echo"<span class='error'>".$error_msg['username']."</span>";
     //    }
-    include "controls/errors.php";
+    include "../controls/errors.php";
     $db = new Database();
   ?>
   <?php

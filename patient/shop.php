@@ -5,7 +5,7 @@
   $db = new Database();
   if(!isset($_SESSION['username']))
   {
-    header("Location:../login.php");
+    header("Location:../views/login.php");
   }
   $data = $db->displayRecord("medicine");
 ?>

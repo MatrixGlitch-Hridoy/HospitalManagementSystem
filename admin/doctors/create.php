@@ -4,7 +4,7 @@
   $db = new Database();
   if(!isset($_SESSION['username']))
   {
-    header("Location:../../admin-login.php");
+    header("Location:../../views/admin-login.php");
   }
   if(isset($_POST['submit'])){
   $create = $db->insertRecord($_POST,"doctors");

@@ -6,7 +6,7 @@
   $db = new Database();
   if(!isset($_SESSION['username']))
   {
-    header("Location:../pharmacist-login.php");
+    header("Location:../views/pharmacist-login.php");
   }
   if(isset($_POST['submit'])){
     $create = $db->addMedicine($_POST,"medicine");

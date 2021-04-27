@@ -5,7 +5,7 @@
   $db = new Database();
   if(!isset($_SESSION['username']))
   {
-    header("Location:../doctor-login.php");
+    header("Location:../views/doctor-login.php");
   }
   $currentUser=$_SESSION['id'];
   if(isset($_POST['update']))

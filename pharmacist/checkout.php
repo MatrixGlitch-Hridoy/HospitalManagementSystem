@@ -5,7 +5,7 @@
   $db = new Database();
   if(!isset($_SESSION['username']))
   {
-    header("Location:../pharmacist-login.php");
+    header("Location:../views/pharmacist-login.php");
   }
 
 ?>

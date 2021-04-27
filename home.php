@@ -50,10 +50,10 @@
             <li>
               <a href="#">Login</a>
               <ul>
-                <li><a href="login.php">Patient</a></li>
-                <li><a href="doctor-login.php">Doctor</a></li>
-                <li><a href="pharmacist-login.php">Pharmacist</a></li>
-                <li><a href="admin-login.php">Admin</a></li>
+                <li><a href="views/login.php">Patient</a></li>
+                <li><a href="views/doctor-login.php">Doctor</a></li>
+                <li><a href="views/pharmacist-login.php">Pharmacist</a></li>
+                <li><a href="views/admin-login.php">Admin</a></li>
               </ul>
             </li>
           </ul>
@@ -63,7 +63,7 @@
 
     <div class="banner-area" id="home">
       <div class="canvas">
-        <img src="1.jpg" alt="" />
+        <img src="images/1.jpg" alt="" />
         <div class="title1">
           <h3>Caring for better life</h3>
           <h1>Caring for better life Leading the way in medical excellence</h1>
@@ -99,7 +99,7 @@
         </div>
       </div>
       <div class="right-area">
-        <img src="1.jpg" alt="" />
+        <img src="images/1.jpg" alt="" />
       </div>
     </div>
 
