@@ -4,6 +4,7 @@
     $db = new Database();
     $currentUser = $_SESSION['id'];
     $data=$db->displayApproved($currentUser);
+ 
     $sno=1;
 //$output="";
 if($data)
@@ -11,14 +12,14 @@ if($data)
 
 foreach($data as $value)
               {
-                  if($value['status']=='Approved')
+                  if($value['status']=='Approved'||$value['status']=='Done')
                   {
 ?>            
               <tr>
               <td><?php echo $sno++ ?></td>
                 <td><?php echo $value['username'] ?></td>
                 <td><?php echo $value['gender'] ?></td>
-                <td><?php echo $value['date'] ?></td>
+                <!-- <td><?php echo $value['date'] ?></td> -->
                 <td><?php echo $value['reason'] ?></td>
                 <?php
                 if($value['status']=='Approved')
@@ -27,10 +28,25 @@ foreach($data as $value)
                <?php } else{?>
                 <td class="status-2"><?php echo $value['status'] ?></td>
                 <?php } ?>
+                <td>
+                <form action="" method="post">
                 <input type="hidden" name="id" value="<?php echo $value['id'];?>">
-                <td><button type="submit" name="done" class="approve btn-update btn-big">Done</button>
+                <?php
+                  if($value['status']=='Approved'){
+                    print '<button type="submit" name="done" class="approve btn-update btn-big">Done</button>';}
+                    else{
+                      print '<button type="submit" name="done" class="approve-link btn-update btn-big">Done</button>';
+                    }?>
                 </td>
-                <td><button type="submit" name="decline" class="decline btn-delete btn-big">Delete</button>
+                </form>
+                <td>
+                <?php
+                  if($value['status']=='Done'){
+                    print '<button  type="submit" name="decline" class="decline btn-delete btn-big">Remove</button>';}
+                    else{
+                      print '<button type="submit" name="decline" class="decline-link btn-delete btn-big">Remove</button>';
+                    }?>
+                
                 </td>
               </tr>
               <?php 

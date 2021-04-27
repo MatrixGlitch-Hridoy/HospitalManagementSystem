@@ -78,11 +78,10 @@
             <thead>
               <th>SN</th>
               <th>Patient Name</th>
-              <th>Email</th>
               <th>Gender</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th colspan="2">Action</th>
+              <th>Symptoms</th>
+              <th>Status</th>
+              <th colspan="2" class="th-action">Action</th>
             </thead>
             <tbody id="table-data">
               

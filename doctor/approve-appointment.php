@@ -86,7 +86,7 @@
               <th>Patient Name</th>
               <th>Gender</th>
               <th>Date</th>
-              <th>Reason</th>
+              <th>Symptoms</th>
               <th>Status</th>
               <th>Comment</th>
               <th colspan="2" class="th-action">Action</th>
@@ -97,6 +97,8 @@
               if($data){
               foreach($data as $value)
               {
+                if($value['status']=='Pending')
+                {
             ?>
               <tr>
                 <td><?php echo $sno++ ?></td>
@@ -131,9 +133,8 @@
                   ?>
                 </td>
                 </form>
-                
               </tr>
-              <?php } }
+              <?php } } }
               else{
               ?>
               <tr>

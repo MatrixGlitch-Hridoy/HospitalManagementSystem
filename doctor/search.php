@@ -15,7 +15,7 @@ $sno=1;
 
 foreach($result as $value)
               {
-                if($value['status']=='Approved')
+                if($value['status']=='Approved'||$value['status']=='Done')
                 {
 ?>            
               <tr>
