@@ -78,21 +78,19 @@
         <div class="select-group">
           <div class="select1" >
             <label>Doctor Specialization</label>
-            <select name="" class="selectbox" id="select_std">
-                <option value="">Select</option>
+            <select  class="selectbox" id="select_std">
             </select>
           </div>
           <div class="select2" >
             <label>Gender</label>
-            <select name="" class="selectbox" id="select_res">
-                <option value="">Select</option>
+            <select  class="selectbox" id="select_res">
             </select>
           </div>
           
         </div>
         <div class="filter-group">
-            <a href="" class="btn btn-big" id="filter">Filter</a>
-            <a href="" class="btn btn-big" id="reset">Reset</a>
+            <button class="btn btn-big" onclick="filter()">Filter</button>
+            <button class="btn btn-big" onclick="location.reload()">Reset</button>
         </div>
 
         <div class="content">
@@ -100,9 +98,9 @@
 
           <table >
             <thead>
-              <!-- <th>SN</th> -->
+              <th>Sn</th>
               <th>Username</th>
-              <th>Email</th>
+              <!-- <th>Email</th> -->
               <th>Specialization</th>
               <th>Fees</th>
               <th>Gender</th>  
@@ -113,7 +111,7 @@
               <th>Status</th>  
               <th colspan="2" class="th-action">Action</th>
             </thead>
-            <tbody id="record_table">
+            <tbody id="table-data">
               
             </tbody>
           </table>
@@ -122,104 +120,83 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script src="../js/jquery.min.js"></script>
-    <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/r-2.2.3/datatables.min.js"></script> -->
   
     <script>
-        // Fetch Standard
-    function fetch_std() {
-        $.ajax({
-            url: "fetch_std.php",
-            type: "post",
-            dataType: "json",
-            success: function(data) {
-                var stdBody = "";
-                for (var key in data) {
-                    stdBody += `<option value="${data[key]['specialization']}">${data[key]['specialization']}</option>`;
-                }
-                $("#select_std").append(stdBody);
-                console.log(data);
+        function fetch_std(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("select_std").innerHTML = this.responseText;
             }
-        });
-    }
-    fetch_std();
+          else
+          {
+            document.getElementById("select_std").innerHTML = this.status;
+          }
+          };
+          xhttp.open("GET", "/HospitalManagementSystem/patient/fetch_std.php", true);
+        
+          xhttp.send();
+          
+        }
+        fetch_std()
 
       // Fetch Result
       function fetch_res() {
-        $.ajax({
-            url: "fetch_res.php",
-            type: "post",
-            dataType: "json",
-            success: function(data) {
-                var resBody = "";
-                for (var key in data) {
-                    resBody += `<option value="${data[key]['gender']}">${data[key]['gender']}</option>`;
-                }
-                $("#select_res").append(resBody);
-                console.log(data);
+        var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("select_res").innerHTML = this.responseText;
             }
-        });
+          else
+          {
+            document.getElementById("select_res").innerHTML = this.status;
+          }
+          };
+          xhttp.open("GET", "/HospitalManagementSystem/patient/fetch_res.php", true);
+        
+          xhttp.send();
     }
     fetch_res();
 
-     // Fetch Records
-     function fetch(std, res) {
-        $.ajax({
-            url: "records.php",
-            type: "post",
-            data: {
-                std: std,
-                res: res
-            },
-            dataType: "json",
-            success: function(data) {
-              $.each(data,function(key,value){
-                //console.log(value['username']);
-                $.sn = 1;
-                $('#record_table').append(
-                  '<tr>'+
-                 
-                  '<td>'+value['username']+'</td>\
-                  <td>'+value['email']+'</td>\
-                  <td>'+value['specialization']+'</td>\
-                  <td>'+value['fees']+'</td>\
-                  <td>'+value['gender']+'</td>\
-                  <td>'+value['date']+'</td>\
-                  <td>'+value['day']+'</td>\
-                  <td>'+value['stime']+'</td>\
-                  <td>'+value['etime']+'</td>\
-                  <td class="status">'+value['status']+'</td>\
-                  <td>\
-                  <a href="book-appointment.php?bookid='+value['id']+'" class="delete btn-delete btn-big">Book</a>\
-                  </td>\
-                </tr>');
-              });
-            }
-        });
-    }
-    fetch();
 
-      // Filter
-      $(document).on("click", "#filter", function(e) {
-        e.preventDefault();
-        var std = $("#select_std").val();
-        var res = $("#select_res").val();
-        if (std !== "" && res !== "") {
-            $('#record_table').empty();
-            fetch(std, res);
-        } else if (std !== "" && res == "") {
-            $('#record_table').empty();
-            fetch(std, '');
-        } else if (std == "" && res !== "") {
-            $('#record_table').empty();
-            fetch('', res);
-        } else {
-            $('#record_table').empty();
-            fetch();
+    function fetch(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("GET", "/HospitalManagementSystem/patient/load.php", true);
+        
+          xhttp.send();
+          
         }
-    });
+        fetch();
+
+    function filter() {
+          var spec=  document.getElementById("select_std").value;
+          var gen=  document.getElementById("select_res").value;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("POST", "/HospitalManagementSystem/patient/records.php", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("select_std="+spec + "&select_res="+gen);
+}
     </script>
   </body>
 </html>

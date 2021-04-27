@@ -40,5 +40,16 @@ $db = new Database();
                 }
             }
         }
+        if(isset($_POST['mod_quantity']))
+        {
+            foreach($_SESSION['cart'] as $key => $value)
+            {
+                if($value['mname']==$_POST['mname'])
+                {
+                    $_SESSION['cart'][$key]['Quantity']=$_POST['mod_quantity'];
+                    echo "<script>window.location.href = 'mycart.php';</script >";
+                }
+            }
+        }
     }
 ?>

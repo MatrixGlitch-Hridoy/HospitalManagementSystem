@@ -4,7 +4,20 @@ include '../controls/Database.php';
 
 $db = new Database();
 
-$rows = $db->fetch_std();
+$data = $db->fetch_std();
 
-echo json_encode($rows);
+?>
+<option value="">Select</option>
+<?php
+
+if($data)
+{
+
+foreach($data as $value)
+  {
+?>            
+    <option><?php echo $value['specialization'] ?></option>
+<?php 
+  }
+}
 ?>

@@ -124,7 +124,10 @@
                 <td><img src="<?php echo $value['image'] ?>" alt="image" height="100px" width="100px" ></td>
                 <td><?php echo $value['mprice'] ?><input type="hidden" class="iprice" value="<?php echo $value['mprice']?>"></td>
                 <td>
-                    <input class="iquantity" onchange='subTotal()' type='number' value="<?php echo $value["Quantity"] ?>" min="1" max="1000">
+                  <form action="action.php" method="post">
+                    <input class="iquantity quan" name="mod_quantity" onchange='this.form.submit();' type='number' value="<?php echo $value["Quantity"] ?>" min="1" max="1000">
+                    <input type="hidden" name="mname" value="<?php echo $value["mname"] ?>">
+                  </form>
                 </td>
                 <td class="itotal"></td>
                 <td>
@@ -156,21 +159,21 @@
             <form action="purchase.php" method="post">
                 <div>
                     <label>Username</label>
-                    <input type="text" name="username" readonly class="text-input" value="<?php echo $_SESSION['username'];//echo $myrecord['username']; ?>" />
+                    <input type="text" name="username" readonly class="text-input" value="<?php echo $_SESSION['username'];?>" />
    
                 </div>
                 <div>
                         <label>Email</label>
-                        <input type="email" name="email" class="text-input" readonly value="<?php echo $_SESSION['email'];//echo $myrecord['email']; ?>" />
+                        <input type="email" name="email" class="text-input" readonly value="<?php echo $_SESSION['email'];?>" />
                 </div>
                 <div>
                         <label>Address</label>
-                        <input type="text" name="address" class="text-input" value="<?php echo $_SESSION['address']; //echo $myrecord['address']; ?>" />
+                        <input type="text" name="address" class="text-input" value="<?php echo $_SESSION['address'];?>" />
 
                 </div>
                 <div>
                         <label>Phone Number</label>
-                        <input type="text" name="phone" class="text-input" value="<?php echo $_SESSION['phone']; //echo $myrecord['phone']; ?>" />
+                        <input type="text" name="phone" class="text-input" value="<?php echo $_SESSION['phone']; ?>" />
                 </div>
                 <input style="display:inline-block;" type="radio" id="cod" name="payment" value="Cash on delivery">
                 <label for="cod">Cash on delivery</label><br>

@@ -76,7 +76,6 @@
       <div class="admin-content">
         <div class="content">
           <h2 class="page-title">Update Profile</h2>
-            <?php include "../controls/errors.php";?>
             <?php  
               $data = $db->displaySingleRecord("patients",$currentUser);
               if($data)
@@ -84,10 +83,10 @@
                 foreach($data as $value)
                 {
             ?>
-          <form action="update-profile.php" method="post">
+          <form action="update-profile.php" method="post" onsubmit="return validate()" name="myform" class="form">
             <div>
               <label>Username</label>
-              <input type="text" name="username" class="text-input" value="<?php echo $value['username']; ?>"/>
+              <input type="text" name="username"  class="text-input" value="<?php echo $value['username']; ?>"/>
               <?php 
                 // if(isset($error_msg['username']))
                 // {
@@ -164,7 +163,6 @@
               ?>
             </div>
             <div>
-
               <button type="submit" name="update" class="btn btn-big">Update</button>
             </div>
           </form>
@@ -174,5 +172,35 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <!-- <script src="../js/main.js"></script> -->
+    <script>
+ function validate() {
+ var name = document.forms["myform"]["username"].value;
+ if(name==""){
+ alert("Please enter the name");
+ return false;
+ }
+ if(name.length < 4)
+ {
+   alert("atleast 4 charecter");
+   return false;
+ }
+else{
+ var re = /^[a-zA-Z ]*$/;
+ var x=re.test(name);
+ if(x){
+ }
+ else{
+ alert("Only letter allowed");
+ return false;
+ } 
+ } 
+ var phone = document.forms["myform"]["phone"].value;
+ if(phone.length != 11){
+ alert("Phone number not valid");
+ return false;
+ } 
+}
+    </script>
   </body>
 </html>

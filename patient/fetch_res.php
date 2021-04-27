@@ -4,7 +4,19 @@ include '../controls/Database.php';
 
 $db = new Database();
 
-$rows = $db->fetch_res();
+$data = $db->fetch_res();
+?>
 
-echo json_encode($rows);
+<option value="">Select</option>
+<?php
+if($data)
+{
+
+foreach($data as $value)
+  {
+?>              
+  <option><?php echo $value['gender'] ?></option>
+<?php 
+  }
+}
 ?>

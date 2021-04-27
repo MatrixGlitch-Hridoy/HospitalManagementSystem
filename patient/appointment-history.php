@@ -96,21 +96,25 @@
                 <td><?php echo $value['fees'] ?></td>
                 <td><?php echo $value['date'] ?></td>
                 <td><?php echo $value['day'] ?></td>
-                <td class="status"><?php echo $value['status'] ?></td>
+                <?php
+                if($value['status']=='Approved')
+                { ?>
+                <td class="status-1"><?php echo $value['status'] ?></td>
+               <?php } else{?>
+                <td class="status-2"><?php echo $value['status'] ?></td>
+                <?php } ?>
                 <td class="status"><?php echo $value['comment']?></td>
                 <td>
                   <?php
-                    if($value['status']=='Pending'){
-                  
-                print '<a href="delete.php?deleteid='. $value['id'].' " class="delete btn-delete btn-big">Delete</a>'; }
+                    if($value['status']=='Approved'){
+                      print '<a class="btn-delete btn-big disabled-link">Delete</a>';}
                 else{
-                  print '<a class="btn-delete btn-big disabled-link">Delete</a>';
-              } ?></td>
+                  print '<a  href="delete.php?deleteid='. $value['id'].' " class="delete btn-delete btn-big">Delete</a>';} ?></td>
                 <td>
-                  <?php if($value['status']=='Pending'||$value['status']=='Declined'){ 
-                  print '<a class="btn-update btn-big disabled-link">Print</a>'; }
+                  <?php if($value['status']=='Approved'){ 
+                   print '<a href="invoice.php?printid='.$value['id'].'" class="btn-update btn-big">Print</a>'; }
                   else{
-                     print '<a href="invoice.php?printid='.$value['id'].'" class="btn-update btn-big">Print</a>';
+                    print '<a class="btn-update btn-big disabled-link">Print</a>';
                   }?></td>
               </tr>
               <?php } }
