@@ -608,22 +608,35 @@
             $file_name=$_FILES['file']['name'];
             $file_tmp=$_FILES['file']['tmp_name'];
             $file_type=$_FILES['file'] ['type'];
-
+ 
             $file_destination = "../pharmacist/upload-images/".$file_name;
             move_uploaded_file($file_tmp,$file_destination);
-
+ 
             $file_ext = explode('.',$file_name);
             $file_ext_check=strtolower(end($file_ext));
             $valid_file_ext = array('png','jpg','jpeg');
             
-           
-
             
             if(empty($Name)||empty($generic)||empty($type)||empty($quantity)||empty($unitPrice)||empty($file_name))
             {
                 array_push($this->errors," Fields must not be empty");
             }
 
+            else
+            {
+                if(!preg_match("/[0-9]/",$quantity)){
+                    array_push($this->errors," Quantity: Only numeric number allowed");
+                }
+                
+
+                if(!preg_match("/[0-9]/",$unitPrice)){
+                    array_push($this->errors," Price: Only numeric number allowed");
+                }
+                
+            }
+    
+                
+ 
             if(count($this->errors)==0)
             {
                 if(in_array($file_ext_check,$valid_file_ext)){
@@ -642,7 +655,7 @@
                    //  else{
                    //      $sql = "INSERT INTO $table(username,email,password) VALUES('$uName','$email','$password')";
                    //  }
-
+ 
                     $create = $this->connection->query($sql);
                     if($create)
                     {
@@ -665,42 +678,45 @@
         }
 
         public function updateMedicine($data,$table)
-       {
-           $Name = $_POST['mName'];
-           $generic = $_POST['generic'];
-           $type = $_POST['mType'];
-           $quantity = $_POST['quantity'];
-           $unitPrice = $_POST['unitPrice'];
-           $editid=$_POST['hid'];
-
-           //$editid = $_POST['hid'];
-
-           if(empty($quantity)||empty($unitPrice))
-           {
-               array_push($this->errors," Fields must not be empty");
-           }
-           else{
-
-               if(count($this->errors)==0)
-               {
-                   
-                   $sql = "UPDATE $table SET mName='$Name',generic='$generic',mType='$type',quantity='$quantity',unitPrice='$unitPrice' WHERE id='$editid'";
-
-                   $result = $this->connection->query($sql);
-                   if($result)
-                   {
-                       return true;
-                   }
-                   else{
-                       return false;
-                   }
-               
-               }
-           }
-          
-
-          
-       }
+        {
+            $Name = $_POST['mName'];
+            $generic = $_POST['generic'];
+            $type = $_POST['mType'];
+            $quantity = $_POST['quantity'];
+            $unitPrice = $_POST['unitPrice'];
+            $editid=$_POST['hid'];
+ 
+            //$editid = $_POST['hid'];
+ 
+            if(empty($quantity)||empty($unitPrice))
+            {
+                array_push($this->errors," Fields must not be empty");
+            }
+ 
+            
+            else{
+                
+ 
+                if(count($this->errors)==0)
+                {
+                    
+                    $sql = "UPDATE $table SET mName='$Name',generic='$generic',mType='$type',quantity='$quantity',unitPrice='$unitPrice' WHERE id='$editid'";
+ 
+                    $result = $this->connection->query($sql);
+                    if($result)
+                    {
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                
+                }
+            }
+           
+ 
+           
+        }
 
        public function invoice($printid)
        {

@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="pharmacist.css">
 
     <title>Checkout</title>
-    <link rel="icon" href="../pic/hms.png">
+    <link rel="icon" href="../images/hms.svg">
 </head>
 
 <body>
@@ -85,7 +85,7 @@
                         <div>
                             <label>Email</label>
                             <input type="text" name="email" id="cEmail" class="text-inputMedium" />
-                            
+
 
                         </div>
                         <div>
@@ -109,7 +109,8 @@
                         </div>
 
                         <div>
-                            <button type="submit" value="submit" onclick="myFunction()" class="btn btn-big">Confirm</button>
+                            <button type="submit" value="submit" onclick="myFunction()"
+                                class="btn btn-big">Confirm</button>
                         </div>
 
 

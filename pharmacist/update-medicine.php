@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="../css/admin.css" />
 
     <title>Update Medicine</title>
-    <link rel="icon" href="../pic/hms.png">
+    <link rel="icon" href="../images/hms.svg">
 </head>
 
 <body>
@@ -81,7 +81,7 @@
             <div class="content">
                 <h2 class="page-title">Modify Medicine</h2>
 
-          <?php 
+                <?php 
           $editid = $_REQUEST['editid'];
            $myrecord = $db->displayRecordById($editid,"medicine");
            include "../controls/errors.php";
@@ -91,34 +91,39 @@
                 <form action="update-medicine.php" method="post">
                     <div>
                         <label>Name</label>
-                        <input type="text" name="mName" class="text-input" readonly value="<?php echo $myrecord['mName']; ?>" />
-                        
+                        <input type="text" name="mName" class="text-input" readonly
+                            value="<?php echo $myrecord['mName']; ?>" />
+
                     </div>
                     <div>
                         <label>Generic</label>
-                        <input type="text" name="generic" class="text-input" readonly value="<?php echo $myrecord['generic']; ?>" />
-                        
+                        <input type="text" name="generic" class="text-input" readonly
+                            value="<?php echo $myrecord['generic']; ?>" />
+
                     </div>
                     <div>
                         <label>Type</label>
-                        <input type="text" name="mType" class="text-input" readonly value="<?php echo $myrecord['mType']; ?>" />
-                        
+                        <input type="text" name="mType" class="text-input" readonly
+                            value="<?php echo $myrecord['mType']; ?>" />
+
                     </div>
                     <div>
                         <label>Quantity</label>
-                        <input type="text" name="quantity" class="text-input" value="<?php echo $myrecord['quantity']; ?>" />
-                        
+                        <input type="text" name="quantity" class="text-input"
+                            value="<?php echo $myrecord['quantity']; ?>" />
+
                     </div>
 
                     <div>
                         <label>Unit Price</label>
-                        <input type="text" name="unitPrice" class="text-input" value="<?php echo $myrecord['unitPrice']; ?>" />
-                        
+                        <input type="text" name="unitPrice" class="text-input"
+                            value="<?php echo $myrecord['unitPrice']; ?>" />
+
                     </div>
                     <div>
-                   
-    
-                    <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
+
+
+                        <input type="hidden" name="hid" value="<?php echo $myrecord['id']; ?>">
 
                         <button type="submit" name="update" class="btn btn-big">Update Medicine</button>
                     </div>

@@ -71,7 +71,7 @@
 
     <div class="banner-area" id="home">
       <div class="canvas">
-        <img src="../1.jpg" alt="" />
+        <img src="../images/1.jpg" alt="" />
         <div class="title1">
           <h3>Caring for better life</h3>
           <h1>Caring for better life Leading the way in medical excellence</h1>
@@ -107,7 +107,7 @@
         </div>
       </div>
       <div class="right-area">
-        <img src="../1.jpg" alt="" />
+        <img src="../images/1.jpg" alt="" />
       </div>
     </div>
 

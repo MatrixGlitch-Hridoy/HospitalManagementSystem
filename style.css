@@ -302,7 +302,7 @@ body {
   text-transform: uppercase;
 }
 .emergency {
-  background: url(1.jpg);
+  background: url(images/1.jpg);
   background-attachment: fixed;
   background-size: cover;
   overflow: hidden;

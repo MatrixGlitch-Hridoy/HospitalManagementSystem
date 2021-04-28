@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="pharmacist.css">
 
     <title>Dashborad</title>
-    <link rel="icon" href="../pic/hms.png">
+    <link rel="icon" href="../images/hms.svg">
 </head>
 
 <body>

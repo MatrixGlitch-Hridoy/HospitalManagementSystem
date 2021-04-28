@@ -38,11 +38,12 @@ if(isset($_POST['update']))
     <link rel="stylesheet" href="../css/admin.css" />
 
     <title>Update Profile</title>
+    <link rel="icon" href="../images/hms.svg">
 </head>
 
 <body>
     <header class="header-area">
-    
+
         <div class="title">
             <h1>Hospital Management System</h1>
         </div>
@@ -81,8 +82,8 @@ if(isset($_POST['update']))
             <div class="content">
                 <h2 class="page-title">Update Profile</h2>
 
-                
-                
+
+
                 <?php
                     
                     $data = $db->displaySingleRecord("pharmacists",$currentUser);
@@ -91,10 +92,12 @@ if(isset($_POST['update']))
                         foreach($data as $value)
                         {
                 ?>
-                <form action="update-profile.php" method="post" name="pharmacistform" onsubmit="return Pharmacistvalidate()">
+                <form action="update-profile.php" method="post" name="pharmacistform"
+                    onsubmit="return Pharmacistvalidate()">
                     <div>
                         <label>Username</label>
-                        <input type="text" name="username" class="text-input" value="<?php echo $value['username']; ?>" />
+                        <input type="text" name="username" class="text-input"
+                            value="<?php echo $value['username']; ?>" />
                         <?php 
                 // if(isset($error_msg['username']))
                 // {
@@ -139,16 +142,13 @@ if(isset($_POST['update']))
 
                             <option value="NULL">-- Select Gender --</option>
 
-                            <option value="Male" 
-        <?php
+                            <option value="Male" <?php
         if($value['gender']=="Male")
         {
         echo "selected";
         }
         ?>>Male</option>
-                            <option value="Female" 
-        
-        <?php
+                            <option value="Female" <?php
         if($value['gender']=="Female")
         {
             echo "selected";
@@ -165,7 +165,8 @@ if(isset($_POST['update']))
                     </div>
                     <div>
                         <label>Password</label>
-                        <input type="password" name="password" class="text-input" value="<?php echo $value['password']; ?>" />
+                        <input type="password" name="password" class="text-input"
+                            value="<?php echo $value['password']; ?>" />
                         <?php 
                 // if(isset($error_msg['password']))
                 // {

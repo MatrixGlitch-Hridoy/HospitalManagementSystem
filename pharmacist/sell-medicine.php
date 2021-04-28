@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="pharmacist.css">
 
     <title>Sell Medicine</title>
-    <link rel="icon" href="../pic/hms.png">
+    <link rel="icon" href="../images/hms.svg">
 </head>
 
 <body>
@@ -96,11 +96,11 @@
                     <tr>
                         <td>Paracitamol</td>
                         <td>
-                            
-                                <span onclick="decrease()" class="minus">-</span>
-                                <input type="text" value="1" id="product" class="searchinput" />
-                                <span onclick="increase()" class="plus">+</span>
-                            
+
+                            <span onclick="decrease()" class="minus">-</span>
+                            <input type="text" value="1" id="product" class="searchinput" />
+                            <span onclick="increase()" class="plus">+</span>
+
 
                         </td>
                         <td>50</td>
@@ -130,7 +130,6 @@
 <!-- javascript plus minus -->
 
 <script>
-
 // document.getElementById("product").readOnly = true;
 function increase() {
 
@@ -142,19 +141,19 @@ function increase() {
 
 function decrease() {
 
-    
+
 
     quan = document.getElementById("product").value;
     var a = parseInt(quan)
     document.getElementById("product").value = a - 1;
     a--
-    
-    if(a<=1){
-        
-        document.getElementById("product").value =  1;
+
+    if (a <= 1) {
+
+        document.getElementById("product").value = 1;
     }
-    
-   
+
+
 
 
 }

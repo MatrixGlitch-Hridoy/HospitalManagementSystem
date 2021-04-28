@@ -25,7 +25,7 @@ foreach ($data as $value) {
 						<table>
 							<tr>
 								<td class="title">
-									<img src="../images/1.jpg" alt="Company logo" style="width: 10%; max-width: 300px" />
+									<img src="../images/hms.svg" alt="Company logo" style="width: 10%; max-width: 300px" />
                                     HMS
 								</td>
 

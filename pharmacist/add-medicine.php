@@ -38,13 +38,13 @@
     <link rel="stylesheet" href="../css/admin.css" />
 
     <title>Add Medicine</title>
-    <link rel="icon" href="../pic/hms.png">
+    <link rel="icon" href="../images/hms.svg">
 </head>
 
 <body>
-<header class="header-area">
+    <header class="header-area">
         <div class="title">
-            <h1 >Hospital Management System</h1>
+            <h1>Hospital Management System</h1>
         </div>
         <div class="navigation">
             <nav class="menu">
@@ -84,28 +84,33 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     <div>
                         <label>Medicine Name</label>
-                        <input type="text" name="mName" class="text-input" value="<?php echo isset($_POST['mName']) ? $_POST['mName'] : '';?>"/>
-                        
+                        <input type="text" name="mName" class="text-input"
+                            value="<?php echo isset($_POST['mName']) ? $_POST['mName'] : '';?>" />
+
                     </div>
                     <div>
                         <label>Generic</label>
-                        <input type="generic" name="generic" class="text-input" value="<?php echo isset($_POST['generic']) ? $_POST['generic'] : '';?>"/>
-                        
+                        <input type="generic" name="generic" class="text-input"
+                            value="<?php echo isset($_POST['generic']) ? $_POST['generic'] : '';?>" />
+
                     </div>
                     <div>
                         <label>Type</label>
-                        <input type="type" name="mType" class="text-input" value="<?php echo isset($_POST['mType']) ? $_POST['mType'] : '';?>"/>
-                        
+                        <input type="type" name="mType" class="text-input"
+                            value="<?php echo isset($_POST['mType']) ? $_POST['mType'] : '';?>" />
+
                     </div>
                     <div>
                         <label>Quantity</label>
-                        <input type="quantity" name="quantity" class="text-input" value="<?php echo isset($_POST['quantity']) ? $_POST['quantity'] : '';?>"/>
-                        
+                        <input type="quantity" name="quantity" class="text-input"
+                            value="<?php echo isset($_POST['quantity']) ? $_POST['quantity'] : '';?>" />
+
                     </div>
 
                     <div>
                         <label>Unit Price</label>
-                        <input type="unitPrice" name="unitPrice" class="text-input" value="<?php echo isset($_POST['unitPrice']) ? $_POST['unitPrice'] : '';?>"/>
+                        <input type="unitPrice" name="unitPrice" class="text-input"
+                            value="<?php echo isset($_POST['unitPrice']) ? $_POST['unitPrice'] : '';?>" />
                     </div>
                     <div>
                         <label>Medicine Pic</label>
@@ -123,25 +128,25 @@
 
     <script src="../js/jquery.min.js"></script>
     <script>
-        // $(document).ready(function(){
-        //     $('#sub').click(function(){
-        //         var image_name = $('#image').val();
-        //         if(image_name=='')
-        //         {
-        //             alert("Please select image");
-        //             return false;
-        //         }
-        //         else{
-        //             var extension = $('#image').val().split('.').pop().toLowerCase();
-        //             if(jQuery.inArray(extension,['gif','png','jpg','jpeg'])==-1)
-        //             {
-        //                 alert("Invalid image format");
-        //                 $('#image').val('');
-        //                 return false;
-        //             }
-        //         }
-        //     });
-        // });
+    // $(document).ready(function(){
+    //     $('#sub').click(function(){
+    //         var image_name = $('#image').val();
+    //         if(image_name=='')
+    //         {
+    //             alert("Please select image");
+    //             return false;
+    //         }
+    //         else{
+    //             var extension = $('#image').val().split('.').pop().toLowerCase();
+    //             if(jQuery.inArray(extension,['gif','png','jpg','jpeg'])==-1)
+    //             {
+    //                 alert("Invalid image format");
+    //                 $('#image').val('');
+    //                 return false;
+    //             }
+    //         }
+    //     });
+    // });
     </script>
 
 </body>
