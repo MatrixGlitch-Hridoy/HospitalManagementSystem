@@ -1,7 +1,6 @@
 # HospitalManagementSystem
 This is the final term project of web technologies course. It took almost 1 month to complete this project. Currently the application is in version 1.0.0
-Database file provided in database folder.
-Make a database with the name hms and import the given hms.sql into it. That's it you are good to go.
+As this a university project we are binded to use some limited technology for that reason this project might look unprofessional but it will be upgrade in future with new technology to make it more dynamic.
 
 # Need to work on:
 Ability to buy medicine with proper functionality need to be professional.<br>
