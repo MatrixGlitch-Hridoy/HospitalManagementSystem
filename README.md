@@ -4,7 +4,7 @@ Database file provided in database folder.
 Make a database with the name hms and import the given hms.sql into it. That's it you are good to go.
 
 # Need to work on:
-Ability to buy medicine with proper functionality need to be professional.
+Ability to buy medicine with proper functionality need to be professional.<br>
 Pharmacist should trace if the order is delivered or not.
 The password should be encrypted and the password field shouldn't be displayed in the admin panel.
 Implementation of pagination for all the list view across the application.
