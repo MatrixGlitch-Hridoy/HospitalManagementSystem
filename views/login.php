@@ -47,7 +47,8 @@ session_start();
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Patient Login</title>
+    <link rel="icon" href="../images/hms.svg">
   </head>
   <body>
     <header class="header-area">

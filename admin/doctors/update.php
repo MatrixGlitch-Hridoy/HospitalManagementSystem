@@ -37,7 +37,8 @@ if(isset($_POST['update']))
     <link rel="stylesheet" href="../../css/admin-nav.css" />
     <link rel="stylesheet" href="../../css/admin.css" />
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Update Doctor</title>
+    <link rel="icon" href="../../images/hms.svg">
   </head>
 
   <body>

@@ -31,7 +31,8 @@
     <!-- <link rel="stylesheet" href="../css/all.min.css"> -->
     <script src="https://kit.fontawesome.com/a076d05399.js" ></script>
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Shop</title>
+    <link rel="icon" href="../images/hms.svg">
   </head>
 
   <body>

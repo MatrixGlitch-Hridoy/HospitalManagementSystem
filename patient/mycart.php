@@ -39,7 +39,8 @@
     <link rel="stylesheet" href="../css/admin.css" />
     <script src="https://kit.fontawesome.com/a076d05399.js" ></script>
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Checkout</title>
+    <link rel="icon" href="../images/hms.svg">
   </head>
 
   <body>
