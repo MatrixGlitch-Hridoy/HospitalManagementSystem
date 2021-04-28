@@ -76,7 +76,7 @@
         </div> -->
         </div>
         <div class="apointment">
-          <a href="login.php">Make Appointment</a>
+          <a href="views/login.php">Make Appointment</a>
         </div>
       </div>
     </div>

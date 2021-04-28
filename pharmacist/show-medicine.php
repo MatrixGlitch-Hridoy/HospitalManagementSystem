@@ -78,7 +78,7 @@
         
 
         <div class="content">
-          <h2 class="page-title">Manage Pharmacist</h2>
+          <h2 class="page-title">All Medicines</h2>
           <input type="text" name="search" onkeyup="showMedicine()" class="search-bar search-input" id="mname" placeholder="Search">
 
           <table>
