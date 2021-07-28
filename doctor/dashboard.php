@@ -1,3 +1,14 @@
+<?php include "../controls/Database.php" ?>
+
+<?php 
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
+  {
+    header("Location:../views/doctor-login.php");
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +29,8 @@
     <link rel="stylesheet" href="../css/admin-nav.css" />
     <link rel="stylesheet" href="../css/admin.css" />
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Dashboard</title>
+    <link rel="icon" href="../images/hms.svg">
   </head>
 
   <body>
@@ -30,9 +42,9 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href=""><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -55,7 +67,7 @@
       <!-- Admin Content -->
       <div class="admin-content">
         <div class="content">
-          <h2 class="page-title">Welcome To Your Dashboard!</h2>
+          <h2 class="page-title">Welcome To Your Dashboard <?php echo $_SESSION['username'];?></h2>
         </div>
       </div>
       <!-- // Admin Content -->

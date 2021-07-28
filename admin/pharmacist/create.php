@@ -1,3 +1,22 @@
+<?php include "../../controls/Database.php" ?>
+<?php
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
+  {
+    header("Location:../../views/admin-login.php");
+  }
+  if(isset($_POST['submit'])){
+  $create = $db->insertRecord($_POST,"pharmacists");
+    if($create)
+    {
+      echo "<script>alert('Pharmacist Added succesfully');</script>";
+      echo "<script>window.location.href = 'index.php';</script>";
+    }
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +37,8 @@
     <link rel="stylesheet" href="../../css/admin-nav.css" />
     <link rel="stylesheet" href="../../css/admin.css" />
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Create Pharmacist</title>
+    <link rel="icon" href="../../images/hms.svg">
   </head>
 
   <body>
@@ -30,9 +50,9 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="#"><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -61,26 +81,30 @@
 
         <div class="content">
           <h2 class="page-title">Add Pharmacist</h2>
+          <?php
+            include "../../controls/errors.php";
+            $db = new Database();
+          ?>
 
-          <form action="create.php" method="post">
+            <form action="create.php" method="post">
             <div>
               <label>Username</label>
-              <input type="text" name="username" class="text-input" />
+              <input type="text" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '';?>" class="text-input" />
             </div>
             <div>
               <label>Email</label>
-              <input type="email" name="email" class="text-input" />
+              <input type="text" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '';?>" class="text-input" />
             </div>
             <div>
               <label>Password</label>
-              <input type="password" name="password" class="text-input" />
+              <input type="password" name="password"  class="text-input" />
             </div>
             <div>
               <label>Password Confirmation</label>
               <input type="password" name="passwordConf" class="text-input" />
             </div>
             <div>
-              <button type="submit" class="btn btn-big">Add Pharmacist</button>
+              <button type="submit" name="submit" class="btn btn-big">Add Pharmacist</button>
             </div>
           </form>
         </div>

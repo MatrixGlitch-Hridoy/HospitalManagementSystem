@@ -1,3 +1,26 @@
+<?php include "../controls/Database.php" ?>
+
+<?php 
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
+  {
+    header("Location:../views/doctor-login.php");
+  }
+  $currentUser = $_SESSION['id'];
+  
+
+  if(isset($_POST['approve']))
+  {
+    $update=$db->updateApprovedStatus($_POST,"bookappoint");
+  }
+  if(isset($_POST['decline']))
+  {
+    $update=$db->updateDeclineStatus($_POST,"bookappoint");
+  }
+  $data = $db->displayApproved($currentUser);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +41,8 @@
     <link rel="stylesheet" href="../css/admin-nav.css" />
     <link rel="stylesheet" href="../css/admin.css" />
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Approve Appointment</title>
+    <link rel="icon" href="../images/hms.svg">
   </head>
 
   <body>
@@ -30,9 +54,9 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="#"><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -61,23 +85,63 @@
             <thead>
               <th>SN</th>
               <th>Patient Name</th>
-              <th>Email</th>
               <th>Gender</th>
               <th>Date</th>
-              <th>Time</th>
-              <th colspan="2">Action</th>
+              <th>Symptoms</th>
+              <th>Status</th>
+              <th>Comment</th>
+              <th colspan="2" class="th-action">Action</th>
             </thead>
             <tbody>
+            <?php
+              $sno=1;
+              if($data){
+              foreach($data as $value)
+              {
+                if($value['status']=='Pending')
+                {
+            ?>
               <tr>
-                <td>1</td>
-                <td>Hridoy</td>
-                <td>rkhridoy68@gmail.com</td>
-                <td>Male</td>
-                <td>03/30/2021</td>
-                <td>9:25 PM</td>
-                <td><a href="#" class="delete">Approve</a></td>
-                <td><a href="#" class="delete">Decline</a></td>
+                <td><?php echo $sno++ ?></td>
+                <td><?php echo $value['username'] ?></td>
+                <td><?php echo $value['gender'] ?></td>
+                <td><?php echo $value['date'] ?></td>
+                <td><?php echo $value['reason'] ?></td>
+                <?php
+                if($value['status']=='Approved')
+                { ?>
+                <td class="status-1"><?php echo $value['status'] ?></td>
+               <?php } else{?>
+                <td class="status-2"><?php echo $value['status'] ?></td>
+                <?php } ?>
+                <td> <form action="" method="post"> <textarea name="comment" class="textarea" ></textarea> </td>
+                <input type="hidden" name="id" value="<?php echo $value['id'];?>">
+                <td>
+                  <?php
+                  if($value['status']=='Pending'){
+                    print '<button type="submit" name="approve" class="approve btn-update btn-big">Approve</button>';}
+                    else{
+                      print '<button type="submit" name="approve" class="approve-link btn-update btn-big">Approve</button>';
+                    }?>
+                </td>
+                <td>
+                  <?php
+                  if($value['status']=='Pending'){
+                    print '<button type="submit" name="decline" class="decline btn-delete btn-big">Decline</button>';}
+                    else{
+                      print '<button type="submit" name="decline" class="decline-link btn-delete btn-big">Decline</button>';
+                    }
+                  ?>
+                </td>
+                </form>
               </tr>
+              <?php } } }
+              else{
+              ?>
+              <tr>
+                <td colspan="8" class="no-record">No records found</td>
+              </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>
@@ -85,5 +149,6 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <script src="../js/main.js"></script>
   </body>
 </html>

@@ -1,3 +1,19 @@
+<?php include "../controls/Database.php" ?>
+
+<?php 
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
+  {
+    header("Location:../views/doctor-login.php");
+  }
+  $currentUser = $_SESSION['id'];
+  if(isset($_POST['done']))
+  {
+    $update=$db->updateDoneStatus($_POST,"bookappoint");
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +34,8 @@
     <link rel="stylesheet" href="../css/admin-nav.css" />
     <link rel="stylesheet" href="../css/admin.css" />
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Appointment History</title>
+    <link rel="icon" href="../images/hms.svg">
   </head>
 
   <body>
@@ -30,9 +47,9 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="#"><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -56,27 +73,19 @@
       <div class="admin-content">
          <div class="content">
           <h2 class="page-title">Apointment History</h2>
+          <input type="text" name="search" onkeyup="showmyuser()" class="search-bar search-input" id="uname" placeholder="Search">
 
           <table>
             <thead>
               <th>SN</th>
               <th>Patient Name</th>
-              <th>Email</th>
               <th>Gender</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th colspan="2">Action</th>
+              <th>Symptoms</th>
+              <th>Status</th>
+              <th colspan="2" class="th-action">Action</th>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Hridoy</td>
-                <td>rkhridoy68@gmail.com</td>
-                <td>Male</td>
-                <td>03/30/2021</td>
-                <td>9:25 PM</td>
-                <td><a href="#" class="delete">Delete</a></td>
-              </tr>
+            <tbody id="table-data">
+              
             </tbody>
           </table>
         </div>
@@ -84,5 +93,44 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
+    <script src="../../js/jquery.min.js"></script>
+    <script>
+        function MyAjaxFunc(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("GET", "/HospitalManagementSystem/doctor/load.php", true);
+        
+          xhttp.send();
+          
+        }
+        MyAjaxFunc()
+
+        function showmyuser() {
+          var uname=  document.getElementById("uname").value;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("POST", "/HospitalManagementSystem/doctor/search.php", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("uname="+uname);
+}
+
+</script>
   </body>
 </html>

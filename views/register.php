@@ -1,12 +1,22 @@
-<?php include "controls/config.php" ?>
-<?php include "controls/Database.php" ?>
-<?php include "controls/Users.php" ?>
+<?php include "../controls/Database.php" ?>
 <?php
-$db = new Database();
 
+$db = new Database();
   // $users = new Users();
   if(isset($_POST['submit'])){
-    $db->insertRecord($_POST);
+  $create = $db->insertRecord($_POST,"patients");
+    if($create)
+    {
+      echo "<script>alert('Registration succesfull');</script>";
+      echo "<script>window.location.href = 'login.php';</script>";
+    }
+    // else{
+    //   echo "<script>alert('Something went wrong.Please try again');</script>";
+    //   echo "<script>window.location.href = 'login.php';</script>";
+    // }
+    // $_SESSION['email'] = $_POST['email'];
+    // $_SESSION['password'] = $_POST['password'];
+    // header("Location:login.php");
   //   // $users->userRegistration($_POST);
   //   $uName = $_POST['username'];
   //   $email = $_POST['email'];
@@ -115,18 +125,19 @@ $db = new Database();
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Registration</title>
+    <link rel="icon" href="../images/hms.svg">
   </head>
   <body>
     <header class="header-area">
       <div class="title">
-        <h1>Hospital Management System</h1>
+        <h1 class="head"><a href="../home.php">Hospital Management System</a> </h1>
       </div>
       <!-- <nav class="navbar">
         <ul class="menu">
@@ -143,14 +154,14 @@ $db = new Database();
             <li><a href="#">About Us</a></li>
             <li><a href="#">Service</a></li>
             <li><a href="#">Contact Us</a></li>
-            <li>
-              <a href="#">Login As></a>
+            <!-- <li>
+              <a href="#">Login</a>
               <ul>
                 <li><a href="#">User</a></li>
                 <li><a href="#">Doctor</a></li>
                 <li><a href="#">Admin</a></li>
               </ul>
-            </li>
+            </li> -->
           </ul>
         </nav>
       </div>
@@ -166,7 +177,7 @@ $db = new Database();
     //      echo"<span class='error'>".$error_msg."</span>";
     //     //  echo"<span class='error'>".$error_msg['username']."</span>";
     //    }
-    include "controls/errors.php";
+    include "../controls/errors.php";
     $db = new Database();
   ?>
   <?php

@@ -1,3 +1,24 @@
+<?php include "../../controls/Database.php" ?>
+
+<?php 
+  //session_start();
+  session_start();
+  $db = new Database();
+  if(!isset($_SESSION['username']))
+  {
+    header("Location:../../views/admin-login.php");
+  }
+  // if(!isset($_SESSION['username']))
+  // {
+  //   header("Location:../login.php");
+  // }
+
+  $data = $db->displayRecord("patients");
+ 
+  
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,6 +31,7 @@
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    
 
     <!-- Custom Styling -->
     <!-- <link rel="stylesheet" href="../../css/style.css"> -->
@@ -18,7 +40,8 @@
     <link rel="stylesheet" href="../../css/admin-nav.css" />
     <link rel="stylesheet" href="../../css/admin.css" />
 
-    <title>Admin Section - Manage Admin</title>
+    <title>Manage Patients</title>
+    <link rel="icon" href="../../images/hms.svg">
   </head>
 
   <body>
@@ -30,9 +53,9 @@
         <nav class="menu">
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="#"><?php echo $_SESSION['username'];?></a>
               <ul>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../../controls/logout.php">Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -56,8 +79,9 @@
       <div class="admin-content">
         <div class="button-group">
           <a href="create.php" class="btn btn-big">Add Patient</a>
-          <a href="index.php" class="btn btn-big">Manage Patient</a>
+          <a style="background:grey;pointer-events: none;" href="index.php" class="btn btn-big">Manage Patient</a>
         </div>
+        <input type="text" name="search" onkeyup="showmyuser()" class="search-bar search-input" id="uname" placeholder="Search">
 
         <div class="content">
           <h2 class="page-title">Manage Patient</h2>
@@ -67,16 +91,13 @@
               <th>SN</th>
               <th>Username</th>
               <th>Email</th>
-              <th colspan="2">Action</th>
+              <th>Gender</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th colspan="2" class="th-action">Action</th>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Hridoy</td>
-                <td>rkhridoy68@gmail.com</td>
-                <td><a href="#" class="edit">edit</a></td>
-                <td><a href="#" class="delete">delete</a></td>
-              </tr>
+            <tbody id="table-data">
+           
             </tbody>
           </table>
         </div>
@@ -84,5 +105,46 @@
       <!-- // Admin Content -->
     </div>
     <!-- // Page Wrapper -->
-  </body>
+    <!-- <script src="../../js/jquery.min.js"></script> -->
+    <!-- jQuery library -->
+    <script src="../../js/jquery.min.js"></script>
+    <script>
+        function MyAjaxFunc(){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("GET", "/HospitalManagementSystem/admin/users/load.php", true);
+        
+          xhttp.send();
+          
+        }
+        MyAjaxFunc()
+
+        function showmyuser() {
+          var uname=  document.getElementById("uname").value;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("table-data").innerHTML = this.responseText;
+            }
+          else
+          {
+            document.getElementById("table-data").innerHTML = this.status;
+          }
+          };
+          xhttp.open("POST", "/HospitalManagementSystem/admin/users/search.php", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("uname="+uname);
+}
+
+</script>
+</body>
 </html>

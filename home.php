@@ -1,3 +1,4 @@
+<?php include "controls/cookies.php" ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +11,8 @@
       href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Home</title>
+    <link rel="icon" href="images/hms.svg">
   </head>
   <body>
     <header class="header-area">
@@ -41,18 +43,18 @@
       </div> -->
       <div class="navigation">
         <nav class="menu">
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Service</a></li>
-            <li><a href="#">Contact Us</a></li>
+          <ul id="nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#contact">Contact Us</a></li>
             <li>
-              <a href="#">Login As></a>
+              <a href="#">Login</a>
               <ul>
-                <li><a href="register.php">Patient</a></li>
-                <li><a href="doctor-login.php">Doctor</a></li>
-                <li><a href="pharmacist-login.php">Pharmacist</a></li>
-                <li><a href="admin-login.php">Admin</a></li>
+                <li><a href="views/login.php">Patient</a></li>
+                <li><a href="views/doctor-login.php">Doctor</a></li>
+                <li><a href="views/pharmacist-login.php">Pharmacist</a></li>
+                <li><a href="views/admin-login.php">Admin</a></li>
               </ul>
             </li>
           </ul>
@@ -60,9 +62,9 @@
       </div>
     </header>
 
-    <div class="banner-area">
+    <div class="banner-area" id="home">
       <div class="canvas">
-        <img src="1.jpg" alt="" />
+        <img src="images/1.jpg" alt="" />
         <div class="title1">
           <h3>Caring for better life</h3>
           <h1>Caring for better life Leading the way in medical excellence</h1>
@@ -75,11 +77,13 @@
         </div> -->
         </div>
         <div class="apointment">
-          <a href="">Make Appointment</a>
+          <a href="views/login.php">Make Appointment</a>
         </div>
       </div>
     </div>
-    <div class="about">
+
+
+    <div class="about" id="about">
       <div class="left-area">
         <h1>About Us</h1>
         <p>
@@ -96,10 +100,11 @@
         </div>
       </div>
       <div class="right-area">
-        <img src="1.jpg" alt="" />
+        <img src="images/1.jpg" alt="" />
       </div>
     </div>
-    <div class="service">
+
+    <div class="service" id="service">
       <div class="container">
         <div class="service-title">
           <h1>Our Service</h1>
@@ -142,7 +147,7 @@
         </div>
       </div>
     </div>
-    <div class="emergency">
+    <div class="emergency" >
       <div class="container">
         <div class="inner-content">
           <h2>Emergency hotline</h2>
@@ -154,7 +159,7 @@
         </div>
       </div>
     </div>
-    <div class="footer">
+    <div class="footer" id="contact">
       <div class="container">
         <div class="footer-about col16">
           <h3>Career</h3>
@@ -185,5 +190,25 @@
         </div>
       </div>
     </div>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.nav.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      $('#nav').onePageNav();
+      //stickyScroll();
+
+      // $(window).on('scroll',function()
+      // {
+      //   if($(this).scrollTop())
+      //   {
+      //     $('.navigation').addClass("sticky");
+      //   }
+      //   else{
+      //     $('.navigation').removeClass("sticky");
+      //   }
+      // });
+    </script>
   </body>
 </html>
