@@ -152,9 +152,5 @@ function decrease() {
 
         document.getElementById("product").value = 1;
     }
-
-
-
-
 }
 </script>
